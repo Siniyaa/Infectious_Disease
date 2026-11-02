@@ -1,7 +1,6 @@
 # Supplementary material
 
-Functionally scored nirsevimab-escape substitutions in respiratory syncytial virus F
-
+Functionally scored nirsevimab escape is absent before prophylaxis and 0.134% after in 36,662 respiratory syncytial virus genomes, and three substitutions reported as RSV-B escape are subtype-consensus residues
 ---
 
 ## Table S1. Sequences per country in the analysis cohort
