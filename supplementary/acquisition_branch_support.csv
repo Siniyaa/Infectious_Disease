@@ -1,0 +1,33 @@
+subtype,node,mut,descendant_tips,carrier_descendants,sh_support,support_status
+RSV-A,PZ414290,K201E,1,1,,terminal branch (support undefined)
+RSV-A,OZ262242,K209E,1,1,,terminal branch (support undefined)
+RSV-A,OZ279964,K209E,1,1,,terminal branch (support undefined)
+RSV-A,EPI_ISL_20010902,K201T,1,1,,terminal branch (support undefined)
+RSV-A,EPI_ISL_20430535,K209E,1,1,,terminal branch (support undefined)
+RSV-A,EPI_ISL_19893701,K209E,1,1,,terminal branch (support undefined)
+RSV-A,OZ332800,K201E,1,1,,terminal branch (support undefined)
+RSV-A,EPI_ISL_20379193,K209E,1,1,,terminal branch (support undefined)
+RSV-A,OZ373536,K209E,1,1,,terminal branch (support undefined)
+RSV-B,PQ762827,N208D,1,1,,terminal branch (support undefined)
+RSV-B,NODE_0000555,N208D,2,2,,clade not recovered as a bipartition in the ML tree
+RSV-B,EPI_ISL_19770392,K68I,1,1,,terminal branch (support undefined)
+RSV-B,EPI_ISL_20082441,N201T,1,1,,terminal branch (support undefined)
+RSV-B,NODE_0001323,N208D,122,2,,clade not recovered as a bipartition in the ML tree
+RSV-B,EPI_ISL_19762915,N208D,1,1,,terminal branch (support undefined)
+RSV-B,NODE_0003662,N208D,2,2,,clade not recovered as a bipartition in the ML tree
+RSV-B,EPI_ISL_19220841,N201T,1,1,,terminal branch (support undefined)
+RSV-B,NODE_0006348,K209E,12,12,0.888,clade recovered in ML tree
+RSV-B,MZ568972,N201T,1,1,,terminal branch (support undefined)
+RSV-B,EPI_ISL_19892816,N208T,1,1,,terminal branch (support undefined)
+RSV-B,EPI_ISL_18953113,N208T,1,1,,terminal branch (support undefined)
+RSV-B,NODE_0008278,N208D,2,2,,clade not recovered as a bipartition in the ML tree
+RSV-B,EPI_ISL_19892795,N208D,1,1,,terminal branch (support undefined)
+RSV-B,OZ416497,N208D,1,1,,terminal branch (support undefined)
+RSV-B,EPI_ISL_18648361,N208D,1,1,,terminal branch (support undefined)
+RSV-B,EPI_ISL_20383287,N201T,1,1,,terminal branch (support undefined)
+RSV-B,PZ666312,K68I,1,1,,terminal branch (support undefined)
+RSV-B,EPI_ISL_18846458,N208D,1,1,,terminal branch (support undefined)
+RSV-B,OZ279111,N208D,1,1,,terminal branch (support undefined)
+RSV-B,OZ278978,K68I,1,1,,terminal branch (support undefined)
+RSV-B,PX892596,K68I,1,1,,terminal branch (support undefined)
+RSV-B,NODE_0011237,N201T,2,2,0.982,clade recovered in ML tree
