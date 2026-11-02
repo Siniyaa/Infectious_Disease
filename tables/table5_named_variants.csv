@@ -1,0 +1,10 @@
+Substitution,Fab escape score,Frequency in RSV-A (%),Frequency in RSV-B (%),RSV-B consensus residue
+S211N,-0.036,0.01,77.28,yes
+K209R,0.042,0.048,84.94,yes
+K65R,0.17,0.997,0.05,no
+K68Q,0.572,0.0,0.34,no
+I206M,0.598,0.014,90.71,yes
+N201T,2.036,0.005,0.03,no
+K209E,2.368,0.029,0.07,no
+K68I,2.469,0.0,0.02,no
+N208D,2.561,0.0,0.08,no
