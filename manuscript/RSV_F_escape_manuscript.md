@@ -1,5 +1,4 @@
-# Functionally scored nirsevimab-escape substitutions in respiratory syncytial virus F: repeated independent emergence without onward spread, and a reference-baseline artefact in the published literature
-
+# Functionally scored nirsevimab escape is absent before prophylaxis and 0.134% after in 36,662 respiratory syncytial virus genomes, and three substitutions reported as RSV-B escape are subtype-consensus residues
 **Authors.** [To be completed by the authors.]
 
 **Running title.** Population-level RSV F escape surveillance
@@ -320,7 +319,7 @@ outright. A single-threshold analysis would have concealed this, and it explains
 frequencies vary by orders of magnitude: they are measuring different things. The practical consequence
 is that an RSV escape frequency without a stated threshold is uninterpretable.
 
-**A substantial part of the published RSV-B escape signal is a reference-baseline artefact.** Three of
+**Reported RSV-B site-O substitution frequencies substantially reflect subtype-consensus residues.** Three of
 the substitutions the systematic review highlights as frequent in RSV-B [1] are the majority residues of
 RSV-B and carry no escape activity. The review itself notes that most identified substitutions appear to
 represent naturally occurring polymorphisms; this analysis identifies which ones and explains why they
