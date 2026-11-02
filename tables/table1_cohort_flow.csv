@@ -1,0 +1,8 @@
+Stage,Sequences
+GenBank near-complete genomes retrieved,25377
+GISAID EpiRSV records retrieved (unique),56856
+GISAID passing host/length/date filters,44275
+"Combined, subtype-assigned and aligned",69655
+F coverage >=95% and a resolvable collection date,65416
+"After de-duplication on identical F, country and date",38925
+"Primary analysis window, 2017 onward",36662
