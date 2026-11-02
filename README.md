@@ -12,10 +12,10 @@ nirsevimab- and clesrovimab-escape substitutions in RSV F, across the combined p
 - **The result is threshold-specific.** Between Fab-escape thresholds of 1.2 and 1.8 the era comparison
   is null; at 1.0 it reverses, with escape commoner *before* rollout. Only the strongest escape class
   behaves as a post-rollout phenomenon.
-- **A reference-baseline artefact in the literature.** Three substitutions widely reported as RSV-B
-  escape (I206M, residue R at site 209, S211N) are majority residues of RSV-B itself - 90.7%, 84.9% and
-  77.3% of RSV-B sequences - and carry no measurable escape activity. They appear as substitutions only
-  when an RSV-A reference supplies the baseline.
+- **Reported RSV-B escape frequencies need a subtype-matched baseline.** Three substitutions widely
+  reported as RSV-B escape (I206M, residue R at site 209, S211N) are majority residues of RSV-B itself -
+  90.7%, 84.9% and 77.3% of RSV-B sequences - and carry no measurable escape activity. They appear as
+  substitutions only when an RSV-A reference supplies the baseline.
 - **Repeated emergence, no expansion.** Escape residues were acquired on 32 independent branches across
   eight substitutions; 26 remained a single carrier and the largest post-rollout cluster was two
   sequences. The only larger cluster (12) predates prophylaxis.
