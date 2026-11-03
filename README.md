@@ -12,7 +12,8 @@ mutational scanning (DMS), against 35 of 26,064 collected on or after that date 
 95% CI 0.094-0.187; Fisher p = 1.3e-5; CMH by country and subtype p = 0.0059).
 
 **That contrast depends on two analyst choices.** Including records from before 2016 adds 13
-historical carriers - mostly a single 2015 Argentinian RSV-B cluster - and the comparison becomes
+historical carriers - twelve of which fall in one 2014-15 RSV-B site-209 acquisition clade
+(ten Argentina, two Viet Nam) - and the comparison becomes
 null (13/12,861 versus 35/26,064, p = 0.44). Lowering the Fab-escape cutoff from 2.036 to 1.0
 reverses its direction. The substitutions are not new; they are in the archive from 2002 and
 2014-15.
