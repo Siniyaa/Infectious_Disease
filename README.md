@@ -1,61 +1,68 @@
-# Nirsevimab-escape surveillance in the respiratory syncytial virus fusion protein
+# Threshold and time-window choices determine whether nirsevimab escape substitutions appear to have increased: an analysis of 38,925 public respiratory syncytial virus genomes
 
-Analysis code, figures, tables and manuscript for a population-level study of functionally scored
-nirsevimab- and clesrovimab-escape substitutions in RSV F, across the combined public sequence archive.
+Analysis code, manifests and derived tables for a study of nirsevimab- and clesrovimab-escape
+substitutions in the respiratory syncytial virus (RSV) fusion (F) protein, using the combined
+public sequence archive (GenBank and GISAID EpiRSV).
 
-## Summary of findings
+## What the study found
 
-- **No pre-rollout carrier.** Of 10,598 sequences collected before 1 July 2023, none carried a
-  functionally scored nirsevimab-escape substitution; 35 of 26,064 collected afterwards did
-  (0.134%, 95% CI 0.094-0.187; Fisher p = 1.3e-5; subtype-stratified p = 3.1e-4; restricted to the 48
-  countries sequenced in both eras, 33/24,421 vs 0/10,045, p = 2.0e-5).
-- **The result is threshold-specific.** Between Fab-escape thresholds of 1.2 and 1.8 the era comparison
-  is null; at 1.0 it reverses, with escape commoner *before* rollout. Only the strongest escape class
-  behaves as a post-rollout phenomenon.
-- **Reported RSV-B escape frequencies need a subtype-matched baseline.** Three substitutions widely
-  reported as RSV-B escape (I206M, residue R at site 209, S211N) are majority residues of RSV-B itself -
-  90.7%, 84.9% and 77.3% of RSV-B sequences - and carry no measurable escape activity. They appear as
-  substitutions only when an RSV-A reference supplies the baseline.
-- **Repeated emergence, no expansion.** Escape residues were acquired on 32 independent branches across
-  eight substitutions; 26 remained a single carrier and the largest post-rollout cluster was two
-  sequences. The only larger cluster (12) predates prophylaxis.
-- **Clesrovimab baseline.** 9 of 26,545 pre-2025 sequences (0.034%), all RSV-A. Its escape positions
-  (429, 443, 445, 470) do not overlap those of nirsevimab (68, 201, 208, 209, 210), and no sequence
-  carries both.
+Among 36,662 de-duplicated archive records collected from 2017 onward, none of the 10,598
+collected before 1 July 2023 carried a substitution classified as high-escape by published deep
+mutational scanning (DMS), against 35 of 26,064 collected on or after that date (0.134%,
+95% CI 0.094-0.187; Fisher p = 1.3e-5; CMH by country and subtype p = 0.0059).
 
-## Data availability and GISAID terms
+**That contrast depends on two analyst choices.** Including records from before 2016 adds 13
+historical carriers - mostly a single 2015 Argentinian RSV-B cluster - and the comparison becomes
+null (13/12,861 versus 35/26,064, p = 0.44). Lowering the Fab-escape cutoff from 2.036 to 1.0
+reverses its direction. The substitutions are not new; they are in the archive from 2002 and
+2014-15.
 
-**This repository contains no sequence data.** The analysis combined GenBank records with a GISAID
-EpiRSV export. GISAID data may not be redistributed, so every table here carries accessions
-(GenBank accession or GISAID EPI_ISL) and derived calls only. To reproduce the analysis:
+The conclusion of the study is therefore methodological: archive-derived resistance frequencies
+are uninterpretable without the classification threshold, the reference baseline and the
+collection-year span from which they were derived. These are observations about deposited
+sequences, not population prevalence, and no causal claim about prophylaxis is made.
 
-1. Retrieve GenBank genomes for taxon 11250 (see `code/PIPELINE.md`).
-2. Obtain the GISAID EpiRSV sequences yourself from https://gisaid.org using the accessions listed in
-   `data/combined_escape_calls.csv`. A GISAID account is required and the terms of access apply.
-3. The deep mutational scanning escape scores are public at
-   https://github.com/dms-vep/RSV_Long_F_DMS (`results/summaries/`).
+## Contents
 
-An EPI_SET acknowledgement DOI for the GISAID sequences will accompany the published article.
+- `code/pipeline.py` - the analysis workflow. Stages: fetch-genbank, sort, align, build-cohort,
+  call, stats, sensitivity, trend, clesrovimab, phylo. Run `python pipeline.py --help`.
+  Figure generation is not included; the tables under `tables/` are its inputs.
+- `logs/validation_run.txt` - output of executing the analysis functions against the deposited
+  analysis set, reproducing every number in the Results except the acquisition counts.
+- `manifests/analysis_set_38925.csv` - one row per analysed record: accession, database, subtype,
+  lineage, country, collection date, **date-precision flag**, F coverage, carrier call, period.
+- `manifests/deduplication_groups.csv` - the complete de-duplication mapping, 65,416 member rows
+  across 38,925 groups, by opaque group identifier, with the retained representative flagged.
+  No sequence data.
+- `manifests/genbank_accessions.txt`, `manifests/gisaid_epi_isl.txt` - the frozen input lists.
+- `phylogenetics/` - maximum-likelihood trees, annotated TreeTime output, branch-mutation tables.
+- `tables/`, `figures/`, `manuscript/`, `supplementary/`.
 
-## Layout
+## Reproducing
 
-| Path | Contents |
-|---|---|
-| `manuscript/` | Manuscript and supplementary material, Markdown and Word |
-| `figures/` | The five main figures, 300 dpi |
-| `tables/` | Main-text Tables 1-5 as CSV |
-| `supplementary/` | Supplementary Tables S1-S6 |
-| `data/` | Per-sequence escape calls (accessions and derived calls only), carriage and cohort tables |
-| `code/` | Pipeline documentation with exact commands and parameters |
+GISAID sequences cannot be redistributed. Export them from https://gisaid.org using
+`manifests/gisaid_epi_isl.txt`, then:
 
-## Software
+```
+python code/pipeline.py all --gisaid-fasta gisaid.fasta --gisaid-meta gisaid.tsv --email you@example.org
+```
 
-Nextclade 3.25.1 (subtype assignment, alignment, lineage calls, F translation); VeryFastTree 4.0.4
-(GTR+gamma maximum-likelihood trees); TreeTime 0.12.1 (amino-acid ancestral reconstruction);
-Python 3.12 with pandas, numpy, scipy and matplotlib.
+The GenBank arm consumes `manifests/genbank_accessions.txt` by default so that the cohort is the
+frozen one rather than current holdings. DMS scores are pinned to commit
+`3ecdfaa661304e3c284acdbeacc9662d2baa1dd9` of https://github.com/dms-vep/RSV_Long_F_DMS and
+checksum-verified at run time.
 
-## Status
+## Caveats
 
-Manuscript draft, not yet submitted. Outstanding before submission: a non-de-duplicated sensitivity
-analysis of the spread result, branch support values for the 32 acquisition branches, country-specific
-rollout dates, and completion of reference 7 (RSV lineage nomenclature).
+The public archive is a convenience sample dominated by a small number of countries. Prophylaxis
+exposure is not recorded in public metadata and national implementation dates differ. Escape
+classification is a DMS score, not a measured phenotype; no virus was tested functionally here,
+and the narrow high-escape category deliberately excludes some known resistance-associated
+variants, including K68Q. The clesrovimab analysis is exploratory: the cutoff was derived for
+nirsevimab.
+
+## Data sources
+
+GenBank (NCBI taxon 11250) and GISAID EpiRSV, retrieved 2 November 2026. Lineage assignments and
+F translations from Nextclade datasets `nextstrain/rsv/a/EPI_ISL_412866` and
+`nextstrain/rsv/b/EPI_ISL_1653999`.
