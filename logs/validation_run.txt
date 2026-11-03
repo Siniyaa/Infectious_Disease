@@ -72,7 +72,8 @@ stratified()
   CMH by country x subtype x database   p=0.00824  informative strata=12
 
 dedup_sensitivity()
-  (pre-deduplication set not in workspace at log time)
+  no de-duplication, all years         pre 14/20,098  post 53/45,318  p=0.0858
+  no de-duplication, primary window    pre 0/17,318  post 53/45,318  p=6.793e-08
 
 date_sensitivity()
   primary                      pre 0/10,598  post 35/26,064  p=1.335e-05
