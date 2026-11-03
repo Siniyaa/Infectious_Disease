@@ -1,33 +1,33 @@
-subtype,node,mut,descendant_tips,carrier_descendants,sh_support,support_status
-RSV-A,PZ414290,K201E,1,1,,terminal branch (support undefined)
-RSV-A,OZ262242,K209E,1,1,,terminal branch (support undefined)
-RSV-A,OZ279964,K209E,1,1,,terminal branch (support undefined)
-RSV-A,EPI_ISL_20010902,K201T,1,1,,terminal branch (support undefined)
-RSV-A,EPI_ISL_20430535,K209E,1,1,,terminal branch (support undefined)
-RSV-A,EPI_ISL_19893701,K209E,1,1,,terminal branch (support undefined)
-RSV-A,OZ332800,K201E,1,1,,terminal branch (support undefined)
-RSV-A,EPI_ISL_20379193,K209E,1,1,,terminal branch (support undefined)
-RSV-A,OZ373536,K209E,1,1,,terminal branch (support undefined)
-RSV-B,PQ762827,N208D,1,1,,terminal branch (support undefined)
-RSV-B,NODE_0000555,N208D,2,2,,clade not recovered as a bipartition in the ML tree
-RSV-B,EPI_ISL_19770392,K68I,1,1,,terminal branch (support undefined)
-RSV-B,EPI_ISL_20082441,N201T,1,1,,terminal branch (support undefined)
-RSV-B,NODE_0001323,N208D,122,2,,clade not recovered as a bipartition in the ML tree
-RSV-B,EPI_ISL_19762915,N208D,1,1,,terminal branch (support undefined)
-RSV-B,NODE_0003662,N208D,2,2,,clade not recovered as a bipartition in the ML tree
-RSV-B,EPI_ISL_19220841,N201T,1,1,,terminal branch (support undefined)
-RSV-B,NODE_0006348,K209E,12,12,0.888,clade recovered in ML tree
-RSV-B,MZ568972,N201T,1,1,,terminal branch (support undefined)
-RSV-B,EPI_ISL_19892816,N208T,1,1,,terminal branch (support undefined)
-RSV-B,EPI_ISL_18953113,N208T,1,1,,terminal branch (support undefined)
-RSV-B,NODE_0008278,N208D,2,2,,clade not recovered as a bipartition in the ML tree
-RSV-B,EPI_ISL_19892795,N208D,1,1,,terminal branch (support undefined)
-RSV-B,OZ416497,N208D,1,1,,terminal branch (support undefined)
-RSV-B,EPI_ISL_18648361,N208D,1,1,,terminal branch (support undefined)
-RSV-B,EPI_ISL_20383287,N201T,1,1,,terminal branch (support undefined)
-RSV-B,PZ666312,K68I,1,1,,terminal branch (support undefined)
-RSV-B,EPI_ISL_18846458,N208D,1,1,,terminal branch (support undefined)
-RSV-B,OZ279111,N208D,1,1,,terminal branch (support undefined)
-RSV-B,OZ278978,K68I,1,1,,terminal branch (support undefined)
-RSV-B,PX892596,K68I,1,1,,terminal branch (support undefined)
-RSV-B,NODE_0011237,N201T,2,2,0.982,clade recovered in ML tree
+subtype,node,mut,descendant_tips,carrier_descendants,sh_support,support_status,pos,state1,state2,lab,jit
+RSV-A,PZ414290,K201E,1,1,,terminal branch (support undefined),201,K,E,201 → E,0.04930620743572356
+RSV-A,OZ262242,K209E,1,1,,terminal branch (support undefined),209,K,E,209 → E,-0.08287678304500669
+RSV-A,OZ279964,K209E,1,1,,terminal branch (support undefined),209,K,E,209 → E,-0.1652495313829699
+RSV-A,EPI_ISL_20010902,K201T,1,1,,terminal branch (support undefined),201,K,T,201 → T,-0.17405005120972952
+RSV-A,EPI_ISL_20430535,K209E,1,1,,terminal branch (support undefined),209,K,E,209 → E,0.11277728611209809
+RSV-A,EPI_ISL_19893701,K209E,1,1,,terminal branch (support undefined),209,K,E,209 → E,0.14859200781997983
+RSV-A,OZ332800,K201E,1,1,,terminal branch (support undefined),201,K,E,201 → E,0.038388879276184756
+RSV-A,EPI_ISL_20379193,K209E,1,1,,terminal branch (support undefined),209,K,E,209 → E,0.0826187619542394
+RSV-A,OZ373536,K209E,1,1,,terminal branch (support undefined),209,K,E,209 → E,0.01570499692755223
+RSV-B,PQ762827,N208D,1,1,,terminal branch (support undefined),208,N,D,208 → D,0.15662607256359656
+RSV-B,NODE_0000555,N208D,2,2,,clade not recovered as a bipartition in the ML tree,208,N,D,208 → D,0.11370727948375159
+RSV-B,EPI_ISL_19770392,K68I,1,1,,terminal branch (support undefined),68,K,I,68 → I,-0.17901413993874668
+RSV-B,EPI_ISL_20082441,N201T,1,1,,terminal branch (support undefined),201,N,T,201 → T,0.12866553957152493
+RSV-B,NODE_0001323,N208D,122,2,,clade not recovered as a bipartition in the ML tree,208,N,D,208 → D,-0.16790919289003284
+RSV-B,EPI_ISL_19762915,N208D,1,1,,terminal branch (support undefined),208,N,D,208 → D,0.08267596071477984
+RSV-B,NODE_0003662,N208D,2,2,,clade not recovered as a bipartition in the ML tree,208,N,D,208 → D,-0.11676397658307874
+RSV-B,EPI_ISL_19220841,N201T,1,1,,terminal branch (support undefined),201,N,T,201 → T,0.13074441204595916
+RSV-B,NODE_0006348,K209E,12,12,0.888,clade recovered in ML tree,209,K,E,209 → E,0.01492603928967301
+RSV-B,MZ568972,N201T,1,1,,terminal branch (support undefined),201,N,T,201 → T,-0.07210371940654148
+RSV-B,EPI_ISL_19892816,N208T,1,1,,terminal branch (support undefined),208,N,T,208 → T,-0.02783260036884297
+RSV-B,EPI_ISL_18953113,N208T,1,1,,terminal branch (support undefined),208,N,T,208 → T,-0.1698049183876333
+RSV-B,NODE_0008278,N208D,2,2,,clade not recovered as a bipartition in the ML tree,208,N,D,208 → D,-0.13525802046015697
+RSV-B,EPI_ISL_19892795,N208D,1,1,,terminal branch (support undefined),208,N,D,208 → D,0.061424789289706905
+RSV-B,OZ416497,N208D,1,1,,terminal branch (support undefined),208,N,D,208 → D,0.05298822416673002
+RSV-B,EPI_ISL_18648361,N208D,1,1,,terminal branch (support undefined),208,N,D,208 → D,0.0415386401332514
+RSV-B,EPI_ISL_20383287,N201T,1,1,,terminal branch (support undefined),201,N,T,201 → T,-0.04187608046572197
+RSV-B,PZ666312,K68I,1,1,,terminal branch (support undefined),68,K,I,68 → I,0.17899557688411594
+RSV-B,EPI_ISL_18846458,N208D,1,1,,terminal branch (support undefined),208,N,D,208 → D,0.17310072195944282
+RSV-B,OZ279111,N208D,1,1,,terminal branch (support undefined),208,N,D,208 → D,0.06679511441305008
+RSV-B,OZ278978,K68I,1,1,,terminal branch (support undefined),68,K,I,68 → I,0.05416533945641386
+RSV-B,PX892596,K68I,1,1,,terminal branch (support undefined),68,K,I,68 → I,0.06784082300553843
+RSV-B,NODE_0011237,N201T,2,2,0.982,clade recovered in ML tree,201,N,T,201 → T,-0.039988287367522635
