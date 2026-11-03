@@ -173,7 +173,7 @@ reported proportion. This analysis is exploratory: the cutoff was derived for ni
 
 ## Table S7. Independent acquisition counts by substitution
 
-| Subtype | Substitution | Independent acquisitions | Largest carrier cluster | Post-rollout carriers |
+| Subtype | Substitution | Independent acquisitions | Largest carrier cluster | Carriers on/after 1 Jul 2023 |
 |---|---|---|---|---|
 | RSV-A | K201E | 2 | 1 | 2 |
 | RSV-A | K201T | 1 | 1 | 1 |
