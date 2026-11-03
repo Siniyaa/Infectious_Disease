@@ -76,10 +76,12 @@ comparison is now reported with both fractions (0.101% against 0.134%) beside th
 adds the point the reviewer asks for: changing the cutoff does not merely change the power of one test, it
 changes which substitutions are classified and therefore the endpoint being compared.
 
-**De-duplication framing.** Adopted. Results 3.4 now compares fractions (0% against 0.117% in the primary
-window; 0.070% against 0.117% across the full archive) and states that the smaller p value obtained
-without de-duplication is not stronger evidence, because records matching on F sequence, country and date
-are not independent observations, and that the de-duplicated analysis remains the principal comparison.
+**De-duplication framing.** Adopted in Results 3.4, which compares fractions (0% against 0.117% in the
+primary window; 0.070% against 0.117% across the full archive) and states that the smaller p value
+obtained without de-duplication is not stronger evidence, because records matching on F sequence, country
+and date are not independent observations. The Limitations sentence still said the analysis without
+de-duplication "strengthened" the association; it now says the descriptive pattern persisted and repeats
+the independence caveat.
 
 ## Comment 5. Figure annotations
 
@@ -91,7 +93,10 @@ are not independent observations, and that the de-duplicated analysis remains th
   significant reversal.
 - **Figure 2c and Figure 4 legends.** Corrected dates and countries as above.
 - **Table 2 and figure legends.** "Before/after rollout" is replaced by the fixed 1 July 2023 calendar
-  boundary, with an explicit statement that national rollout timing was not used to assign periods.
+  boundary, with an explicit statement that national rollout timing was not used to assign periods. In the
+  third revision this change had been applied to the legends but not to the Table 2 rows, the Table 2 CSV,
+  the Table S7 heading, `tables/table4_origins.csv` or the Figure 1 image; all are corrected here and
+  Figure 1 has been regenerated.
 
 ## Additional corrections
 
@@ -122,3 +127,52 @@ contributions, the GISAID EPI_SET acknowledgement identifier, and the author pla
 4-8, 10 and 11, of which reference 8 (the lineage nomenclature consortium paper) is still to be selected.
 Final journal requirements should be checked directly rather than relying on the limits stated on the title
 page.
+
+
+---
+
+# ADDENDUM: RESPONSE TO THE FOURTH REVIEW
+
+## 1. GISAID accounting in Methods 2.3
+
+**Confirmed, and our correction was itself wrong.** Recomputed directly from the deposited mapping:
+41,514 GISAID records pass QC, 19,845 are retained as representatives, so 21,669 (52.2%) are excluded -
+16,973 from mixed-database groups and 4,696 from GISAID-only groups. The 9,344 / 22.5% figure counted
+GISAID records beyond the first within each group, which is not the same quantity; the original 52.2% was
+correct. Methods 2.3 now uses the reviewer's suggested wording verbatim, and the Discussion sentence is
+corrected to match.
+
+## 2. Wording corrections applied everywhere
+
+Confirmed incomplete. "Before rollout" / "After rollout" remained in the Table 2 rows and its CSV, the
+Table S7 heading and `tables/table4_origins.csv`, and the Figure 1 image still carried "No carrier before
+rollout" and "prophylaxis rollout". All are now the fixed 1 July 2023 boundary, and Figure 1 has been
+regenerated as PNG and TIFF with its title scoped to the 2017-onward window. "The period comparison is
+null" and "null or reversed" are gone from the Conclusions, which now distinguish non-significance between
+cutoffs of 1.2 and 1.8 from the significant reversal at 1.0.
+
+## 3. Rooting limitation carried into the headline statements
+
+Adopted. The abstract now reads "Under the reported reconstruction, high-escape residues were assigned to
+32 candidate acquisition branches, 26 associated with a single sampled carrier." Results 3.5 and the
+Conclusions use the same qualification, state that the reconstruction is conditional on one topology, one
+ancestral-state model and the unrooted tree as produced, and describe the phylogenetic findings as
+exploratory. The Limitations add that sensitivity to rooting was not assessed. No claim is made about a
+robust number or direction of independent evolutionary origins.
+
+## 4. Remaining reproducibility qualifications
+
+Both addressed. A cached Nextclade dataset directory is now reused only when the tag recorded in its
+`pathogen.json` matches the pinned release; a mismatch exits with instructions. Every analysis stage, not
+only `fetch-genbank`, exits if the frozen accession list is missing, and proceeding without one requires
+`--frozen-accessions ''` and prints a warning that the cohort will not match. We have not claimed complete
+end-to-end reproducibility: alignment preparation remains documented rather than automated, and the
+validation log states which stages it does and does not exercise.
+
+## 5. Author and submission details
+
+Still outstanding and for the authors: names, affiliations, corresponding-author information, funding,
+conflicts, CRediT contributions, the GISAID EPI_SET acknowledgement identifier, the author placeholders in
+references 2, 4-8, 10 and 11, and the lineage-nomenclature reference 8. Final journal requirements should
+be rechecked after these are added. The abstract is 198 words and the manuscript has three tables and five
+figures.
