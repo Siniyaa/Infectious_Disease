@@ -109,8 +109,9 @@ are not independent observations, and that the de-duplicated analysis remains th
 - **Table S1.** Confirmed 83 categories including an unnamed one with 4 records. Reported as 82 named
   countries plus 4 records with no country, labelled "(country not stated)" in the table, and stated in
   Results 3.10.
-- **Display items.** Tables 3a and 3b are merged into a single Table 3 with panels A and B, giving eight
-  display items with Figures 1-5. The title page states this.
+- **Display items.** Tables 3a and 3b are merged into one physical Table 3 carrying both sweeps in a
+  single table with a Panel column, rather than two tables sharing a label. The rendered manuscript
+  contains three tables and five figures, eight display items, verified in the built file.
 - **Supplement legibility.** The supplement is now landscape with wider columns and 8-point table text;
   headers repeat and rows do not split.
 
