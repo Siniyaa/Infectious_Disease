@@ -1,0 +1,16 @@
+Analysis,Specification,Before 1 Jul 2023,On/after 1 Jul 2023,p
+De-duplication,"primary rule, 2017+","0/10,598","35/26,064",1.3e-05
+De-duplication,"no de-duplication, 2017+","0/17,318","53/45,318",6.8e-08
+De-duplication,"primary rule, all years","13/12,861","35/26,064",0.44
+De-duplication,"no de-duplication, all years","14/20,098","53/45,318",0.086
+Date precision,exclude year-only 2023 records,"0/10,569","35/26,064",1.3e-05
+Date precision,exclude all year-only records,"0/10,421","35/26,051",1.3e-05
+Date precision,full-date records only,"0/10,117","35/25,802",1.4e-05
+Cell-entry floor,entry >= -2.0 (23 mutations),"0/10,598","36/26,064",7.6e-06
+Cell-entry floor,entry >= -1.0 (18 mutations),"0/10,598","36/26,064",7.6e-06
+Cell-entry floor,"entry >= -0.5 (12, primary)","0/10,598","35/26,064",1.3e-05
+Cell-entry floor,entry >= 0.0 (9 mutations),"0/10,598","31/26,064",3.4e-05
+Stratification,CMH by subtype (2 strata),-,-,3.0e-04
+Stratification,CMH by country (6 strata),-,-,0.0060
+Stratification,CMH by country x subtype (9 strata),-,-,0.0059
+Stratification,CMH by country x subtype x database (12),-,-,0.0082
