@@ -11,12 +11,12 @@ collected before 1 July 2023 carried a substitution classified as high-escape by
 mutational scanning (DMS), against 35 of 26,064 collected on or after that date (0.134%,
 95% CI 0.094-0.187; Fisher p = 1.3e-5; CMH by country and subtype p = 0.0059).
 
-**That contrast depends on two analyst choices.** Including records from before 2016 adds 13
-historical carriers - twelve of which fall in one 2014-15 RSV-B site-209 acquisition clade
-(ten Argentina, two Viet Nam) - and the comparison becomes
-null (13/12,861 versus 35/26,064, p = 0.44). Lowering the Fab-escape cutoff from 2.036 to 1.0
-reverses its direction. The substitutions are not new; they are in the archive from 2002 and
-2014-15.
+**That contrast depends on two analyst choices.** Including records from before 2016 adds 13 historical
+carriers - twelve of them in one RSV-B site-209 acquisition clade of ten Argentinian records from 2015 and
+two Vietnamese records from 2014 - and the difference is no longer statistically significant (0.101%
+against 0.134%, p = 0.44). Lowering the Fab-escape cutoff from 2.036 to 1.0 reverses its direction, while
+also changing which substitutions the endpoint contains. The substitutions are not new; they are in the
+archive from 2002 and 2014-15.
 
 The conclusion of the study is therefore methodological: archive-derived resistance frequencies
 are uninterpretable without the classification threshold, the reference baseline and the
@@ -31,7 +31,8 @@ sequences, not population prevalence, and no causal claim about prophylaxis is m
 - `logs/validation_run.txt` - output of executing the analysis functions against the deposited
   analysis set, reproducing every number in the Results except the acquisition counts.
 - `manifests/analysis_set_38925.csv` - one row per analysed record: accession, database, subtype,
-  lineage, country, collection date, **date-precision flag**, F coverage, carrier call, period.
+  lineage, country, **the collection date exactly as deposited**, the parsed date, a **date-precision
+  flag**, F coverage, carrier call, period.
 - `manifests/deduplication_groups.csv` - the complete de-duplication mapping, 65,416 member rows
   across 38,925 groups, by opaque group identifier, with the retained representative flagged.
   No sequence data.
@@ -48,8 +49,9 @@ GISAID sequences cannot be redistributed. Export them from https://gisaid.org us
 python code/pipeline.py all --gisaid-fasta gisaid.fasta --gisaid-meta gisaid.tsv --email you@example.org
 ```
 
-The GenBank arm consumes `manifests/genbank_accessions.txt` by default so that the cohort is the
-frozen one rather than current holdings. DMS scores are pinned to commit
+The GenBank arm retrieves exactly the versioned accessions in `manifests/genbank_accessions.txt`, aborting
+if it is absent and reporting any the server does not return. Nextclade datasets are pinned to release tag
+`2026-04-14--11-55-23Z`. DMS scores are pinned to commit
 `3ecdfaa661304e3c284acdbeacc9662d2baa1dd9` of https://github.com/dms-vep/RSV_Long_F_DMS and
 checksum-verified at run time.
 
