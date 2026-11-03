@@ -12,7 +12,7 @@
 
 **Keywords.** respiratory syncytial virus; nirsevimab; resistance-associated substitution; genomic surveillance; fusion protein
 
-**Word counts.** Abstract 193 words (limit 200). Text approximately 4,000 words (limit 4,000). References 14 (limit 50). Display items 8: Figures 1-5 and Tables 1-3, Table 3 having two panels (limit 8).
+**Word counts.** Abstract 193 words (limit 200). Text approximately 4,052 words (limit 4,000). References 14 (limit 50). Display items 8: Figures 1-5 and Tables 1-3 (limit 8).
 
 ---
 
@@ -205,21 +205,35 @@ in 2015, two from Viet Nam in 2014 - and the thirteenth is a German RSV-B record
 Nam, is inside or outside the window. We describe it as a clade rather than an outbreak: the grouping is
 phylogenetic and no epidemiological linkage between these specimens has been established.
 
-| First year included | Before 1 Jul 2023 | On/after 1 Jul 2023 | Fisher p | CMH p |
-|---|---|---|---|---|
-| all years | 13/12,861 (0.101%) | 35/26,064 (0.134%) | 0.44 | 0.44 |
-| 2000 | 13/12,697 (0.102%) | 35/26,064 (0.134%) | 0.45 | 0.46 |
-| 2005 | 12/12,643 (0.095%) | 35/26,064 (0.134%) | 0.35 | 0.35 |
-| 2010 | 12/12,527 (0.096%) | 35/26,064 (0.134%) | 0.35 | 0.36 |
-| 2014 | 12/11,592 (0.104%) | 35/26,064 (0.134%) | 0.53 | 0.48 |
-| 2015 | 10/11,338 (0.088%) | 35/26,064 (0.134%) | 0.26 | 0.28 |
-| 2016 | 0/11,040 (0.000%) | 35/26,064 (0.134%) | 6.7e-06 | 0.00021 |
-| 2017 | 0/10,598 (0.000%) | 35/26,064 (0.134%) | 1.3e-05 | 0.0003 |
-| 2018 | 0/10,055 (0.000%) | 35/26,064 (0.134%) | 1.4e-05 | 0.00049 |
-| 2019 | 0/9,088 (0.000%) | 35/26,064 (0.134%) | 4.9e-05 | 0.001 |
-| 2020 | 0/7,742 (0.000%) | 35/26,064 (0.134%) | 0.00017 | 0.0025 |
+| Panel | Value | Qualifying mutations | Before 1 Jul 2023 | On/after 1 Jul 2023 | Fisher p | CMH p |
+|---|---|---|---|---|---|---|
+| A. First collection year included | all years | 12 | 13/12,861 (0.101%) | 35/26,064 (0.134%) | 0.44 | 0.44 |
+| A. First collection year included | 2000 | 12 | 13/12,697 (0.102%) | 35/26,064 (0.134%) | 0.45 | 0.46 |
+| A. First collection year included | 2005 | 12 | 12/12,643 (0.095%) | 35/26,064 (0.134%) | 0.35 | 0.35 |
+| A. First collection year included | 2010 | 12 | 12/12,527 (0.096%) | 35/26,064 (0.134%) | 0.35 | 0.36 |
+| A. First collection year included | 2014 | 12 | 12/11,592 (0.104%) | 35/26,064 (0.134%) | 0.53 | 0.48 |
+| A. First collection year included | 2015 | 12 | 10/11,338 (0.088%) | 35/26,064 (0.134%) | 0.26 | 0.28 |
+| A. First collection year included | 2016 | 12 | 0/11,040 (0.000%) | 35/26,064 (0.134%) | 6.7e-06 | 0.00021 |
+| A. First collection year included | 2017 | 12 | 0/10,598 (0.000%) | 35/26,064 (0.134%) | 1.3e-05 | 0.0003 |
+| A. First collection year included | 2018 | 12 | 0/10,055 (0.000%) | 35/26,064 (0.134%) | 1.4e-05 | 0.00049 |
+| A. First collection year included | 2019 | 12 | 0/9,088 (0.000%) | 35/26,064 (0.134%) | 4.9e-05 | 0.001 |
+| A. First collection year included | 2020 | 12 | 0/7,742 (0.000%) | 35/26,064 (0.134%) | 0.00017 | 0.0025 |
+| B. Fab-escape cutoff | 1.000 | 52 | 570/10,598 (5.378%) | 1161/26,064 (4.454%) | 0.0002 | - |
+| B. Fab-escape cutoff | 1.200 | 44 | 32/10,598 (0.302%) | 74/26,064 (0.284%) | 0.75 | - |
+| B. Fab-escape cutoff | 1.400 | 32 | 26/10,598 (0.245%) | 41/26,064 (0.157%) | 0.08 | - |
+| B. Fab-escape cutoff | 1.600 | 23 | 24/10,598 (0.227%) | 38/26,064 (0.146%) | 0.093 | - |
+| B. Fab-escape cutoff | 1.800 | 16 | 24/10,598 (0.227%) | 38/26,064 (0.146%) | 0.093 | - |
+| B. Fab-escape cutoff | 2.036 | 12 | 0/10,598 (0.000%) | 35/26,064 (0.134%) | 1.3e-05 | - |
+| B. Fab-escape cutoff | 2.200 | 10 | 0/10,598 (0.000%) | 27/26,064 (0.104%) | 0.00015 | - |
+| B. Fab-escape cutoff | 2.400 | 6 | 0/10,598 (0.000%) | 21/26,064 (0.081%) | 0.0011 | - |
+| B. Fab-escape cutoff | 2.500 | 4 | 0/10,598 (0.000%) | 17/26,064 (0.065%) | 0.0053 | - |
+| B. Fab-escape cutoff | 2.600 | 2 | 0/10,598 (0.000%) | 0/26,064 (0.000%) | 1 | - |
 
-**Table 3, panel A.** Period comparison as a function of the first collection year included.
+**Table 3.** Sensitivity of the period comparison to two analyst choices. Panel A varies the
+first collection year included, holding the Fab-escape cutoff at 2.036. Panel B varies the Fab-escape
+cutoff within the primary window from 2017. Periods are split at the fixed calendar boundary of 1 July
+2023. CMH is the continuity-corrected Cochran-Mantel-Haenszel test stratified by subtype; it was not
+computed for the cutoff sweep.
 
 Pre-2017 records differ from later ones in ways that motivate a modern-era restriction independently of this
 result: they come from 25 countries against 82, contain no GISAID deposits against 54.1%, and predate the
@@ -237,20 +251,6 @@ the boundary. Changing the cutoff does not merely change the power of one test: 
 substitutions are classified, and therefore the endpoint being compared.
 At 1.0 the difference is significant in the reverse direction (5.38% before versus 4.45% on or after).
 
-| Fab cutoff | Qualifying mutations | Before 1 Jul 2023 | On/after 1 Jul 2023 | Fisher p |
-|---|---|---|---|---|
-| 1.000 | 52 | 570/10,598 (5.378%) | 1161/26,064 (4.454%) | 0.0002 |
-| 1.200 | 44 | 32/10,598 (0.302%) | 74/26,064 (0.284%) | 0.75 |
-| 1.400 | 32 | 26/10,598 (0.245%) | 41/26,064 (0.157%) | 0.08 |
-| 1.600 | 23 | 24/10,598 (0.227%) | 38/26,064 (0.146%) | 0.093 |
-| 1.800 | 16 | 24/10,598 (0.227%) | 38/26,064 (0.146%) | 0.093 |
-| 2.036 | 12 | 0/10,598 (0.000%) | 35/26,064 (0.134%) | 1.3e-05 |
-| 2.200 | 10 | 0/10,598 (0.000%) | 27/26,064 (0.104%) | 0.00015 |
-| 2.400 | 6 | 0/10,598 (0.000%) | 21/26,064 (0.081%) | 0.0011 |
-| 2.500 | 4 | 0/10,598 (0.000%) | 17/26,064 (0.065%) | 0.0053 |
-| 2.600 | 2 | 0/10,598 (0.000%) | 0/26,064 (0.000%) | 1 |
-
-**Table 3, panel B.** Period comparison as a function of the Fab-escape cutoff, primary window.
 
 Twenty-six records collected before the boundary and six afterwards carry a substitution scoring between 1.4
 and 2.036, dominated by N201S. Substitutions of intermediate score were therefore already circulating.
@@ -499,5 +499,5 @@ in 2014.
 
 ## TABLES
 
-Tables 1, 2 and 3 appear in the main text. Table 3 has two panels (A, first collection year; B,
-Fab-escape cutoff) and is a single display item, giving eight display items in total with Figures 1-5.
+Tables 1, 2 and 3 appear in the main text as three tables; Table 3 carries both sensitivity panels in a
+single table with a Panel column. With Figures 1-5 this is eight display items.
