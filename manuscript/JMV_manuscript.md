@@ -12,7 +12,7 @@
 
 **Keywords.** respiratory syncytial virus; nirsevimab; resistance-associated substitution; genomic surveillance; fusion protein
 
-**Word counts.** Abstract 193 words (limit 200). Text approximately 4,000 words (limit 4,000). References 14 (limit 50). Display items 8: Figures 1-5 and Tables 1-3 (limit 8).
+**Word counts.** Abstract 198 words (limit 200). Text approximately 4,000 words (limit 4,000). References 14 (limit 50). Display items 8: Figures 1-5 and Tables 1-3 (limit 8).
 
 ---
 
@@ -395,9 +395,9 @@ antibody exposure history are not recoverable from consensus deposits and were n
 
 Among public RSV records collected from 2017 onward, DMS-defined high-escape substitutions to nirsevimab
 were detected only from late 2023 and remained below 0.25% of records collected on or after 1 July 2023.
-Under the reported topology, rooting and ancestral-state model they were assigned to 32 candidate
-acquisition branches, with no observed cluster larger than two sequences; this reconstruction is
-exploratory. The contrast does not hold across the full archive, where the same substitutions are present
+Exploratory reconstruction across the full archive, under the reported topology, rooting and
+ancestral-state model, assigned high-escape residues to 32 candidate acquisition branches. Among records
+collected on or after 1 July 2023, no sampled carrier cluster exceeded two records. The contrast does not hold across the full archive, where the same substitutions are present
 from 2002 and 2014-15 and the period difference is not statistically significant. Nor does it hold at more
 permissive functional cutoffs: the difference is not significant between cutoffs of 1.2 and 1.8, and at a
 cutoff of 1.0 it is significant in the opposite direction, with a different set of substitutions
@@ -479,9 +479,8 @@ of 2014-15.
 **FIGURE 3** Named substitutions. (a) Fab-escape score with the cutoff marked; orange indicates residues that
 are the RSV-B consensus. (b) Frequency of the same residues in each subtype.
 
-**FIGURE 4** Reconstructed acquisitions across the full 38,925-record archive. (a) Independent acquisition
-branches per site and acquired residue, named by reconstructed ancestral state rather than by consensus (see
-Methods 2.4). (b) Sequences in each acquisition's clade carrying the residue, by branch-support status. The
+**FIGURE 4** Reconstructed acquisitions across the full 38,925-record archive. (a) Candidate reconstructed acquisition branches per site and acquired
+residue, named by reconstructed ancestral state rather than by consensus (see Methods 2.4). (b) Sequences in each acquisition's clade carrying the residue, by branch-support status. The
 twelve-carrier cluster is the RSV-B site-209 clade: ten records from Argentina in 2015 and two from Viet Nam
 in 2014.
 
