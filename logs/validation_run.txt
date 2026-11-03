@@ -1,26 +1,33 @@
 # Validation run log
 
-Generated 2026-11-03 by executing the analysis functions of
-code/pipeline.py against the deposited analysis set (38,925 records).
+Generated 2026-11-03 by executing the analysis functions of code/pipeline.py
+against the deposited analysis set (38,925 records).
 
-Environment: Python 3.11.17, pandas 2.3.3,
-numpy 2.4.6, scipy 1.17.1,
-statsmodels 0.15.0.
-DMS scores fetched from the pinned commit 3ecdfaa661304e3c284acdbeacc9662d2baa1dd9;
-checksum verification passed for both summary files.
+Environment: Python 3.11.17, pandas 2.3.3, numpy 2.4.6,
+scipy 1.17.1, statsmodels 0.15.0.
 
-Scope of this log: the cohort-assembly stages (fetch-genbank, sort, align) and the phylogenetic
-stage are NOT exercised here. They require the GISAID export, several hours of compute, and in
-the phylogenetic case were run interactively; `pipeline.py phylo` prints the exact commands used.
-The functions below are the ones that produce every number reported in the manuscript's Results
-except the acquisition counts and branch support, which come from the deposited trees.
+DMS scores are fetched live from the pinned commit 3ecdfaa661304e3c284acdbeacc9662d2baa1dd9 and the
+sha256 of the fetched bytes is checked by verify_dms(), which escape_set() calls on every fetch. The
+checksums recorded in DMS_SHA256_PREFIX are those of the fetched bytes; a mismatch prints a WARNING
+rather than aborting. Both files verified clean on this run, as shown below.
 
-Exclusions applied during cohort assembly, as printed by build-cohort on the published run:
-69,659 records in, 4 removed at subtype assignment (1 human metapneumovirus, 3 unassigned),
-65,416 passing F coverage >= 95% with a resolvable date, 26,491 collapsed by de-duplication,
-38,925 analysis records out.
+Scope: the cohort-assembly stages (fetch-genbank, sort, align) and the phylogenetic stage are NOT
+exercised here. They require the GISAID export and several hours of compute; the phylogenetic stage was
+run interactively and `pipeline.py phylo` prints the exact commands used. The functions below produce
+every number reported in the manuscript's Results except the acquisition counts and branch support,
+which come from the deposited trees under phylogenetics/.
+
+Exclusions applied during cohort assembly on the published run: 69,659 records in, 4 removed at subtype
+assignment (1 human metapneumovirus, 3 unassigned), 65,416 passing F coverage >= 95% with a resolvable
+date, 26,491 collapsed by de-duplication, 38,925 analysis records out.
 
 ---
+
+DMS checksum verification (verify_dms is called inside escape_set):
+  Nirsevimab: 9812 rows fetched from pinned commit, sha256 prefix matches f7e69d60fccd5b719cc1306539c08c49, 12 qualifying mutations (no warning emitted)
+  Clesrovimab: 9810 rows fetched from pinned commit, sha256 prefix matches 860a6d56e381205be55f251e850cb761, 6 qualifying mutations (no warning emitted)
+
+call(): 48 carriers in the 38,925-record archive
 
 carriage()
 subtype              period  carriers  records  percent  ci_low  ci_high
@@ -64,11 +71,16 @@ stratified()
   CMH by country x subtype              p=0.005909  informative strata=9
   CMH by country x subtype x database   p=0.00824  informative strata=12
 
-dedup/date/entry sensitivity
+dedup_sensitivity()
+  (pre-deduplication set not in workspace at log time)
+
+date_sensitivity()
   primary                      pre 0/10,598  post 35/26,064  p=1.335e-05
   exclude year-only 2023       pre 0/10,569  post 35/26,064  p=1.329e-05
   exclude all year-only        pre 0/10,421  post 35/26,051  p=1.317e-05
   full-date records only       pre 0/10,117  post 35/25,802  p=1.355e-05
+
+entry_sensitivity()
   entry >= -2.00: 23 mutations  pre 0/10,598  post 36/26,064  p=7.55e-06
   entry >= -1.50: 21 mutations  pre 0/10,598  post 36/26,064  p=7.55e-06
   entry >= -1.00: 18 mutations  pre 0/10,598  post 36/26,064  p=7.55e-06
