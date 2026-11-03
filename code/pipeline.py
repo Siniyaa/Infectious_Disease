@@ -19,15 +19,28 @@ Figure generation is not part of this script; the deposited tables under tables/
 
 GISAID sequences cannot be redistributed and are NOT downloaded by this script. Export them
 yourself from https://gisaid.org using manifests/gisaid_epi_isl.txt and place the FASTA at
---gisaid-fasta with the metadata TSV at --gisaid-meta. By default the GenBank arm consumes the
-frozen accession list at manifests/genbank_accessions.txt rather than current GenBank holdings;
-pass --frozen-accessions "" to query live holdings instead.
+--gisaid-fasta with the metadata TSV at --gisaid-meta.
+
+The GenBank arm retrieves exactly the versioned accessions in manifests/genbank_accessions.txt.
+fetch_genbank() aborts if that file is absent, and reports any accession the server does not
+return, so a silent fall-back to current holdings is not possible. Pass --frozen-accessions ""
+to deliberately query live holdings instead; this will not reproduce the published cohort.
+
+Reproducing the validation log: the analysis stages need F translations, which the deposited
+manifests do not contain (they carry metadata and calls only). Run build-cohort first from
+tr_A_F.fasta / tr_B_F.fasta, produced by the align stage, then:
+  python pipeline.py stats       --gisaid-meta gisaid.tsv
+  python pipeline.py sensitivity --gisaid-meta gisaid.tsv
+  python pipeline.py trend       --gisaid-meta gisaid.tsv
+  python pipeline.py clesrovimab --gisaid-meta gisaid.tsv
+Their combined stdout is logs/validation_run.txt.
 
 Usage
   python pipeline.py all --gisaid-fasta gisaid.fasta --gisaid-meta gisaid.tsv --email you@example.org
 
-Pinned versions: Nextclade 3.25.1; datasets nextstrain/rsv/a/EPI_ISL_412866 and
-nextstrain/rsv/b/EPI_ISL_1653999; VeryFastTree 4.0.4; phylo-treetime 0.12.1.
+Pinned versions: Nextclade 3.28.0; datasets nextstrain/rsv/a/EPI_ISL_412866 and
+nextstrain/rsv/b/EPI_ISL_1653999, both at release tag 2026-04-14--11-55-23Z (passed to
+`nextclade dataset get --tag`); VeryFastTree 4.0.4; phylo-treetime 0.12.1.
 DMS scores: github.com/dms-vep/RSV_Long_F_DMS pinned at commit
 3ecdfaa661304e3c284acdbeacc9662d2baa1dd9 (2026-09-16). Expected sha256 prefixes of the two
 summary files: Nirsevimab.csv f7e69d60fccd5b719cc1306539c08c49,
@@ -45,6 +58,7 @@ PRIMARY_START = 2017
 ERA_BOUNDARY = pd.Timestamp("2023-07-01")
 FAB_CUTOFF = 2.036       # anchored on N201T, the weakest variant with published phenotypic support
 ENTRY_FLOOR = -0.5
+NEXTCLADE_DATASET_TAG = "2026-04-14--11-55-23Z"
 DMS_COMMIT = "3ecdfaa661304e3c284acdbeacc9662d2baa1dd9"
 DMS_URL = ("https://raw.githubusercontent.com/dms-vep/RSV_Long_F_DMS/"
            + DMS_COMMIT + "/results/summaries/{antibody}.csv")
@@ -70,8 +84,13 @@ def sh(cmd, **kw):
     return r
 
 
-def fetch_genbank(outfa, email=None):
-    """Stage 1. Metadata via NCBI Datasets, sequences via Entrez efetch in batches of 200."""
+def fetch_genbank(outfa, email=None, frozen_accessions="manifests/genbank_accessions.txt"):
+    """Stage 1. Retrieve exactly the frozen versioned accession list.
+
+    Metadata still comes from NCBI Datasets (it is needed for dates and countries), but the
+    sequence set retrieved is the deposited list, not whatever currently matches the taxon and
+    length query. If the list is missing the run aborts rather than silently falling back.
+    """
     base = "https://api.ncbi.nlm.nih.gov/datasets/v2alpha/virus/taxon/11250/dataset_report"
     rows, token = [], None
     while True:
@@ -88,8 +107,21 @@ def fetch_genbank(outfa, email=None):
             break
     meta = pd.DataFrame(rows, columns=["acc", "len", "date", "region", "country", "organism"])
     meta.to_csv("genbank_metadata.csv", index=False)
-    accs = list(dict.fromkeys(meta[(meta.len >= 13000) & (meta.len <= 16000)].acc.dropna().astype(str)))
-    print(f"GenBank: {len(meta)} records, {len(accs)} genomes of 13-16 kb")
+
+    if frozen_accessions:
+        if not os.path.exists(frozen_accessions):
+            sys.exit(f"frozen accession list {frozen_accessions} not found. It is required to "
+                     f"reproduce the published cohort; pass --frozen-accessions '' to override "
+                     f"and query live holdings instead (this will NOT reproduce the cohort).")
+        accs = [l.strip() for l in open(frozen_accessions) if l.strip()]
+        print(f"GenBank: retrieving {len(accs)} frozen versioned accessions "
+              f"from {frozen_accessions}")
+    else:
+        accs = list(dict.fromkeys(
+            meta[(meta.len >= 13000) & (meta.len <= 16000)].acc.dropna().astype(str)))
+        print(f"GenBank: LIVE query, {len(meta)} records, {len(accs)} genomes of 13-16 kb. "
+              f"This will not reproduce the published cohort.")
+
     contact = {"email": email, "tool": "rsv-f-surveillance"} if email else {}
     with open(outfa, "w", encoding="utf-8") as out:
         for i in range(0, len(accs), 200):
@@ -106,18 +138,41 @@ def fetch_genbank(outfa, email=None):
                 except Exception:
                     time.sleep(4 * (attempt + 1))
             time.sleep(0.35)
+    got = set()
+    for line in open(outfa, encoding="utf-8", errors="replace"):
+        if line.startswith(">"):
+            got.add(line[1:].split()[0])
+    missing = [a for a in accs if a not in got and a.split(".")[0] not in
+               {g.split(".")[0] for g in got}]
+    print(f"GenBank: wrote {len(got)} sequences; {len(missing)} requested accessions not returned")
+    if missing:
+        with open("genbank_missing_accessions.txt", "w") as fh:
+            fh.write("\n".join(missing) + "\n")
+        print("  missing accessions written to genbank_missing_accessions.txt")
 
 
-def nextclade_datasets(exe):
-    """Stage 2 prerequisite. --output-zip is used because --output-dir fails on Windows."""
+def nextclade_datasets(exe, tag=NEXTCLADE_DATASET_TAG):
+    """Stage 2 prerequisite. --output-zip is used because --output-dir fails on Windows.
+
+    The release tag is pinned so that lineage assignments and reference-anchored translations
+    match the published analysis; omit it only if you intend to use current datasets.
+    """
     for name, zp, od in [("nextstrain/rsv/a/EPI_ISL_412866", "ds_a.zip", "ds_rsv_a"),
                          ("nextstrain/rsv/b/EPI_ISL_1653999", "ds_b.zip", "ds_rsv_b")]:
         if os.path.isdir(od):
             continue
-        sh([exe, "dataset", "get", "--name", name, "--output-zip", zp])
+        cmd = [exe, "dataset", "get", "--name", name, "--output-zip", zp]
+        if tag:
+            cmd += ["--tag", tag]
+        sh(cmd)
         os.makedirs(od, exist_ok=True)
         with zipfile.ZipFile(zp) as z:
             z.extractall(od)
+        got = json.load(open(os.path.join(od, "pathogen.json"), encoding="utf-8"))
+        got_tag = got.get("version", {}).get("tag")
+        if tag and got_tag != tag:
+            print(f"WARNING: {name} resolved to tag {got_tag}, expected {tag}")
+
 
 
 def sort_and_align(exe, combined, jobs=8):
@@ -407,7 +462,9 @@ def trend_scan(A, cons, out="trend_scan_combined.csv", min_records=5):
             z = num / np.sqrt(var) if var > 0 else 0.0
             rows.append(dict(subtype=sub, mut=mut, n=tot, z=z,
                              p=2 * stats_mod.norm.sf(abs(z)),
-                             direction="increase" if z > 0 else "decrease"))
+                             direction="increase" if z > 0 else "decrease",
+                             counts_by_year=";".join(
+                                 f"{y}:{per.get(y, 0)}/{n_y}" for y, n_y in zip(uy, ny))))
     T = pd.DataFrame(rows)
     bonf = 0.05 / len(T)
     T["significant"] = T.p < bonf
@@ -437,24 +494,42 @@ def clesrovimab(A, cons, out="supp_S6_clesrovimab_carriers.csv"):
 
 
 PHYLO_COMMANDS = """\
-Stage 7, phylogenetics. These are the exact commands used. They are documented rather than
-wrapped in a function because they take several hours and were run once, interactively.
+Stage 7, phylogenetics. These are the commands that produced the deposited results. They are
+documented rather than wrapped in a function because they take several hours and were run once,
+interactively.
 
-  # one alignment per subtype, analysis-set tips only
+  # 1. Alignments, restricted to the 38,925 analysis-set tips. Nextclade emits both the aligned
+  #    nucleotide CDS and the translated peptide; no separate translation step is needed.
+  #    F_nt_{A,B}.fasta  aligned F coding sequence   (1722 nt)
+  #    F_aa_{A,B}.fasta  translated F peptide        (574 aa)
+  #    Tip identifiers are identical in both files and in the trees.
+
+  # 2. Tree inference on the NUCLEOTIDE alignment
   veryfasttree -nt -gtr -gamma -threads 24 F_nt_A.fasta > F_A.nwk
   veryfasttree -nt -gtr -gamma -threads 24 F_nt_B.fasta > F_B.nwk
 
-  # midpoint rooting and amino-acid ancestral reconstruction
-  treetime ancestral --aln F_nt_A.fasta --tree F_A.nwk --outdir tt_A --gtr infer --aa
-  treetime ancestral --aln F_nt_B.fasta --tree F_B.nwk --outdir tt_B --gtr infer --aa
+  # 3. Ancestral reconstruction of AMINO-ACID states on that topology. TreeTime's --aa selects
+  #    the amino-acid alphabet, so the alignment passed here is the PEPTIDE alignment, not the
+  #    nucleotide one used for tree inference. Residue numbering is 1-574 of the F protein and
+  #    matches the numbering used for carriage calls.
+  treetime ancestral --aln F_aa_A.fasta --tree F_A.nwk --outdir tt_A --gtr infer --aa
+  treetime ancestral --aln F_aa_B.fasta --tree F_B.nwk --outdir tt_B --gtr infer --aa
 
-Acquisition branches are then the branches of tt_*/annotated_tree.nexus on which a high-escape
-residue appears; spread is the count of descendant tips that themselves carry that residue (not
-the total descendant count); support is taken from the maximum-likelihood topology by matching
-nodes on their descendant tip sets. The resulting trees, annotated NEXUS output and
-branch-mutation tables are deposited under phylogenetics/.
+ROOTING. No explicit rooting step was applied. VeryFastTree emits an unrooted tree, written with
+a trifurcating root, and TreeTime's `ancestral` was run on it as given. The direction assigned to
+each reconstructed change is therefore conditional on that root placement. Sensitivity of the
+acquisition counts to rooting was not assessed. An earlier version of the Methods described these
+trees as midpoint-rooted; that was incorrect and has been corrected.
+
+Acquisition branches are the branches of tt_*/annotated_tree.nexus on which a high-escape residue
+appears; spread is the count of descendant tips that themselves carry that residue (not the total
+descendant count); support is taken from the maximum-likelihood topology by matching nodes on
+their descendant tip sets. Branch labels use the reconstructed ancestral state, which may differ
+from the subtype consensus used for carriage reporting.
+
+The resulting trees, annotated NEXUS output and branch-mutation tables are deposited under
+phylogenetics/.
 """
-
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -463,7 +538,7 @@ def main():
     ap.add_argument("--gisaid-fasta")
     ap.add_argument("--gisaid-meta")
     ap.add_argument("--frozen-accessions", default="manifests/genbank_accessions.txt",
-                    help="consume the deposited accession list instead of current GenBank holdings")
+                    help="retrieve exactly this versioned accession list; '' queries live holdings")
     ap.add_argument("--nextclade", default="nextclade")
     ap.add_argument("--email", default=None, help="contact address for NCBI E-utilities")
     ap.add_argument("--jobs", type=int, default=8)
@@ -473,7 +548,7 @@ def main():
         print(PHYLO_COMMANDS)
         return
     if args.stage in ("all", "fetch-genbank"):
-        fetch_genbank("rsv_genomes.fasta", args.email)
+        fetch_genbank("rsv_genomes.fasta", args.email, args.frozen_accessions)
     if args.stage in ("all", "sort", "align"):
         if not (args.gisaid_fasta and os.path.exists(args.gisaid_fasta)):
             sys.exit("--gisaid-fasta is required: GISAID sequences must be exported by the user.")
