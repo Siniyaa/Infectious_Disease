@@ -18,7 +18,7 @@
 
 ## ABSTRACT
 
-Reported frequencies of nirsevimab resistance-associated substitutions in respiratory syncytial virus (RSV) differ between studies that use different reference sequences, different functional thresholds and different time spans. We combined 25,384 GenBank records with a GISAID EpiRSV export (69,659 records), processed both uniformly, called fusion (F) protein variants against each subtype's own consensus, and classified residues using published deep mutational scanning (DMS) scores. After de-duplication 38,925 records remained. Among records collected from 2017 onward, none of 10,598 predating 1 July 2023 carried a DMS-defined high-escape substitution against 35 of 26,064 collected on or after that date (0.134%, 95% CI 0.094-0.187; Fisher p = 1.3 x 10-5). That contrast is contingent on two analyst choices. Including records from before 2016 adds 13 historical carriers, mostly one 2015 Argentinian cluster, and the comparison becomes null (13/12,861 versus 35/26,064, p = 0.44). Lowering the Fab-escape cutoff from 2.036 to 1.0 reverses its direction. High-escape residues were reconstructed on 32 independent branches, 26 leading to a single sampled carrier. Of 689 F variants tested for temporal trend, 105 changed significantly (50 increasing, 55 decreasing) and none was high-escape. Archive-derived resistance frequencies require their threshold and window to be stated.
+Reported frequencies of nirsevimab resistance-associated substitutions in respiratory syncytial virus (RSV) differ between studies that use different reference sequences, different functional thresholds and different time spans. We combined 25,384 GenBank records with a GISAID EpiRSV export (69,659 records), processed both uniformly, called fusion (F) protein variants against each subtype's own consensus, and classified residues using published deep mutational scanning (DMS) scores. After de-duplication 38,925 records remained. Among records collected from 2017 onward, none of 10,598 predating 1 July 2023 carried a DMS-defined high-escape substitution against 35 of 26,064 collected on or after that date (0.134%, 95% CI 0.094-0.187; Fisher p = 1.3 x 10-5). That contrast is contingent on two analyst choices. Including records from before 2016 adds 13 historical carriers, twelve of which fall in one 2014-15 acquisition clade, and the comparison becomes null (13/12,861 versus 35/26,064, p = 0.44). Lowering the Fab-escape cutoff from 2.036 to 1.0 reverses its direction. High-escape residues were reconstructed on 32 independent branches, 26 leading to a single sampled carrier. Of 689 F variants tested for temporal trend, 105 changed significantly (50 increasing, 55 decreasing) and none was high-escape. Archive-derived resistance frequencies require their threshold and window to be stated.
 
 **KEYWORDS:** respiratory syncytial virus; nirsevimab; resistance-associated substitution; genomic surveillance; fusion protein
 
@@ -197,8 +197,8 @@ afterwards (0.134%), Fisher p = 0.44.
 The transition is abrupt rather than gradual. Significance is present for every start year from 2016 onward
 and absent for every earlier start. Twelve of the 13 historical carriers are RSV-B records carrying glutamate
 at site 209, ten from Argentina in 2015 and two from Viet Nam in 2014; the thirteenth is a German RSV-B
-record from 2002 carrying N201T. The entire contrast therefore turns on whether one 2015 outbreak cluster is
-inside or outside the window.
+record from 2002 carrying N201T. The entire contrast therefore turns on whether one 2014-15 outbreak clade, sampled in Argentina and Viet
+Nam, is inside or outside the window.
 
 | First year included | Before 1 Jul 2023 | On/after 1 Jul 2023 | Fisher p | CMH p |
 |---|---|---|---|---|
@@ -272,10 +272,10 @@ High-escape residues were reconstructed on 32 independent branches across six si
 carriers; the 35 carriers of Section 3.1 are the post-boundary subset of the primary window.
 
 Twenty-six acquisitions lead to a single sampled carrier. No cluster collected on or after 1 July 2023
-exceeded two carriers under this sampling; the largest cluster in the archive is the twelve-carrier 2015
-site-209 group (Figure 4b). Branch support separates these sharply: support is undefined for the 26 terminal
+exceeded two carriers under this sampling; the largest cluster in the archive is the twelve-carrier 2014-15
+site-209 clade, ten carriers from Argentina and two from Viet Nam (Figure 4b). Branch support separates these sharply: support is undefined for the 26 terminal
 acquisitions; of the six internal acquisitions, two are recovered as clades in the maximum-likelihood
-topology and well supported (the 2015 site-209 cluster, SH-like support 0.888, and one 2025/26 site-201 pair,
+topology and well supported (the 2014-15 site-209 clade, SH-like support 0.888, and one 2025/26 site-201 pair,
 0.982), while the remaining four, all site 208 to D, are not recovered as bipartitions and are therefore
 uncertain reconstructions. This includes the branch whose naive descendant count was 122 but which contains
 only two carriers. The count of 32 is a reconstruction-dependent estimate conditional on one topology and one
@@ -347,8 +347,8 @@ The headline contrast is real within its window: among records collected from 20
 substitutions appear only from late 2023, across seven countries and thirteen lineages, and the association
 survives stratification by country, subtype and database, removal of the de-duplication rule, exclusion of
 imprecisely dated records, and variation of the cell-entry floor. What it does not survive is a change to
-either of two choices that are seldom reported. Extending the window back to include a single 2015
-Argentinian outbreak cluster makes the comparison null. Lowering the functional cutoff makes it null, and
+either of two choices that are seldom reported. Extending the window back to include a single 2014-15
+outbreak clade makes the comparison null. Lowering the functional cutoff makes it null, and
 then reverses it. The substitutions are not new - they are in the archive from 2002 and 2014-15 - and
 intermediate-score substitutions were circulating throughout.
 
@@ -474,7 +474,7 @@ all four carriers collected in 2023 were collected in November, after that date.
 of the Fab-escape cutoff. (b) The period-comparison p value against the cutoff; open circles mark cutoffs at
 which carriage is higher before the boundary. (c) The p value against the first collection year included;
 open circles mark windows containing pre-boundary carriers. Significance appears only when the window
-excludes the 2015 Argentinian cluster.
+excludes the 2014-15 site-209 clade.
 
 **FIGURE 3** Named substitutions. (a) Fab-escape score with the cutoff marked; orange indicates residues that
 are the RSV-B consensus. (b) Frequency of the same residues in each subtype.
@@ -482,7 +482,7 @@ are the RSV-B consensus. (b) Frequency of the same residues in each subtype.
 **FIGURE 4** Reconstructed acquisitions across the full 38,925-record archive. (a) Independent acquisition
 branches per site and acquired residue, named by reconstructed ancestral state rather than by consensus (see
 Methods 2.4). (b) Sequences in each acquisition's clade carrying the residue, by branch-support status. The
-twelve-carrier cluster is the 2015 Argentinian RSV-B group.
+twelve-carrier cluster is the 2014-15 RSV-B site-209 clade (ten Argentina, two Viet Nam).
 
 **FIGURE 5** Sequencing coverage. (a) The twelve largest national contributions. (b) The Middle East.
 
