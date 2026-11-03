@@ -171,9 +171,9 @@ Eight carriers fall within the primary window and before 2025 (the clesrovimab p
 24,282 records); one Australian record from 2016 lies outside the primary window and is excluded from the
 reported proportion. This analysis is exploratory: the cutoff was derived for nirsevimab.
 
-## Table S7. Independent acquisition counts by substitution
+## Table S7. Candidate reconstructed acquisition branches by substitution
 
-| Subtype | Substitution | Independent acquisitions | Largest carrier cluster | Carriers on/after 1 Jul 2023 |
+| Subtype | Substitution | Candidate reconstructed acquisition branches | Largest carrier cluster | Carriers on/after 1 Jul 2023 |
 |---|---|---|---|---|
 | RSV-A | K201E | 2 | 1 | 2 |
 | RSV-A | K201T | 1 | 1 | 1 |
