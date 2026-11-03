@@ -14,8 +14,9 @@ were confirmed. Changes are summarised below with their location in the revised 
 comparison is 13/12,861 (0.101%) before 1 July 2023 against 35/26,064 (0.134%) after, Fisher p = 0.44. We
 also ran the start year as a continuous sweep and found the transition is a cliff rather than a gradient:
 the comparison is significant for every first-included year from 2016 onward and null for every earlier
-one. Twelve of the 13 historical carriers are a single 2015 Argentinian RSV-B cluster at site 209, with two
-from Viet Nam in 2014 and one from Germany in 2002.
+one. Twelve of the 13 historical carriers carry glutamate at F site 209 and fall in a single reconstructed
+acquisition clade (SH-like support 0.888): ten from Argentina in 2015 and two from Viet Nam in 2014. The
+thirteenth is a German record from 2002 carrying N201T.
 
 **Action.** The paper no longer claims that escape substitutions increased after prophylaxis. Its claim is
 now that whether they appear to have increased is determined by the classification threshold and the
@@ -51,8 +52,8 @@ country-by-subtype and country-by-subtype-by-database, the de-duplication, date-
 cell-entry-floor sensitivity analyses, the Cochran-Armitage trend scan, and the clesrovimab analysis.
 
 **Validation.** Rather than describe it, we executed it. The analysis functions were run against the
-deposited analysis set and reproduce every number in the Results except the acquisition counts, which come
-from the deposited trees. The output is deposited as `logs/validation_run.txt`, including the exclusion
+deposited analysis set and reproduce every number in the Results except the acquisition counts and branch
+support, which come from the deposited trees. The output is deposited as `logs/validation_run.txt`, including the exclusion
 counts at each assembly stage.
 
 **Version control.** The GenBank arm now consumes the frozen accession list by default rather than current
