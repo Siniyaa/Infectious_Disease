@@ -3,36 +3,63 @@
 Reproducible pipeline: nirsevimab resistance-associated substitutions in public RSV genomes.
 
 Stages
-  1 fetch-genbank   retrieve GenBank genomes for taxon 11250 (13-16 kb)
-  2 sort            assign subtype with the Nextclade minimizer index
-  3 align           run Nextclade per subtype -> translations, lineages, aligned nucleotides
-  4 build-cohort    QC, metadata join, cross-database de-duplication
-  5 call            subtype-consensus variant calling and DMS escape scoring
-  6 stats           carriage, era tests, threshold sweep, trend scan
-  7 phylo           ML trees, ancestral reconstruction, acquisition counts and support
+  fetch-genbank   retrieve GenBank genomes for taxon 11250 (13-16 kb)
+  sort            assign subtype with the Nextclade minimizer index
+  align           run Nextclade per subtype -> translations, lineages, aligned nucleotides
+  build-cohort    QC, metadata join, date-precision flagging, cross-database de-duplication
+  call            subtype-consensus variant calling and DMS escape scoring
+  stats           carriage, period tests, threshold sweep, window sweep, stratified inference
+  sensitivity     de-duplication, date-precision and cell-entry-floor sensitivity analyses
+  trend           Cochran-Armitage scan across all F variants
+  clesrovimab     exploratory application of the same cutoff to the clesrovimab DMS table
+  phylo           prints the exact phylogenetic commands used (run once, interactively)
+  all             every stage above except phylo
+
+Figure generation is not part of this script; the deposited tables under tables/ are its inputs.
 
 GISAID sequences cannot be redistributed and are NOT downloaded by this script. Export them
 yourself from https://gisaid.org using manifests/gisaid_epi_isl.txt and place the FASTA at
---gisaid-fasta with the metadata TSV at --gisaid-meta.
+--gisaid-fasta with the metadata TSV at --gisaid-meta. By default the GenBank arm consumes the
+frozen accession list at manifests/genbank_accessions.txt rather than current GenBank holdings;
+pass --frozen-accessions "" to query live holdings instead.
 
 Usage
   python pipeline.py all --gisaid-fasta gisaid.fasta --gisaid-meta gisaid.tsv --email you@example.org
 
 Pinned versions: Nextclade 3.25.1; datasets nextstrain/rsv/a/EPI_ISL_412866 and
 nextstrain/rsv/b/EPI_ISL_1653999; VeryFastTree 4.0.4; phylo-treetime 0.12.1.
-DMS scores: github.com/dms-vep/RSV_Long_F_DMS, results/summaries/{Nirsevimab,Clesrovimab}.csv
+DMS scores: github.com/dms-vep/RSV_Long_F_DMS pinned at commit
+3ecdfaa661304e3c284acdbeacc9662d2baa1dd9 (2026-09-16). Expected sha256 prefixes of the two
+summary files: Nirsevimab.csv f7e69d60fccd5b719cc1306539c08c49,
+Clesrovimab.csv f734f38e82be6f9bd5941f99f70f65d3; verify_dms() checks them.
 Retrieval date of the published analysis: 2 November 2026.
 """
-import argparse, collections, json, os, re, subprocess, sys, time, urllib.parse, urllib.request, zipfile
+import argparse
+import hashlib, collections, json, os, re, subprocess, sys, time, urllib.parse, urllib.request, zipfile
 import numpy as np, pandas as pd
-from scipy.stats import binomtest, fisher_exact, chi2, norm
+from scipy import stats as stats_mod
+from statsmodels.stats.proportion import proportion_confint
 
 F_COORDS = {"A": (5697, 7421), "B": (5676, 7400)}      # F CDS in each reference
+PRIMARY_START = 2017
 ERA_BOUNDARY = pd.Timestamp("2023-07-01")
-WINDOW_START = 2017
-FAB_THRESHOLD = 2.036        # anchored on N201T, the weakest variant with published clinical support
+FAB_CUTOFF = 2.036       # anchored on N201T, the weakest variant with published phenotypic support
 ENTRY_FLOOR = -0.5
-DMS = "https://raw.githubusercontent.com/dms-vep/RSV_Long_F_DMS/main/results/summaries/{}.csv"
+DMS_COMMIT = "3ecdfaa661304e3c284acdbeacc9662d2baa1dd9"
+DMS_URL = ("https://raw.githubusercontent.com/dms-vep/RSV_Long_F_DMS/"
+           + DMS_COMMIT + "/results/summaries/{antibody}.csv")
+DMS_SHA256_PREFIX = {"Nirsevimab": "f7e69d60fccd5b719cc1306539c08c49",
+                     "Clesrovimab": "f734f38e82be6f9bd5941f99f70f65d3"}
+
+
+def verify_dms(antibody, blob):
+    """Warn if the fetched DMS summary differs from the version used in the published analysis."""
+    got = hashlib.sha256(blob).hexdigest()[:32]
+    want = DMS_SHA256_PREFIX.get(antibody)
+    if want and got != want:
+        print(f"WARNING: {antibody}.csv sha256 {got} != expected {want}; "
+              f"results may differ from the published analysis.")
+    return got
 
 
 def sh(cmd, **kw):
@@ -129,8 +156,19 @@ def read_fasta(path):
     return seqs
 
 
-def build_cohort(gisaid_meta_path):
-    """Stage 4. QC, metadata join, de-duplication. Returns the analysis-set DataFrame."""
+def parse_date(s):
+    """Return (timestamp, precision). Partial dates expand to the first day; precision is recorded."""
+    s = str(s).strip()
+    for fmt, prec in (("%Y-%m-%d", "day"), ("%Y-%m", "month"), ("%Y", "year")):
+        try:
+            return pd.Timestamp(pd.to_datetime(s, format=fmt)), prec
+        except Exception:
+            pass
+    return pd.NaT, "none"
+
+
+def build_cohort(gisaid_meta_path, frozen_accessions=None):
+    """Stage 4. QC, metadata join, date-precision flagging, de-duplication."""
     translations = {}
     for sub in "AB":
         translations.update({k: ("RSV-" + sub, v) for k, v in read_fasta(f"tr_{sub}_F.fasta").items()})
@@ -141,6 +179,11 @@ def build_cohort(gisaid_meta_path):
     nc["is_gisaid"] = nc.seqName.str.startswith("EPI_ISL_")
     nc["key"] = np.where(nc.is_gisaid, nc.seqName.str.strip(),
                          nc.seqName.str.split().str[0].str.split(".").str[0])
+    if frozen_accessions:
+        keep = set(l.strip().split(".")[0] for l in open(frozen_accessions) if l.strip())
+        before = len(nc)
+        nc = nc[nc.is_gisaid | nc.key.isin(keep)].copy()
+        print(f"frozen accession list: {before - len(nc)} GenBank records dropped, {len(nc)} retained")
     gb = pd.read_csv("genbank_metadata.csv")
     gb["acc0"] = gb.acc.astype(str).str.split(".").str[0]
     gbm = gb.drop_duplicates("acc0").set_index("acc0")
@@ -149,20 +192,29 @@ def build_cohort(gisaid_meta_path):
     gim = gi.drop_duplicates("Accession ID").set_index("Accession ID")
     nc["date"] = np.where(nc.is_gisaid, nc.key.map(gim["Collection date"]), nc.key.map(gbm["date"]))
     nc["country"] = np.where(nc.is_gisaid, nc.key.map(gim["country"]), nc.key.map(gbm["country"]))
-    nc["cdate"] = pd.to_datetime(nc.date, errors="coerce", format="mixed")
+    parsed = nc.date.map(parse_date)
+    nc["cdate"] = [p[0] for p in parsed]
+    nc["date_precision"] = [p[1] for p in parsed]
     nc["F_cov"] = nc.F.map(lambda s: sum(c not in "-X" for c in s[:574]) / 574)
     sel = nc[(nc.F_cov >= 0.95) & nc.cdate.notna()].copy()
     sel["c0"] = sel.country.astype(str).str.split(":").str[0].str.split("/").str[0].str.strip()
     sel["year"] = sel.cdate.dt.year.astype(int)
     sel["source"] = np.where(sel.is_gisaid, "GISAID", "GenBank")
-    # De-duplication: records identical in F, country and collection date are collapsed.
-    # This is a conservative rule; see the sensitivity analysis in stats().
-    sel["dupkey"] = sel.c0 + "|" + sel.cdate.dt.strftime("%Y-%m-%d") + "|" + sel.F
-    groups = sel.groupby("dupkey").source.agg(set)
-    print(f"de-duplication: {sum(len(v) > 1 for v in groups)} groups contain both databases; "
-          f"{int(sel.duplicated('dupkey').sum())} records collapsed of {len(sel)}")
-    sel[["key", "source", "dupkey"]].to_csv("deduplication_groups.csv", index=False)
-    A = sel[~sel.duplicated("dupkey")].copy()
+    print(f"QC pass: {len(sel)}; date precision: {sel.date_precision.value_counts().to_dict()}")
+    # De-duplication. The grouping key hashes the F sequence so that the deposited group mapping
+    # carries an opaque identifier rather than sequence data.
+    fh = sel.F.map(lambda s: hashlib.md5(s.encode()).hexdigest()[:16])
+    sel["dupkey"] = fh + "|" + sel.c0 + "|" + sel.cdate.dt.strftime("%Y-%m-%d")
+    sel["group_id"] = sel.dupkey.map(lambda k: "G" + hashlib.md5(k.encode()).hexdigest()[:12])
+    both = sel.groupby("dupkey").source.nunique()
+    print(f"de-duplication: {int((both > 1).sum())} groups contain both databases; "
+          f"{int(sel.duplicated('dupkey').sum())} of {len(sel)} records collapsed")
+    sel["is_representative"] = ~sel.duplicated("dupkey")
+    sel[["group_id", "key", "source", "subtype", "c0", "cdate", "date", "date_precision",
+         "is_representative"]].rename(columns={"key": "accession", "c0": "country"}) \
+        .to_csv("deduplication_groups.csv", index=False)
+    sel.to_pickle("prededuplication_set.pkl")
+    A = sel[sel.is_representative].copy()
     A["era"] = np.where(A.cdate < ERA_BOUNDARY, "pre", "post")
     A.to_pickle("analysis_set.pkl")
     print(f"analysis set: {len(A)}")
@@ -170,84 +222,253 @@ def build_cohort(gisaid_meta_path):
 
 
 def consensus(A):
+    """Per-subtype consensus of the analysis set."""
     out = {}
-    for st in ("RSV-A", "RSV-B"):
-        seqs = A.loc[A.subtype == st, "F"]
-        out[st] = "".join(collections.Counter(s[i] for s in seqs if s[i] not in "-X").most_common(1)[0][0]
-                          for i in range(574))
+    for sub, g in A.groupby("subtype"):
+        M = np.array([list(s[:574].ljust(574, "-")) for s in g.F])
+        out[sub] = "".join(pd.Series(M[:, i]).replace({"-": np.nan, "X": np.nan})
+                           .dropna().mode().iat[0] if pd.Series(M[:, i]).replace(
+                               {"-": np.nan, "X": np.nan}).notna().any() else "-" for i in range(574))
     return out
 
 
-def call(A, antibody="Nirsevimab"):
-    """Stage 5. Variants are called against each subtype's OWN consensus."""
-    esc = pd.read_csv(DMS.format(antibody))
+def escape_set(antibody="Nirsevimab", fab=FAB_CUTOFF, entry=ENTRY_FLOOR):
+    dms = pd.read_csv(DMS_URL.format(antibody=antibody))
     col = f"{antibody}-Fab escape"
-    qualifying = set(zip(*[esc[(esc[col] >= FAB_THRESHOLD) & (esc["cell entry"] >= ENTRY_FLOOR)][c]
-                           for c in ("site", "mutant")]))
-    cons = consensus(A)
-    subs, hits = [], []
-    for seq, st in zip(A.F, A.subtype):
-        ref = cons[st]
-        v = [(i + 1, seq[i]) for i in range(574) if seq[i] not in "-X" and seq[i] != ref[i]]
-        subs.append(v)
-        hits.append(";".join(sorted(f"{ref[p - 1]}{p}{m}" for p, m in v if (p, m) in qualifying)))
+    q = dms[(dms[col] >= fab) & (dms["cell entry"] >= entry)]
+    return set(zip(q.site, q.mutant)), dms
+
+
+def call(A, cons=None, antibody="Nirsevimab", fab=FAB_CUTOFF, entry=ENTRY_FLOOR):
+    """Stage 5. Call variants against each subtype's own consensus and classify against the DMS."""
+    if cons is None:
+        cons = consensus(A)
+    esc, dms = escape_set(antibody, fab, entry)
+
+    def one(F, sub):
+        c = cons[sub]
+        return ";".join(f"{a}{i}{b}" for i, (a, b) in enumerate(zip(c, F), 1)
+                        if b != a and b not in ("X", "-", "*") and (i, b) in esc)
+
     A = A.copy()
-    A["subs"], A["hits"] = subs, hits
-    A["carrier"] = A.hits != ""
-    print(f"{antibody}: {len(qualifying)} qualifying mutations; {int(A.carrier.sum())} carriers in the analysis set")
+    A["escape_substitutions"] = [one(F, s) for F, s in zip(A.F, A.subtype)]
+    A["carrier"] = A.escape_substitutions.ne("")
     return A, cons, esc
 
 
-def stats(A, esc):
-    """Stage 6. All comparisons are restricted to the primary window and reported with the window stated."""
-    W = A[A.year >= WINDOW_START]
+def _fisher(sub):
+    a = sub[sub.cdate < ERA_BOUNDARY]
+    b = sub[sub.cdate >= ERA_BOUNDARY]
+    ka, na = int(a.carrier.sum()), len(a)
+    kb, nb = int(b.carrier.sum()), len(b)
+    p = stats_mod.fisher_exact([[kb, nb - kb], [ka, na - ka]])[1] if na and nb else float("nan")
+    return ka, na, kb, nb, p
+
+
+def cmh(df, keys):
+    """Continuity-corrected Cochran-Mantel-Haenszel across the given strata."""
+    num = den = 0.0
+    informative = 0
+    for _, g in df.groupby(keys):
+        post = g.cdate >= ERA_BOUNDARY
+        a = int(g[post].carrier.sum()); b = int(post.sum()) - a
+        c = int(g[~post].carrier.sum()); d = int((~post).sum()) - c
+        n = a + b + c + d
+        if n < 2 or (a + c) == 0 or (a + b) == 0 or (c + d) == 0:
+            continue
+        informative += 1
+        num += a - (a + b) * (a + c) / n
+        den += (a + b) * (c + d) * (a + c) * (b + d) / (n ** 2 * (n - 1))
+    if den <= 0:
+        return float("nan"), informative
+    return stats_mod.chi2.sf((abs(num) - 0.5) ** 2 / den, 1), informative
+
+
+def carriage(A, out="table2_carriage.csv"):
+    """Primary carriage table with Clopper-Pearson intervals."""
     rows = []
-    for st in ("RSV-A", "RSV-B", "Both"):
-        d = W if st == "Both" else W[W.subtype == st]
-        for era in ("pre", "post"):
-            x = d[d.era == era]
-            k, n = int(x.carrier.sum()), len(x)
-            lo, hi = binomtest(k, n).proportion_ci(method="exact")   # Clopper-Pearson throughout
-            rows.append((st, era, k, n, 100 * k / n, 100 * lo, 100 * hi))
-    carriage = pd.DataFrame(rows, columns=["subtype", "era", "k", "n", "pct", "ci_lo", "ci_hi"])
-    carriage.to_csv("carriage.csv", index=False)
-    pre, post = W[W.era == "pre"], W[W.era == "post"]
-    a, b = int(post.carrier.sum()), int(pre.carrier.sum())
-    print("pooled Fisher p =", fisher_exact([[a, len(post) - a], [b, len(pre) - b]])[1])
-    tabs = []
-    for st in ("RSV-A", "RSV-B"):
-        d = W[W.subtype == st]
-        aa = int(d[d.era == "post"].carrier.sum()); bb = len(d[d.era == "post"]) - aa
-        cc = int(d[d.era == "pre"].carrier.sum());  dd = len(d[d.era == "pre"]) - cc
-        tabs.append((aa, bb, cc, dd))
-    O = sum(t[0] for t in tabs)
-    E = sum((t[0] + t[2]) * (t[0] + t[1]) / sum(t) for t in tabs)
-    V = sum(((t[0] + t[2]) * (t[1] + t[3]) * (t[0] + t[1]) * (t[2] + t[3])) / ((sum(t) ** 2) * (sum(t) - 1))
-            for t in tabs)
-    stat = (abs(O - E) - 0.5) ** 2 / V        # continuity-corrected Cochran-Mantel-Haenszel
-    print(f"CMH (continuity corrected) chi2={stat:.2f} p={chi2.sf(stat, 1):.3g}")
-    sweep = []
-    for t in (1.0, 1.2, 1.4, 1.6, 1.8, FAB_THRESHOLD, 2.2, 2.4, 2.5, 2.6):
-        q = set(zip(*[esc[(esc["Nirsevimab-Fab escape"] >= t) & (esc["cell entry"] >= ENTRY_FLOOR)][c]
-                      for c in ("site", "mutant")]))
-        c = W.subs.map(lambda L: any((p, m) in q for p, m in L))
-        aa, nn = int((c & (W.era == "post")).sum()), int((W.era == "post").sum())
-        bb, mm = int((c & (W.era == "pre")).sum()), int((W.era == "pre").sum())
-        sweep.append((t, len(q), aa, nn, bb, mm, fisher_exact([[aa, nn - aa], [bb, mm - bb]])[1]))
-    pd.DataFrame(sweep, columns=["fab_threshold", "n_mutations", "post_k", "post_n",
-                                 "pre_k", "pre_n", "fisher_p"]).to_csv("threshold_sweep.csv", index=False)
-    print("threshold sweep written")
+    W = A[A.cdate >= pd.Timestamp(f"{PRIMARY_START}-01-01")]
+    for sub in sorted(W.subtype.unique()) + ["pooled"]:
+        g = W if sub == "pooled" else W[W.subtype == sub]
+        ka, na, kb, nb, p = _fisher(g)
+        for lab, k, n in (("before 1 Jul 2023", ka, na), ("on/after 1 Jul 2023", kb, nb)):
+            lo, hi = proportion_confint(k, n, method="beta")
+            rows.append(dict(subtype=sub, period=lab, carriers=k, records=n,
+                             percent=100 * k / n, ci_low=100 * lo, ci_high=100 * hi))
+    T = pd.DataFrame(rows)
+    T.to_csv(out, index=False)
+    return T
+
+
+def threshold_sweep(A, cons, out="threshold_sweep.csv"):
+    """Primary sensitivity analysis 1: vary the Fab-escape cutoff."""
+    W = A[A.cdate >= pd.Timestamp(f"{PRIMARY_START}-01-01")]
+    rows = []
+    for fab in [1.0, 1.2, 1.4, 1.6, 1.8, FAB_CUTOFF, 2.2, 2.4, 2.5, 2.6]:
+        B, _, esc = call(W, cons, fab=fab)
+        ka, na, kb, nb, p = _fisher(B)
+        rows.append(dict(fab_threshold=fab, n_mutations=len(esc), pre_k=ka, pre_n=na,
+                         pre_pct=100 * ka / na, post_k=kb, post_n=nb, post_pct=100 * kb / nb, fisher_p=p))
+    T = pd.DataFrame(rows)
+    T.to_csv(out, index=False)
+    return T
+
+
+def window_sweep(A, out="window_sweep.csv"):
+    """Primary sensitivity analysis 2: vary the first collection year included."""
+    rows = []
+    for sy in [None, 2000, 2005, 2010, 2014, 2015, 2016, 2017, 2018, 2019, 2020]:
+        sub = A if sy is None else A[A.cdate >= pd.Timestamp(f"{sy}-01-01")]
+        ka, na, kb, nb, p = _fisher(sub)
+        pc, _ = cmh(sub, ["subtype"])
+        lo, hi = proportion_confint(ka, na, method="beta")
+        rows.append(dict(start="all years" if sy is None else str(sy), pre_k=ka, pre_n=na,
+                         pre_pct=100 * ka / na, pre_lo=100 * lo, pre_hi=100 * hi,
+                         post_k=kb, post_n=nb, post_pct=100 * kb / nb, fisher_p=p, cmh_p=pc))
+    T = pd.DataFrame(rows)
+    T.to_csv(out, index=False)
+    return T
+
+
+def stratified(A, out="supp_country_period_subtype.csv"):
+    """Stratified inference and the country-by-period-by-subtype denominators."""
+    W = A[A.cdate >= pd.Timestamp(f"{PRIMARY_START}-01-01")].copy()
+    for keys, lab in ((["subtype"], "subtype"), (["c0"], "country"),
+                      (["c0", "subtype"], "country x subtype"),
+                      (["c0", "subtype", "source"], "country x subtype x database")):
+        p, n = cmh(W, keys)
+        print(f"  CMH by {lab:30s} p={p:.4g}  informative strata={n}")
+    W["post"] = W.cdate >= ERA_BOUNDARY
+    T = (W.groupby(["c0", "subtype", "post"]).agg(n=("carrier", "size"), k=("carrier", "sum"))
+         .reset_index().pivot_table(index=["c0", "subtype"], columns="post",
+                                    values=["n", "k"], fill_value=0))
+    T.columns = [f"{a}_{'post' if b else 'pre'}" for a, b in T.columns]
+    T.reset_index().sort_values("n_post", ascending=False).to_csv(out, index=False)
+    return T
+
+
+def dedup_sensitivity(A, cons):
+    """Repeat the primary comparison with no de-duplication at all."""
+    full = pd.read_pickle("prededuplication_set.pkl")
+    B, _, _ = call(full, cons)
+    for lab, sub in (("no de-duplication, all years", B),
+                     ("no de-duplication, primary window",
+                      B[B.cdate >= pd.Timestamp(f"{PRIMARY_START}-01-01")])):
+        ka, na, kb, nb, p = _fisher(sub)
+        print(f"  {lab:36s} pre {ka}/{na:,}  post {kb}/{nb:,}  p={p:.4g}")
+
+
+def date_sensitivity(A):
+    """Repeat the primary comparison excluding imprecisely dated records."""
+    W = A[A.cdate >= pd.Timestamp(f"{PRIMARY_START}-01-01")]
+    amb = (W.date_precision == "year") & (W.cdate.dt.year == 2023)
+    for lab, sub in (("primary", W), ("exclude year-only 2023", W[~amb]),
+                     ("exclude all year-only", W[W.date_precision != "year"]),
+                     ("full-date records only", W[W.date_precision == "day"])):
+        ka, na, kb, nb, p = _fisher(sub)
+        print(f"  {lab:28s} pre {ka}/{na:,}  post {kb}/{nb:,}  p={p:.4g}")
+
+
+def entry_sensitivity(A, cons):
+    """Repeat the primary comparison across cell-entry floors."""
+    W = A[A.cdate >= pd.Timestamp(f"{PRIMARY_START}-01-01")]
+    for ce in [-2.0, -1.5, -1.0, ENTRY_FLOOR, -0.25, 0.0]:
+        B, _, esc = call(W, cons, entry=ce)
+        ka, na, kb, nb, p = _fisher(B)
+        print(f"  entry >= {ce:5.2f}: {len(esc):2d} mutations  pre {ka}/{na:,}  post {kb}/{nb:,}  p={p:.3g}")
+
+
+def trend_scan(A, cons, out="trend_scan_combined.csv", min_records=5):
+    """Cochran-Armitage trend test across every F variant carried by >= min_records records."""
+    W = A[A.cdate >= pd.Timestamp(f"{PRIMARY_START}-01-01")].copy()
+    rows = []
+    for sub, g in W.groupby("subtype"):
+        c = cons[sub]
+        years = g.cdate.dt.year.values
+        uy = np.array(sorted(set(years)))
+        ny = np.array([(years == y).sum() for y in uy])
+        counts = {}
+        for F, y in zip(g.F, years):
+            for i, (a, b) in enumerate(zip(c, F), 1):
+                if b != a and b not in ("X", "-", "*"):
+                    counts.setdefault(f"{a}{i}{b}", {}).setdefault(y, 0)
+                    counts[f"{a}{i}{b}"][y] += 1
+        for mut, per in counts.items():
+            tot = sum(per.values())
+            if tot < min_records:
+                continue
+            k = np.array([per.get(y, 0) for y in uy])
+            p_bar = tot / ny.sum()
+            num = (ny * (uy - (ny * uy).sum() / ny.sum()) * (k / np.maximum(ny, 1) - p_bar)).sum()
+            var = p_bar * (1 - p_bar) * (ny * (uy - (ny * uy).sum() / ny.sum()) ** 2).sum()
+            z = num / np.sqrt(var) if var > 0 else 0.0
+            rows.append(dict(subtype=sub, mut=mut, n=tot, z=z,
+                             p=2 * stats_mod.norm.sf(abs(z)),
+                             direction="increase" if z > 0 else "decrease"))
+    T = pd.DataFrame(rows)
+    bonf = 0.05 / len(T)
+    T["significant"] = T.p < bonf
+    T.to_csv(out, index=False)
+    sig = T[T.significant]
+    print(f"  {len(T)} variants tested, Bonferroni {bonf:.3g}: {len(sig)} significant "
+          f"({int((sig.direction == 'increase').sum())} increasing, "
+          f"{int((sig.direction == 'decrease').sum())} decreasing)")
+    return T
+
+
+def clesrovimab(A, cons, out="supp_S6_clesrovimab_carriers.csv"):
+    """Exploratory: the same numerical cutoff applied to the clesrovimab DMS table."""
+    B, _, _ = call(A, cons, antibody="Clesrovimab")
+    cc = B[B.carrier]
+    pre25 = B[B.cdate < pd.Timestamp("2025-01-01")]
+    win = pre25[pre25.cdate >= pd.Timestamp(f"{PRIMARY_START}-01-01")]
+    k, n = int(win.carrier.sum()), len(win)
+    lo, hi = proportion_confint(k, n, method="beta")
+    print(f"  clesrovimab, primary window before 2025: {k}/{n:,} "
+          f"({100 * k / n:.4f}%, CI {100 * lo:.4f}-{100 * hi:.4f})")
+    out_df = cc[["key", "subtype", "c0", "cdate", "source", "escape_substitutions"]].copy()
+    out_df["window"] = np.where(out_df.cdate >= pd.Timestamp(f"{PRIMARY_START}-01-01"),
+                                "primary", "pre-{} historical".format(PRIMARY_START))
+    out_df.to_csv(out, index=False)
+    return out_df
+
+
+PHYLO_COMMANDS = """\
+Stage 7, phylogenetics. These are the exact commands used. They are documented rather than
+wrapped in a function because they take several hours and were run once, interactively.
+
+  # one alignment per subtype, analysis-set tips only
+  veryfasttree -nt -gtr -gamma -threads 24 F_nt_A.fasta > F_A.nwk
+  veryfasttree -nt -gtr -gamma -threads 24 F_nt_B.fasta > F_B.nwk
+
+  # midpoint rooting and amino-acid ancestral reconstruction
+  treetime ancestral --aln F_nt_A.fasta --tree F_A.nwk --outdir tt_A --gtr infer --aa
+  treetime ancestral --aln F_nt_B.fasta --tree F_B.nwk --outdir tt_B --gtr infer --aa
+
+Acquisition branches are then the branches of tt_*/annotated_tree.nexus on which a high-escape
+residue appears; spread is the count of descendant tips that themselves carry that residue (not
+the total descendant count); support is taken from the maximum-likelihood topology by matching
+nodes on their descendant tip sets. The resulting trees, annotated NEXUS output and
+branch-mutation tables are deposited under phylogenetics/.
+"""
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("stage", choices=["all", "fetch-genbank", "sort", "align", "build-cohort", "call", "stats"])
-    ap.add_argument("--gisaid-fasta", required=False)
-    ap.add_argument("--gisaid-meta", required=False)
+    ap.add_argument("stage", choices=["all", "fetch-genbank", "sort", "align", "build-cohort",
+                                      "call", "stats", "trend", "clesrovimab", "sensitivity", "phylo"])
+    ap.add_argument("--gisaid-fasta")
+    ap.add_argument("--gisaid-meta")
+    ap.add_argument("--frozen-accessions", default="manifests/genbank_accessions.txt",
+                    help="consume the deposited accession list instead of current GenBank holdings")
     ap.add_argument("--nextclade", default="nextclade")
     ap.add_argument("--email", default=None, help="contact address for NCBI E-utilities")
     ap.add_argument("--jobs", type=int, default=8)
     args = ap.parse_args()
+
+    if args.stage == "phylo":
+        print(PHYLO_COMMANDS)
+        return
     if args.stage in ("all", "fetch-genbank"):
         fetch_genbank("rsv_genomes.fasta", args.email)
     if args.stage in ("all", "sort", "align"):
@@ -258,10 +479,25 @@ def main():
                 out.write(open(f, encoding="utf-8", errors="replace").read())
         nextclade_datasets(args.nextclade)
         sort_and_align(args.nextclade, "combined.fasta", args.jobs)
-    if args.stage in ("all", "build-cohort", "call", "stats"):
-        A = build_cohort(args.gisaid_meta)
+    if args.stage in ("all", "build-cohort", "call", "stats", "trend", "clesrovimab", "sensitivity"):
+        frozen = args.frozen_accessions if args.frozen_accessions and \
+            os.path.exists(args.frozen_accessions) else None
+        A = build_cohort(args.gisaid_meta, frozen)
         A, cons, esc = call(A)
-        stats(A, esc)
+        print(f"qualifying mutations at the primary cutoff: {len(esc)}")
+    if args.stage in ("all", "stats"):
+        print("carriage:"); print(carriage(A).to_string(index=False))
+        print("threshold sweep:"); print(threshold_sweep(A, cons).to_string(index=False))
+        print("window sweep:"); print(window_sweep(A).to_string(index=False))
+        print("stratified:"); stratified(A)
+    if args.stage in ("all", "sensitivity"):
+        print("de-duplication sensitivity:"); dedup_sensitivity(A, cons)
+        print("date-precision sensitivity:"); date_sensitivity(A)
+        print("cell-entry floor sensitivity:"); entry_sensitivity(A, cons)
+    if args.stage in ("all", "trend"):
+        print("trend scan:"); trend_scan(A, cons)
+    if args.stage in ("all", "clesrovimab"):
+        print("clesrovimab:"); clesrovimab(A, cons)
 
 
 if __name__ == "__main__":
