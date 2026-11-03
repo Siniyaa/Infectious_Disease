@@ -1,10 +1,10 @@
-accession,source,subtype,lineage,country,date,clesrovimab_escape_substitution
-PQ763006,GenBank,RSV-A,A.D.1.6,France,2023-12-20,S443P
-PQ763003,GenBank,RSV-A,A.D.1.6,France,2024-01-05,S443P
-MH760631,GenBank,RSV-A,A.D,Australia,2016-07-30,K470E
-EPI_ISL_18277068,GISAID,RSV-A,A.D.5.2,Spain,2023-02-14,K470E
-EPI_ISL_18204765,GISAID,RSV-A,A.D.5.2,Spain,2023-01-14,K470E
-EPI_ISL_18204758,GISAID,RSV-A,A.D.5.2,Spain,2023-01-15,K470E
-EPI_ISL_18789793,GISAID,RSV-A,A.D.1.6,France,2023-12-14,S443P
-EPI_ISL_19281620,GISAID,RSV-A,A.D.1.6,France,2023-12-08,S443P
-EPI_ISL_20093560,GISAID,RSV-A,A.D.5.2,Portugal,2021-12-06,S443P
+seqName,subtype,country,cdate,source,cesc,window
+"MH760631.1 Human respiratory syncytial virus strain A/NSW/WM0879A/16, partial genome",RSV-A,Australia,2016-07-30,GenBank,K470E,pre-2017 historical
+EPI_ISL_20093560,RSV-A,Portugal,2021-12-06,GISAID,S443P,2017+ primary
+EPI_ISL_18204765,RSV-A,Spain,2023-01-14,GISAID,K470E,2017+ primary
+EPI_ISL_18204758,RSV-A,Spain,2023-01-15,GISAID,K470E,2017+ primary
+EPI_ISL_18277068,RSV-A,Spain,2023-02-14,GISAID,K470E,2017+ primary
+EPI_ISL_19281620,RSV-A,France,2023-12-08,GISAID,S443P,2017+ primary
+EPI_ISL_18789793,RSV-A,France,2023-12-14,GISAID,S443P,2017+ primary
+"PQ763006.1 Human respiratory syncytial virus A isolate 040-0035, partial genome",RSV-A,France,2023-12-20,GenBank,S443P,2017+ primary
+"PQ763003.1 Human respiratory syncytial virus A isolate 040-0032, partial genome",RSV-A,France,2024-01-05,GenBank,S443P,2017+ primary
