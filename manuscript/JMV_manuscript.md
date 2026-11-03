@@ -12,13 +12,13 @@
 
 **Keywords.** respiratory syncytial virus; nirsevimab; resistance-associated substitution; genomic surveillance; fusion protein
 
-**Word counts.** Abstract 193 words (limit 200). Text approximately 3,998 words (limit 4,000). References 14 (limit 50). Display items 8: Figures 1-5 and Tables 1-3 (limit 8).
+**Word counts.** Abstract 193 words (limit 200). Text approximately 4,000 words (limit 4,000). References 14 (limit 50). Display items 8: Figures 1-5 and Tables 1-3 (limit 8).
 
 ---
 
 ## ABSTRACT
 
-Reported frequencies of nirsevimab resistance-associated substitutions in respiratory syncytial virus (RSV) differ between studies using different reference sequences, thresholds and time spans. We combined 25,384 GenBank records with 44,275 eligible GISAID EpiRSV records (69,659 in total), processed both uniformly, called fusion (F) protein variants against each subtype's own consensus, and classified them using published deep mutational scanning (DMS) scores. After de-duplication 38,925 records remained. Among records collected from 2017 onward, none of 10,598 predating 1 July 2023 carried a DMS-defined high-escape substitution against 35 of 26,064 collected on or after that date (0.134%, 95% CI 0.094-0.187; Fisher p = 1.3 x 10-5). That contrast is contingent on two analyst choices. Including records from before 2016 adds 13 historical carriers, twelve in one 2014-15 clade, and the difference is no longer significant (13/12,861 versus 35/26,064, p = 0.44). Lowering the Fab-escape cutoff from 2.036 to 1.0 reverses its direction. High-escape residues were reconstructed on 32 independent branches, 26 leading to a single sampled carrier. Of 689 F variants tested for temporal trend, 105 changed significantly (50 increasing, 55 decreasing) and none was high-escape. Archive-derived resistance frequencies require their threshold and window to be stated.
+Reported frequencies of nirsevimab resistance-associated substitutions in respiratory syncytial virus (RSV) differ between studies using different reference sequences, thresholds and time spans. We combined 25,384 GenBank records with 44,275 eligible GISAID EpiRSV records (69,659 in total), processed both uniformly, called fusion (F) protein variants against each subtype's own consensus, and classified them using published deep mutational scanning (DMS) scores. After de-duplication 38,925 records remained. Among records collected from 2017 onward, none of 10,598 predating 1 July 2023 carried a DMS-defined high-escape substitution against 35 of 26,064 collected on or after that date (0.134%, 95% CI 0.094-0.187; Fisher p = 1.3 x 10-5). That contrast is contingent on two analyst choices. Including records from before 2016 adds 13 historical carriers, twelve in one 2014-15 clade, and the difference is no longer significant (13/12,861 versus 35/26,064, p = 0.44). Lowering the Fab-escape cutoff from 2.036 to 1.0 reverses its direction. Under the reported reconstruction, high-escape residues were assigned to 32 candidate acquisition branches, 26 associated with a single sampled carrier. Of 689 F variants tested for temporal trend, 105 changed significantly (50 increasing, 55 decreasing) and none was high-escape. Archive-derived resistance frequencies require their threshold and window to be stated.
 
 **KEYWORDS:** respiratory syncytial virus; nirsevimab; resistance-associated substitution; genomic surveillance; fusion protein
 
@@ -52,7 +52,7 @@ set, and which collection years are included.
 
 ### 2.1 Sequence assembly
 
-GenBank contributed 25,384 sequence records for human orthopneumovirus (taxon 11250) of 13-16 kb. A GISAID EpiRSV export contributed 56,856 unique records, of which 44,275 passed filtering for human host,
+GenBank contributed 25,384 records for human orthopneumovirus (taxon 11250), 13-16 kb. A GISAID EpiRSV export contributed 56,856 unique records, of which 44,275 passed filtering for human host,
 13-16 kb length and a resolvable collection date; 4,267 lacked a metadata row and were excluded.
 GISAID holdings begin in 2020, so earlier coverage rests on GenBank alone.
 
@@ -87,13 +87,11 @@ assigned to the earlier period by this convention. None of the 538 year-only rec
 
 ### 2.3 De-duplication across databases
 
-Records identical in F sequence, country and collection date were collapsed to one. Cross-database
-redundancy was measured rather than assumed. Of 41,514 GISAID records passing QC, 16,973 (40.9%) fall in
-a group that also contains a GenBank record and so match a GenBank record on all three fields; a further
-7,660 fall in groups of two or more GISAID records with no GenBank counterpart, which is within-database
-repetition. In total 9,344 GISAID records (22.5%) were not retained as the representative of their group.
-Matching on these three fields is consistent with the same specimen having been deposited twice but does
-not demonstrate it. Of the
+Records identical in F sequence, country and collection date were collapsed to one. Cross-database redundancy was measured rather than assumed. Of 41,514 GISAID records passing QC, 16,973
+(40.9%) matched a GenBank record on F sequence, country and collection date. A further 7,660 belonged to
+groups containing multiple GISAID records and no GenBank record. Selecting one representative per group
+retained 19,845 GISAID records and excluded 21,669 (52.2%): 16,973 from mixed-database groups and 4,696
+from GISAID-only groups. Matching on these fields does not establish specimen identity. Of the
 38,925 resulting groups, 16,171 contain more than one record. The rule will collapse genuinely distinct infections sharing an F
 sequence, country and date, so full group membership is deposited and the primary comparison was repeated
 with no de-duplication at all (Section 3.4). Because
@@ -103,8 +101,8 @@ archive records**, not as a population denominator.
 ### 2.4 Variant calling and functional classification
 
 Variants were called against each subtype's own consensus, computed from the analysis set, because the two
-subtype consensuses differ at 59 of 574 F residues. Observed residues were joined to the DMS tables [3] on
-site and mutant residue; the scan's numbering matched the RSV-A consensus at 98.4% of its 504 scored sites.
+consensuses differ at 59 of 574 F residues. Observed residues were joined to the DMS tables [3] on site and
+mutant residue; the scan's numbering matched the RSV-A consensus at 98.4% of its 504 scored sites.
 
 A residue was classified **DMS-defined high-escape** when its Fab-escape score was at least 2.036 with cell
 entry at or above -0.5 (12 nirsevimab and 6 clesrovimab mutations of 9,812 scored). The cutoff is anchored on
@@ -112,13 +110,12 @@ F:N201T, for which reduced nirsevimab recognition has been demonstrated by recom
 is a deliberately narrow, score-based category and is **not** equivalent to the set of all known
 resistance-associated variants: F:K68Q, reported in a severe adult case [7], scores 0.572 and falls outside
 it at every cutoff examined, while the DMS study itself reports subtype-dependent effects at position 201 and
-reduced IgG neutralisation for K68Q on an RSV-B background [3]. Because the category is defined by score
-rather than phenotype, and because no virus in this study was tested functionally, all classifications are
-described as predicted.
+reduced IgG neutralisation for K68Q on an RSV-B background [3]. Because the category is defined by score rather than phenotype, and no virus here was tested
+functionally, all classifications are described as predicted.
 
-Twelve nirsevimab mutations fall at five F positions (68, 201, 208, 209, 210). Across the primary window
-99.69% of records have all five positions callable and mean callability at those positions is 99.93%, so at
-least 95% overall F coverage is not materially diluting the denominator at the positions that matter.
+The twelve nirsevimab mutations fall at five F positions (68, 201, 208, 209, 210). Across the primary
+window 99.69% of records have all five callable and mean callability there is 99.93%, so the 95% overall
+coverage filter is not materially diluting the denominator where it matters.
 
 The DMS was performed on an RSV-A background, so its transfer to RSV-B is an assumption stated per
 substitution. The two RSV-B substitutions contributing most carriers sit at sites where the RSV-B consensus
@@ -169,14 +166,14 @@ Among 36,662 records collected from 2017 onward, none of the 10,598 collected be
 DMS-defined high-escape substitution, against 35 of 26,064 collected on or after that date (Table 2,
 Figure 1). This is absence of detection in the analysed sample, not demonstrated biological absence.
 
-| Subtype | Era | Carriers / n | Carriage (%) | 95% CI (%) |
+| Subtype | Period | Carriers / n | Carriage (%) | 95% CI (%) |
 |---|---|---|---|---|
-| RSV-A | Before rollout | 0/5,584 | 0.0 | 0.000-0.066 |
-| RSV-A | After rollout | 9/14,013 | 0.064 | 0.029-0.122 |
-| RSV-B | Before rollout | 0/5,014 | 0.0 | 0.000-0.074 |
-| RSV-B | After rollout | 26/12,051 | 0.216 | 0.141-0.316 |
-| Both | Before rollout | 0/10,598 | 0.0 | 0.000-0.035 |
-| Both | After rollout | 35/26,064 | 0.134 | 0.094-0.187 |
+| RSV-A | Before 1 Jul 2023 | 0/5,584 | 0.0 | 0.000-0.066 |
+| RSV-A | On/after 1 Jul 2023 | 9/14,013 | 0.064 | 0.029-0.122 |
+| RSV-B | Before 1 Jul 2023 | 0/5,014 | 0.0 | 0.000-0.074 |
+| RSV-B | On/after 1 Jul 2023 | 26/12,051 | 0.216 | 0.141-0.316 |
+| Both | Before 1 Jul 2023 | 0/10,598 | 0.0 | 0.000-0.035 |
+| Both | On/after 1 Jul 2023 | 35/26,064 | 0.134 | 0.094-0.187 |
 
 **Table 2.** Carriage among de-duplicated archive records collected from 2017 onward, split at the fixed
 calendar boundary of 1 July 2023. National prophylaxis rollout dates were not used to assign periods. Intervals are
@@ -231,9 +228,9 @@ collection year included at a fixed cutoff of 2.036; panel B varies the cutoff w
 Periods are split at 1 July 2023. CMH is the subtype-stratified Cochran-Mantel-Haenszel test, not computed
 for the cutoff sweep.
 
-Pre-2017 records differ from later ones in ways that motivate a modern-era restriction independently of this
-result: they come from 25 countries against 82, contain no GISAID deposits against 54.1%, and predate the
-lineage nomenclature used here. These differences are not strong enough to carry the inference on their own
+Pre-2017 records differ from later ones in ways that motivate a modern-era restriction independently of
+this result: 25 countries against 82, no GISAID deposits against 54.1%, and they predate the lineage
+nomenclature used here. These differences are not strong enough to carry the inference on their own
 - sampling concentration in the three largest contributing countries is similar in the two eras (55.9%
 against 49.6%) - so we report both windows and treat neither as definitive. **Within the primary window the high-escape substitutions were not detected before mid-2023;
 across the full archive they are not new.**
@@ -246,7 +243,6 @@ either period. Between 1.2 and 1.8 the difference is not statistically significa
 the boundary. Changing the cutoff does not merely change the power of one test: it changes which
 substitutions are classified, and therefore the endpoint being compared.
 At 1.0 the difference is significant in the reverse direction (5.38% before versus 4.45% on or after).
-
 
 Twenty-six records before the boundary and six after carry a substitution scoring between 1.4 and 2.036,
 dominated by N201S: intermediate-score substitutions were already circulating.
@@ -271,18 +267,18 @@ mutations from 23 to 9 and the carrier count from 36 to 31, with p between 7.6 x
 
 ### 3.5 Reconstructed acquisitions and observed cluster sizes
 
-High-escape residues were reconstructed on 32 independent branches across six site-and-residue combinations
-(Figure 4a). These branches are counted on the full archive and so include the historical carriers; the 35 carriers of
+High-escape residues were assigned to 32 candidate acquisition branches across six site-and-residue
+combinations (Figure 4a). This reconstruction is exploratory: it is conditional on one topology, one
+ancestral-state model and the unrooted tree as produced. These branches are counted on the full archive and so include the historical carriers; the 35 carriers of
 Section 3.1 are the post-boundary subset of the primary window.
 
-Twenty-six acquisitions lead to a single sampled carrier. No cluster collected on or after 1 July 2023
+Twenty-six acquisitions are associated with a single sampled carrier. No cluster collected on or after 1 July 2023
 exceeded two carriers under this sampling; the largest cluster in the archive is a twelve-carrier site-209 clade, ten
 records from Argentina in 2015 and two from Viet Nam in 2014 (Figure 4b). Branch support separates these sharply: it is undefined for the 26 terminal acquisitions, and of the six
 internal acquisitions two are recovered as clades in the maximum-likelihood topology and well supported (the 2014-15 site-209 clade, SH-like support 0.888, and one 2025/26 site-201 pair,
 0.982), while the remaining four, all site 208 to D, are not recovered as bipartitions and are therefore
 uncertain reconstructions. This includes the branch whose naive descendant count was 122 but which contains
-only two carriers. The count of 32 is a reconstruction-dependent estimate conditional on one topology and one
-ancestral-state model.
+only two carriers. 
 
 Formal comparison against other F substitutions is uninformative at this sample size (Mann-Whitney
 p = 0.133; single-carrier fraction 26/32 versus 6,402/9,178, p = 0.181). **Large recent clusters were not observed under this sampling and analysis. This does not
@@ -333,11 +329,10 @@ cross-resistance cannot occur.
 
 The archive is dominated by a small number of countries (Figure 5a); the primary window spans 82 named
 countries, with 4 records carrying no country. In the primary window the Middle East
-contributes 252 records: Qatar 150, Kuwait 79, Jordan 10, Iraq 7 and Egypt 6 (Figure 5b). Records from the United Arab Emirates, Saudi
-Arabia and Iran are short partial sequences (median 836, 687 and 321 nucleotides) spanning the attachment
-glycoprotein and ending before F, so they cannot contribute.
+contributes 252 records: Qatar 150, Kuwait 79, Jordan 10, Iraq 7, Egypt 6 (Figure 5b). Records from the United Arab Emirates, Saudi Arabia and Iran are short partial sequences (median 836, 687
+and 321 nucleotides) spanning the attachment glycoprotein and ending before F, so cannot contribute.
 Under a simple independent-sampling model at the observed post-boundary frequency, 150 records give about
-an 18% probability of containing at least one carrier and roughly 1,200 would be needed for 80%; this is
+an 18% probability of containing at least one carrier and roughly 1,200 would be needed for 80% -
 illustrative, not an assessment of national surveillance performance.
 
 ## 4 DISCUSSION
@@ -346,35 +341,32 @@ Reading the whole public archive rather than one country at a time yields a resu
 about how such numbers are produced.
 
 The headline contrast is real within its window: among records collected from 2017 onward, high-escape
-substitutions appear only from late 2023, across seven countries and thirteen lineages, and the association
-survives stratification by country, subtype and database, removal of the de-duplication rule, exclusion of
-imprecisely dated records, and variation of the cell-entry floor. What it does not survive is a change to
+substitutions appear only from late 2023, across seven countries and thirteen lineages, and the
+association survives stratification by country, subtype and database, removal of the de-duplication rule,
+exclusion of imprecisely dated records and variation of the cell-entry floor. What it does not survive is a change to
 either of two choices that are seldom reported. Extending the window back to include a single 2014-15
 acquisition clade removes the statistical significance of the difference. Lowering the functional cutoff
 also removes it, and at the most permissive cutoff reverses its direction - while simultaneously changing
 which substitutions the endpoint contains. The substitutions are not new - they are in the archive from 2002 and 2014-15 - and
 intermediate-score substitutions were circulating throughout.
 
-We therefore do not claim that escape substitutions have increased since prophylaxis began. We claim
-something narrower and better supported: that whether they appear to have increased is determined by the
-threshold and the window, and that published frequencies which state neither cannot be compared with one
-another or pooled. This is consistent with the DMS authors' report that resistant strains remain rare [3]
+We therefore do not claim that escape substitutions have increased since prophylaxis began, but something
+narrower: whether they appear to have increased is determined by the threshold and the window, and
+published frequencies stating neither cannot be compared or pooled. This is consistent with the DMS authors' report that resistant strains remain rare [3]
 and with the sporadic emergence on distinct backgrounds described from Spain [5].
 
-Acquisitions are reconstructed repeatedly across countries and lineages, and no large recent cluster was
-observed. We deliberately offer no fitness-cost explanation: the data cannot distinguish a cost from sparse
-sampling, recency, de-duplication or phylogenetic uncertainty, and four of the six internal acquisitions are
-uncertain reconstructions.
+Candidate acquisitions recur across countries and lineages and no large recent cluster was observed. We
+offer no fitness-cost explanation: the data cannot distinguish a cost from sparse sampling, recency,
+de-duplication or phylogenetic uncertainty.
 
-What this study does not show is that RSV-B consensus residues were previously misreported. The trial
-analysis that characterised I206M:Q209R identified its prevalence and measured its effect on susceptibility
-[2], and the systematic review separates polymorphisms from resistance-associated variants [1]. Our
-contribution there is confirmation at archive scale and a procedural recommendation about pooling, not a
-correction.
+This study does not show that RSV-B consensus residues were previously misreported. The trial analysis
+that characterised I206M:Q209R identified its prevalence and measured its effect on susceptibility [2],
+and the systematic review separates polymorphisms from resistance-associated variants [1]. Our
+contribution is confirmation at archive scale and a procedural recommendation about pooling.
 
-Two methodological results deserve emphasis. Two fifths of GISAID records match a GenBank record on F
-sequence, country and collection date, so naive pooling would have inflated the denominator by many
-thousands; yet the non-matching records contained every primary-window N201T record. Neither database
+Two methodological results deserve emphasis. Half of the GISAID records were excluded by de-duplication and two fifths matched a GenBank record on F
+sequence, country and collection date, so naive pooling would have inflated the denominator by tens of
+thousands; yet the retained GISAID records contained every primary-window N201T record. Neither database
 alone is adequate and the overlap must be measured. Separately, naive descendant-tip counts from ancestral
 reconstruction were misleading here, and acquisition counts should carry branch support.
 
@@ -391,24 +383,28 @@ global boundary of 1 July 2023 was applied, and later sequencing effort was far 
 comparison is exploratory; stratification by country reduces but does not remove this, and the choice of
 first included year changes the conclusion outright. Classifications are DMS scores rather than measured phenotypes, no virus here was tested functionally, the
 scan used an RSV-A background, and the high-escape category excludes known resistance-associated variants
-such as K68Q; the clesrovimab cutoff is unvalidated. Collapsing records identical in F sequence, country
-and collection date may remove genuinely distinct infections, although repeating the analysis without it
-strengthened rather than weakened the primary association. A single sampled carrier does not establish
-absence of transmission, the count of 32 acquisitions is conditional on one topology and one ancestral-state
-model, and four of six internal acquisitions are uncertain. Clinical severity, prophylaxis failure rates, within-host minor variants and
+such as K68Q; the clesrovimab cutoff is unvalidated. Collapsing records identical in F sequence, country and collection date may remove genuinely distinct
+infections; repeating the analysis without it left the descriptive pattern in place, but the smaller p
+value it yields is not stronger independent evidence, because matching records are not independent. A single sampled carrier does not establish absence of transmission. The phylogenetic results are
+exploratory: the count of 32 candidate acquisitions is conditional on one topology, one ancestral-state
+model and the unrooted tree as produced, no explicit rooting step was applied, sensitivity to rooting was
+not assessed, and four of six internal acquisitions are uncertain reconstructions. Clinical severity, prophylaxis failure rates, within-host minor variants and
 antibody exposure history are not recoverable from consensus deposits and were not assessed.
 
 ## 5 CONCLUSIONS
 
-Among public RSV records collected from 2017 onward, DMS-defined high-escape substitutions to nirsevimab were
-detected only from late 2023 and remained below 0.25% of records collected on or after 1 July 2023, arising
-as repeated independent acquisitions with no observed cluster larger than two sequences. This contrast does
-not hold across the full archive, where the same substitutions are present from 2002 and 2014-15 and the
-period comparison is null, and it does not hold at more permissive functional cutoffs, where it is null or
-reversed. Reported RSV resistance frequencies should therefore always be accompanied by the classification
-threshold, the reference baseline and the collection-year span from which they were derived, and
-archive-based estimates should be described as properties of deposited sequences rather than of circulating
-virus populations.
+Among public RSV records collected from 2017 onward, DMS-defined high-escape substitutions to nirsevimab
+were detected only from late 2023 and remained below 0.25% of records collected on or after 1 July 2023.
+Under the reported topology, rooting and ancestral-state model they were assigned to 32 candidate
+acquisition branches, with no observed cluster larger than two sequences; this reconstruction is
+exploratory. The contrast does not hold across the full archive, where the same substitutions are present
+from 2002 and 2014-15 and the period difference is not statistically significant. Nor does it hold at more
+permissive functional cutoffs: the difference is not significant between cutoffs of 1.2 and 1.8, and at a
+cutoff of 1.0 it is significant in the opposite direction, with a different set of substitutions
+classified. Reported RSV resistance frequencies should therefore always be accompanied by the
+classification threshold, the reference baseline and the collection-year span from which they were
+derived, and archive-based estimates should be described as properties of deposited sequences rather than
+of circulating virus populations.
 
 ## ACKNOWLEDGEMENTS
 
