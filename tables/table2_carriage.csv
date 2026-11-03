@@ -1,7 +1,7 @@
-Subtype,Era,Carriers / n,Carriage (%),95% CI (%)
-RSV-A,Before rollout,"0/5,584",0.000,0.000-0.066
-RSV-A,After rollout,"9/14,013",0.064,0.029-0.122
-RSV-B,Before rollout,"0/5,014",0.000,0.000-0.074
-RSV-B,After rollout,"26/12,051",0.216,0.141-0.316
-Both,Before rollout,"0/10,598",0.000,0.000-0.035
-Both,After rollout,"35/26,064",0.134,0.094-0.187
+Subtype,Period,Carriers / n,Carriage (%),95% CI (%)
+RSV-A,Before 1 Jul 2023,"0/5,584",0.0,0.000-0.066
+RSV-A,On/after 1 Jul 2023,"9/14,013",0.064,0.029-0.122
+RSV-B,Before 1 Jul 2023,"0/5,014",0.0,0.000-0.074
+RSV-B,On/after 1 Jul 2023,"26/12,051",0.216,0.141-0.316
+Both,Before 1 Jul 2023,"0/10,598",0.0,0.000-0.035
+Both,On/after 1 Jul 2023,"35/26,064",0.134,0.094-0.187
