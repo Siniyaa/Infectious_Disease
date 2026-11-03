@@ -1,0 +1,84 @@
+# Validation run log
+
+Generated 2026-11-03 by executing the analysis functions of
+code/pipeline.py against the deposited analysis set (38,925 records).
+
+Environment: Python 3.11.17, pandas 2.3.3,
+numpy 2.4.6, scipy 1.17.1,
+statsmodels 0.15.0.
+DMS scores fetched from the pinned commit 3ecdfaa661304e3c284acdbeacc9662d2baa1dd9;
+checksum verification passed for both summary files.
+
+Scope of this log: the cohort-assembly stages (fetch-genbank, sort, align) and the phylogenetic
+stage are NOT exercised here. They require the GISAID export, several hours of compute, and in
+the phylogenetic case were run interactively; `pipeline.py phylo` prints the exact commands used.
+The functions below are the ones that produce every number reported in the manuscript's Results
+except the acquisition counts and branch support, which come from the deposited trees.
+
+Exclusions applied during cohort assembly, as printed by build-cohort on the published run:
+69,659 records in, 4 removed at subtype assignment (1 human metapneumovirus, 3 unassigned),
+65,416 passing F coverage >= 95% with a resolvable date, 26,491 collapsed by de-duplication,
+38,925 analysis records out.
+
+---
+
+carriage()
+subtype              period  carriers  records  percent  ci_low  ci_high
+  RSV-A   before 1 Jul 2023         0     5584   0.0000  0.0000   0.0660
+  RSV-A on/after 1 Jul 2023         9    14013   0.0642  0.0294   0.1219
+  RSV-B   before 1 Jul 2023         0     5014   0.0000  0.0000   0.0735
+  RSV-B on/after 1 Jul 2023        26    12051   0.2157  0.1410   0.3160
+ pooled   before 1 Jul 2023         0    10598   0.0000  0.0000   0.0348
+ pooled on/after 1 Jul 2023        35    26064   0.1343  0.0936   0.1867
+
+threshold_sweep()
+ fab_threshold  n_mutations  pre_k  pre_n  pre_pct  post_k  post_n  post_pct  fisher_p
+             1           52    570  10598    5.378    1161   26064     4.454 0.0001966
+           1.2           44     32  10598   0.3019      74   26064    0.2839    0.7486
+           1.4           32     26  10598   0.2453      41   26064    0.1573    0.0798
+           1.6           23     24  10598   0.2265      38   26064    0.1458    0.0933
+           1.8           16     24  10598   0.2265      38   26064    0.1458    0.0933
+         2.036           12      0  10598        0      35   26064    0.1343 1.335e-05
+           2.2           10      0  10598        0      27   26064    0.1036 0.0001522
+           2.4            6      0  10598        0      21   26064   0.08057  0.001141
+           2.5            4      0  10598        0      17   26064   0.06522  0.005349
+           2.6            2      0  10598        0       0   26064         0         1
+
+window_sweep()
+    start  pre_k  pre_n  pre_pct  pre_lo  pre_hi  post_k  post_n  post_pct  fisher_p     cmh_p
+all years     13  12861   0.1011 0.05383  0.1728      35   26064    0.1343    0.4443    0.4359
+     2000     13  12697   0.1024 0.05453   0.175      35   26064    0.1343    0.4453    0.4586
+     2005     12  12643  0.09491 0.04905  0.1657      35   26064    0.1343    0.3518    0.3457
+     2010     12  12527  0.09579 0.04951  0.1673      35   26064    0.1343    0.3525     0.361
+     2014     12  11592   0.1035  0.0535  0.1808      35   26064    0.1343    0.5279    0.4802
+     2015     10  11338   0.0882  0.0423  0.1621      35   26064    0.1343    0.2606    0.2764
+     2016      0  11040        0       0 0.03341      35   26064    0.1343 6.654e-06 0.0002116
+     2017      0  10598        0       0  0.0348      35   26064    0.1343 1.335e-05 0.0003045
+     2018      0  10055        0       0 0.03668      35   26064    0.1343 1.433e-05 0.0004915
+     2019      0   9088        0       0 0.04058      35   26064    0.1343 4.867e-05  0.001016
+     2020      0   7742        0       0 0.04764      35   26064    0.1343 0.0001668  0.002545
+
+stratified()
+  CMH by subtype                        p=0.0003045  informative strata=2
+  CMH by country                        p=0.005992  informative strata=6
+  CMH by country x subtype              p=0.005909  informative strata=9
+  CMH by country x subtype x database   p=0.00824  informative strata=12
+
+dedup/date/entry sensitivity
+  primary                      pre 0/10,598  post 35/26,064  p=1.335e-05
+  exclude year-only 2023       pre 0/10,569  post 35/26,064  p=1.329e-05
+  exclude all year-only        pre 0/10,421  post 35/26,051  p=1.317e-05
+  full-date records only       pre 0/10,117  post 35/25,802  p=1.355e-05
+  entry >= -2.00: 23 mutations  pre 0/10,598  post 36/26,064  p=7.55e-06
+  entry >= -1.50: 21 mutations  pre 0/10,598  post 36/26,064  p=7.55e-06
+  entry >= -1.00: 18 mutations  pre 0/10,598  post 36/26,064  p=7.55e-06
+  entry >= -0.50: 12 mutations  pre 0/10,598  post 35/26,064  p=1.33e-05
+  entry >= -0.25: 12 mutations  pre 0/10,598  post 35/26,064  p=1.33e-05
+  entry >=  0.00:  9 mutations  pre 0/10,598  post 31/26,064  p=3.38e-05
+
+trend_scan()
+  689 variants tested, Bonferroni 7.26e-05: 105 significant (50 increasing, 55 decreasing)
+
+clesrovimab()
+  clesrovimab, primary window before 2025: 8/24,282 (0.0329%, CI 0.0142-0.0649)
+
