@@ -31,11 +31,11 @@ nextstrain/rsv/b/EPI_ISL_1653999; VeryFastTree 4.0.4; phylo-treetime 0.12.1.
 DMS scores: github.com/dms-vep/RSV_Long_F_DMS pinned at commit
 3ecdfaa661304e3c284acdbeacc9662d2baa1dd9 (2026-09-16). Expected sha256 prefixes of the two
 summary files: Nirsevimab.csv f7e69d60fccd5b719cc1306539c08c49,
-Clesrovimab.csv f734f38e82be6f9bd5941f99f70f65d3; verify_dms() checks them.
+Clesrovimab.csv 860a6d56e381205be55f251e850cb761; verify_dms() checks them.
 Retrieval date of the published analysis: 2 November 2026.
 """
 import argparse
-import hashlib, collections, json, os, re, subprocess, sys, time, urllib.parse, urllib.request, zipfile
+import hashlib, io, collections, json, os, re, subprocess, sys, time, urllib.parse, urllib.request, zipfile
 import numpy as np, pandas as pd
 from scipy import stats as stats_mod
 from statsmodels.stats.proportion import proportion_confint
@@ -49,7 +49,7 @@ DMS_COMMIT = "3ecdfaa661304e3c284acdbeacc9662d2baa1dd9"
 DMS_URL = ("https://raw.githubusercontent.com/dms-vep/RSV_Long_F_DMS/"
            + DMS_COMMIT + "/results/summaries/{antibody}.csv")
 DMS_SHA256_PREFIX = {"Nirsevimab": "f7e69d60fccd5b719cc1306539c08c49",
-                     "Clesrovimab": "f734f38e82be6f9bd5941f99f70f65d3"}
+                     "Clesrovimab": "860a6d56e381205be55f251e850cb761"}
 
 
 def verify_dms(antibody, blob):
@@ -233,7 +233,10 @@ def consensus(A):
 
 
 def escape_set(antibody="Nirsevimab", fab=FAB_CUTOFF, entry=ENTRY_FLOOR):
-    dms = pd.read_csv(DMS_URL.format(antibody=antibody))
+    with urllib.request.urlopen(DMS_URL.format(antibody=antibody), timeout=120) as r:
+        blob = r.read()
+    verify_dms(antibody, blob)
+    dms = pd.read_csv(io.BytesIO(blob))
     col = f"{antibody}-Fab escape"
     q = dms[(dms[col] >= fab) & (dms["cell entry"] >= entry)]
     return set(zip(q.site, q.mutant)), dms
