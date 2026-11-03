@@ -163,9 +163,12 @@ robust number or direction of independent evolutionary origins.
 ## 4. Remaining reproducibility qualifications
 
 Both addressed. A cached Nextclade dataset directory is now reused only when the tag recorded in its
-`pathogen.json` matches the pinned release; a mismatch exits with instructions. Every analysis stage, not
-only `fetch-genbank`, exits if the frozen accession list is missing, and proceeding without one requires
-`--frozen-accessions ''` and prints a warning that the cohort will not match. We have not claimed complete
+`pathogen.json` matches the pinned release; a mismatch exits with instructions. Every stage that reads
+data - `build-cohort`, `call`, `stats`, `sensitivity`, `trend` and `clesrovimab`, not only
+`fetch-genbank` - exits if the frozen accession list is missing, and proceeding without one requires
+`--frozen-accessions ''` and prints a warning that the cohort will not match. The `phylo` stage is exempt
+and returns before the check, because it only prints the documented commands and reads no input; we
+verified stage by stage which ones the guard reaches. We have not claimed complete
 end-to-end reproducibility: alignment preparation remains documented rather than automated, and the
 validation log states which stages it does and does not exercise.
 
