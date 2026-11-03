@@ -23,9 +23,11 @@ yourself from https://gisaid.org using manifests/gisaid_epi_isl.txt and place th
 
 The GenBank arm retrieves exactly the versioned accessions in manifests/genbank_accessions.txt.
 fetch_genbank() aborts if that file is absent and reports any accession the server does not
-return; every analysis stage makes the same check, and a cached Nextclade dataset directory is
-reused only when its recorded release tag matches the pinned one. A silent fall-back to current
-holdings or to an unpinned dataset is therefore not possible. Pass --frozen-accessions ""
+return. Every stage that reads data makes the same check -- build-cohort, call, stats,
+sensitivity, trend and clesrovimab -- so none of them can silently fall back to current holdings.
+The `phylo` stage is exempt because it only prints the documented commands and reads no input.
+A cached Nextclade dataset directory is reused only when its recorded release tag matches the
+pinned one, so an unpinned dataset cannot be used silently either. Pass --frozen-accessions ""
 to deliberately query live holdings instead; this will not reproduce the published cohort.
 
 Reproducing the validation log: the analysis stages need F translations, which the deposited
