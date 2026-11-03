@@ -22,8 +22,10 @@ yourself from https://gisaid.org using manifests/gisaid_epi_isl.txt and place th
 --gisaid-fasta with the metadata TSV at --gisaid-meta.
 
 The GenBank arm retrieves exactly the versioned accessions in manifests/genbank_accessions.txt.
-fetch_genbank() aborts if that file is absent, and reports any accession the server does not
-return, so a silent fall-back to current holdings is not possible. Pass --frozen-accessions ""
+fetch_genbank() aborts if that file is absent and reports any accession the server does not
+return; every analysis stage makes the same check, and a cached Nextclade dataset directory is
+reused only when its recorded release tag matches the pinned one. A silent fall-back to current
+holdings or to an unpinned dataset is therefore not possible. Pass --frozen-accessions ""
 to deliberately query live holdings instead; this will not reproduce the published cohort.
 
 Reproducing the validation log: the analysis stages need F translations, which the deposited
@@ -160,6 +162,14 @@ def nextclade_datasets(exe, tag=NEXTCLADE_DATASET_TAG):
     for name, zp, od in [("nextstrain/rsv/a/EPI_ISL_412866", "ds_a.zip", "ds_rsv_a"),
                          ("nextstrain/rsv/b/EPI_ISL_1653999", "ds_b.zip", "ds_rsv_b")]:
         if os.path.isdir(od):
+            # A cached directory is reused only if its recorded tag matches.
+            pj = os.path.join(od, "pathogen.json")
+            cached = (json.load(open(pj, encoding="utf-8")).get("version", {}).get("tag")
+                      if os.path.exists(pj) else None)
+            if tag and cached != tag:
+                sys.exit(f"cached dataset {od} has tag {cached}, expected {tag}. Remove {od} to "
+                         f"re-download, or pass tag=None to accept the cached version.")
+            print(f"  {od}: reusing cached dataset at tag {cached}")
             continue
         cmd = [exe, "dataset", "get", "--name", name, "--output-zip", zp]
         if tag:
@@ -558,8 +568,16 @@ def main():
         nextclade_datasets(args.nextclade)
         sort_and_align(args.nextclade, "combined.fasta", args.jobs)
     if args.stage in ("all", "build-cohort", "call", "stats", "trend", "clesrovimab", "sensitivity"):
-        frozen = args.frozen_accessions if args.frozen_accessions and \
-            os.path.exists(args.frozen_accessions) else None
+        if args.frozen_accessions:
+            if not os.path.exists(args.frozen_accessions):
+                sys.exit(f"frozen accession list {args.frozen_accessions} not found. Every analysis "
+                         f"stage requires it to reproduce the published cohort; pass "
+                         f"--frozen-accessions '' to proceed without it (results will differ).")
+            frozen = args.frozen_accessions
+        else:
+            frozen = None
+            print("WARNING: running without a frozen accession list; the cohort will not match "
+                  "the published analysis.")
         A = build_cohort(args.gisaid_meta, frozen)
         A, cons, esc = call(A)
         print(f"qualifying mutations at the primary cutoff: {len(esc)}")
