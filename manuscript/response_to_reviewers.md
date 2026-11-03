@@ -100,13 +100,13 @@ the independence caveat.
 
 ## Additional corrections
 
-- **GISAID matching.** Confirmed that the collapsed total conflated within-database repetition with
-  cross-database matches, and the previous "half were re-depositions" figure was wrong. Recomputed: of
-  41,514 GISAID records passing QC, 16,973 (40.9%) fall in a group that also contains a GenBank record;
-  7,660 fall in GISAID-only groups of two or more, which is within-database repetition; 9,344 (22.5%) were
-  not retained as representatives. Methods 2.3 and the Discussion now give this breakdown, use "match on F
-  sequence, country and collection date" rather than "re-deposition", and state that matching on these
-  three fields is consistent with but does not demonstrate the same specimen.
+- **GISAID matching.** [SUPERSEDED - see addendum item 1 below for the current figures.] Confirmed that
+  the collapsed total conflated within-database repetition with cross-database matches, and the previous
+  "half were re-depositions" figure was wrong. The replacement figures given here (9,344 records, 22.5%
+  not retained) were themselves wrong and are corrected in the fourth-review addendum: the correct
+  accounting is 19,845 GISAID records retained and 21,669 (52.2%) excluded. Methods 2.3 and the Discussion
+  carry the corrected wording; the "match on F sequence, country and collection date" phrasing and the
+  statement that matching does not establish specimen identity are retained.
 - **Abstract denominator.** Clarified to "25,384 GenBank records with 44,275 eligible GISAID EpiRSV records
   (69,659 in total)".
 - **Year-only records.** Confirmed: 538 is the full archive and only 190 are in the primary window (177
@@ -179,3 +179,28 @@ conflicts, CRediT contributions, the GISAID EPI_SET acknowledgement identifier, 
 references 2, 4-8, 10 and 11, and the lineage-nomenclature reference 8. Final journal requirements should
 be rechecked after these are added. The abstract is 198 words and the manuscript has three tables and five
 figures.
+
+
+---
+
+# ADDENDUM: RESPONSE TO THE FIFTH REVIEW
+
+1. **Conclusions, two populations.** Adopted. The sentence now reads: "Exploratory reconstruction across
+   the full archive, under the reported topology, rooting and ancestral-state model, assigned high-escape
+   residues to 32 candidate acquisition branches. Among records collected on or after 1 July 2023, no
+   sampled carrier cluster exceeded two records."
+2. **Superseded GISAID figure.** The earlier "Additional corrections" bullet is now explicitly labelled
+   SUPERSEDED, points to addendum item 1 of the fourth-review response, and states that both the original
+   "half were re-depositions" claim and its 9,344 / 22.5% replacement were wrong; the current accounting
+   is 19,845 retained and 21,669 (52.2%) excluded.
+3. **Phylogenetic labels.** "Independent acquisitions" no longer appears anywhere. Figure 4 is regenerated
+   with panel a titled "Reconstructed acquisition branches by site and acquired residue" and its axis
+   labelled "candidate reconstructed acquisition branches"; the Table S7 heading, its column and
+   tables/table4_origins.csv use the same term, as do the abstract, Results and Conclusions.
+4. **Final presentation.** The title page now states 198 abstract words, matching the text; the body is
+   4,000 words, and the manuscript has three tables and five figures. Figure 3 and its caption are emitted
+   as a single block.
+5. **Author completion.** Still outstanding and for the authors: names, affiliations, correspondence,
+   funding, conflicts, CRediT, the GISAID EPI_SET identifier, the author placeholders in references 2,
+   4-8, 10 and 11, and the lineage-nomenclature reference 8. The target journal's current submission
+   requirements should be confirmed before upload.
