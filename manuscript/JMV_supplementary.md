@@ -43,7 +43,8 @@ comparison differs between the two (Table S9).
 | Austria | 176 |
 | Cote d'Ivoire | 152 |
 
-Showing the 30 largest contributions of 83 countries. Full table deposited.
+Showing the 30 largest of 82 named countries; 4 records carry no country and are listed as
+(country not stated). Full table deposited.
 
 ## Table S2. All records carrying a DMS-defined high-escape substitution
 
