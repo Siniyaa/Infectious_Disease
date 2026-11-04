@@ -315,3 +315,77 @@ funding, conflicts, CRediT contributions and the GISAID EPI_SET acknowledgement 
    truncated at the retrieval date; Figure 2b marks the cutoff of 2.6 as "no record qualifies"; Figure 3 is
    rebuilt around the 16-substitution reconciliation with the two entry-floor exclusions in a separate
    colour.
+
+
+---
+
+## Addendum: response to the ninth review
+
+**1. "Only 162 records predate 2000" vs 164 in the manifest.** Both are right; the sentence was
+under-specified. The manifest holds 164 records dated before 2000, two of which are the impossible
+pre-1956 dates excluded from the clock regression. Methods 2.5 now reads "once those two records are
+excluded, only 162 of the 164 pre-2000 records in the deposited manifest remain".
+
+**2. Stated word count equalled the limit.** Corrected. The body is now 3,999 words, and the title page
+states the counting rule so the figure can be checked: Sections 1-5 excluding headings, table content and
+table titles, with abstract, references and figure legends excluded. The count rose above 4,000 when the
+new material in item 7 was added and was brought back by condensation, not by changing the rule.
+
+**3. Duplicated sentence in Methods 2.5.** Deleted. The surviving sentence merges both: temporal rooting
+places the root for ancestral-state reconstruction, and because direction is undefined without a root the
+acquisition count is reported across six further rootings.
+
+**4. Name the model.** Done. The declaration now names Claude Opus 5 (Anthropic) and retains the full
+statement of what it was used for and what the authors remain responsible for.
+
+**5. Reference formatting.** The whole list was rebuilt from Crossref and PubMed records rather than
+edited. All 17 entries now list up to six authors before "et al.". Reference 14 (Goya) gained pages
+1631-1641 and reference 9 (Euro Surveill) gained article number 2600690. Issue numbers were added to
+references 8, 10, 11, 12 and 17.
+
+**6. The Wilkins correction.** It exists and we have now read it: Lancet Infect Dis 2024;24(5):e281,
+published 11 March 2024. It corrects the IC50 units in a table to ng/mL and updates the appendix. It does
+not touch the sequence counts, so 3,626 GenBank sequences (2,024 RSV-A, 1,602 RSV-B) and 5,675 surveillance
+sequences (2,875 RSV-A, 2,800 RSV-B) stand as quoted; both were verified against the published abstract.
+Author order was confirmed as Wilkins D, Langedijk AC, Lebbink RJ, Morehouse C, Abram ME, Ahani B and 38
+others. The correction is now cited in reference 5. Checking this also surfaced an author correction to
+reference 4 (Nat Commun 2024;15:3026), which repairs amino-acid frequencies at positions 64, 68 and 208 in
+Figure 3b. We quote no frequency from that figure, so nothing here changes, but because those three
+positions are central to this paper the correction is cited in reference 4 so readers compare against the
+corrected version.
+
+**7. The 2024 Lancet Infectious Diseases multicentre study.** Added as reference 7 (Fourati S, Reslan A,
+Bourret J, et al. Lancet Infect Dis 2025;25(3):301-311; published online 2024), and it changed the
+analysis rather than just the citation list. It reports F:N208D and a newly described F:I64M plus F:K65R
+combination, both confirmed by fusion-inhibition assay. F:I64M was not in Table 4. It is now, and it is the
+strongest case in the table: Fab escape -1.178, the lowest of the 19 scored substitutions at site 64, and
+cell entry -1.154. A cutoff low enough to admit it would admit 6,742 of 9,812 scored mutations, and it
+fails the cell-entry floor regardless, so no Fab threshold classifies it at all. Its partner F:K65R scores
+0.170. Neither member of a phenotypically confirmed escape pair is recoverable by any single-substitution
+rule. Section 3.3 also now states the more general limitation this exposes: the DMS scores substitutions
+singly, so an escape phenotype that requires a combination lies outside what this or any similar screen can
+represent. Table 4 has 17 rows, Figure 3 has been redrawn, and the abstract, Section 3.3, the Discussion and
+the Figure 3 legend carry the new count.
+
+We did not add the Research Square preprint. It is adjacent to the Section 3.3 argument but not
+peer-reviewed, and the point it would support is already carried by references 7 and 12.
+
+**8. Supplementary layout.** The "Supplementary data files" heading was moved to the end, so Tables S1-S12
+now run in sequence followed by Figure S1 and the Supplementary Text.
+
+**9. The figures.** Supplied in full this round as separate files, after four rounds in which they were
+described but not sent. Figures 1-4 and Figure S1 are provided as 300 dpi LZW TIFF and PNG with a legend
+and manifest document, and are also in the repository under figures/submission/. Figure 1b does split each
+year at the boundary, so the four November 2023 carriers sit on the on/after side of 2023; Figure 2b does
+mark the empty endpoint at 2.6 with a cross keyed as "no record qualifies"; Figure 3 is the
+literature-reconciliation panel, now at 17 substitutions.
+
+Two things changed on inspection. Figure S1 had been built before the figure palette was settled and was
+still on library defaults, so it was redrawn to match Figures 1-4. Its legend also said "analysis set" when
+the counts are primary-window, which is corrected to n = 36,662, and the three Middle East countries that
+contribute no F-covering record now appear explicitly at zero with their median read lengths rather than
+being absent from the panel.
+
+**10. Temporally rooted trees.** F_A_temporally_rooted.newick and F_B_temporally_rooted.newick are in the
+repository under phylogenetics/, with the TreeTime clock output and root-to-tip tables. They were pushed
+with the date-filtered rerun; the earlier run has been superseded there.
