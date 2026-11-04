@@ -368,3 +368,13 @@ table is deposited so the counts underlying Section 3.3 can be checked without r
 (a) The twelve largest national contributions to the analysis set. (b) Middle East contributions in the
 primary window. Records from the United Arab Emirates, Saudi Arabia and Iran are attachment-glycoprotein
 fragments that end before the F coding sequence and cannot contribute.
+
+## Supplementary Text. Regional coverage and the detection limit
+
+The archive also shows where it cannot see. In the primary window the Middle East contributes 252 records:
+Qatar 150, Kuwait 79, Jordan 10, Iraq 7, Egypt 6 (Figure S1). Records from the United Arab Emirates, Saudi
+Arabia and Iran are short partial sequences (median 836, 687 and 321 nucleotides) spanning the attachment
+glycoprotein and ending before F, so they cannot contribute at all. Under a simple independent-sampling
+model at the observed post-boundary frequency, 150 records give about an 18% probability of containing at
+least one carrier and roughly 1,200 would be needed for 80%. This is an illustration of the detection limit
+that whole-genome coverage imposes on regional surveillance, not an assessment of any country's programme.
