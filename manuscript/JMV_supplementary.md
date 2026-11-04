@@ -365,9 +365,10 @@ table is deposited so the counts underlying Section 3.3 can be checked without r
 
 ## Figure S1. Sequencing coverage by country
 
-(a) The twelve largest national contributions to the analysis set. (b) Middle East contributions in the
-primary window. Records from the United Arab Emirates, Saudi Arabia and Iran are attachment-glycoprotein
-fragments that end before the F coding sequence and cannot contribute.
+(a) The twelve largest national contributions to the primary-window cohort (n = 36,662), which together
+supply 79% of it. (b) Middle East contributions to the same window. Records from the United Arab Emirates,
+Saudi Arabia and Iran are attachment-glycoprotein fragments that end before the F coding sequence, so those
+three countries contribute no F-covering record; their median lengths are shown at the zero stub.
 
 ## Supplementary Text. Regional coverage and the detection limit
 
