@@ -19,7 +19,7 @@ carriage is higher before the boundary, including the significant reversal at 1.
 cutoff at which no record qualifies in either period. (c) The p value against the first collection year
 included; open circles mark windows containing pre-boundary carriers.
 
-**FIGURE 3** The 16 substitutions reported in references 4 and 6-10, ordered by Fab-escape score. (a) Score
+**FIGURE 3** The 17 substitutions reported in references 4 and 6-11, ordered by Fab-escape score. (a) Score
 against the cutoff of 2.036; red marks the five that are classified, grey the two excluded by the
 cell-entry floor at any Fab cutoff. (b) Frequency of the same residues in each subtype in the analysis set;
 substitutions not tabulated for frequency are marked. The three commonest are RSV-B majority residues.
@@ -43,7 +43,7 @@ three countries contribute no F-covering record; their median lengths are shown 
 |---|---|---|---|---|
 | Figure1.tif / Figure1.png | 2704 x 1005 | 9.01 x 3.35 | 189 | 142 |
 | Figure2.tif / Figure2.png | 3118 x 1040 | 10.39 x 3.47 | 295 | 276 |
-| Figure3.tif / Figure3.png | 2771 x 1187 | 9.24 x 3.96 | 233 | 172 |
+| Figure3.tif / Figure3.png | 2166 x 1067 | 7.22 x 3.56 | 205 | 169 |
 | Figure4.tif / Figure4.png | 2512 x 977 | 8.37 x 3.26 | 165 | 102 |
 | FigureS1.tif / FigureS1.png | 2112 x 887 | 7.04 x 2.96 | 171 | 127 |
 
