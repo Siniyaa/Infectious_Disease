@@ -1,6 +1,6 @@
 # SUPPLEMENTARY MATERIAL
 
-**Threshold and time-window choices determine whether nirsevimab escape substitutions appear to have increased: an analysis of 38,925 public respiratory syncytial virus genomes**
+**Threshold and time-window choices determine whether nirsevimab escape substitutions appear to have increased in public respiratory syncytial virus genomes**
 
 All tables describe de-duplicated archive records from the combined GenBank and GISAID EpiRSV public
 sequence archive. Substitution classification is based on published deep mutational scanning scores and is
@@ -167,9 +167,9 @@ carriage reporting (Methods 2.4). Counted across the full 38,925-record archive.
 | PQ763006.1 | RSV-A | France | 2023-12-20 | GenBank | S443P | 2017+ primary |
 | PQ763003.1 | RSV-A | France | 2024-01-05 | GenBank | S443P | 2017+ primary |
 
-Eight carriers fall within the primary window and before 2025 (the clesrovimab pre-exposure denominator,
-24,282 records); one Australian record from 2016 lies outside the primary window and is excluded from the
-reported proportion. This analysis is exploratory: the cutoff was derived for nirsevimab.
+Eight carriers fall within the primary window and before 2025. Against that pre-licensure denominator
+(24,282 records) this is 0.033%; against the whole primary window (36,662 records) it is 0.022%. Both are
+reported in Section 3.9. One Australian record from 2016 lies outside the primary window. This analysis is exploratory: the cutoff was derived for nirsevimab.
 
 ## Table S7. Candidate reconstructed acquisition branches by substitution
 
@@ -290,3 +290,39 @@ manifests/deduplication_groups.csv (65,416 member rows across 38,925 groups, by 
 manifests/genbank_accessions.txt; manifests/gisaid_epi_isl.txt;
 phylogenetics/ (maximum-likelihood trees, annotated TreeTime output, branch-mutation tables);
 tables/ (every derived table, including the full country and trend-scan tables); code/pipeline.py.
+
+## Table S12. Rooting sensitivity of the acquisition count
+
+Acquisition (0 to 1) transitions per substitution under each rooting of the maximum-likelihood tree.
+
+| Subtype | Substitution | Carriers | Temporal | Midpoint | As given | Random 1 | Random 2 | Random 3 | Adversarial |
+|---|---|---|---|---|---|---|---|---|---|
+| RSV-A | K201E | 2 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 |
+| RSV-A | K201T | 1 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 |
+| RSV-A | K209E | 6 | 6.0 | 6.0 | 6.0 | 6.0 | 6.0 | 6.0 | 6.0 |
+| RSV-B | K68I | 4 | 4.0 | 4.0 | 4.0 | 4.0 | 4.0 | 4.0 | 4.0 |
+| RSV-B | N201T | 6 | 5.0 | 5.0 | 5.0 | 5.0 | 5.0 | 5.0 | 5.0 |
+| RSV-B | N208D | 15 | 11.0 | 11.0 | 11.0 | 11.0 | 11.0 | 11.0 | 10.0 |
+| RSV-B | N208T | 2 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 |
+| RSV-B | R209E | 12 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 |
+
+| Rooting | Acquisitions | Reversions | Total changes |
+|---|---|---|---|
+| Temporal (TreeTime least-squares) | 32 | 1 | 33 |
+| Midpoint | 32 | 1 | 33 |
+| As produced by VeryFastTree (unrooted) | 32 | 1 | 33 |
+| Random terminal edge 1 | 32 | 1 | 33 |
+| Random terminal edge 2 | 32 | 1 | 33 |
+| Random terminal edge 3 | 32 | 1 | 33 |
+| Adversarial (inside the largest carrier clade) | 31 | 2 | 33 |
+
+The total number of state changes is 33 under every rooting, as parsimony requires; only the partition into
+acquisitions and reversions can depend on the root. Temporal rooting used TreeTime least-squares regression
+of root-to-tip distance on collection date (RSV-A rate 1.53 x 10^-3 substitutions per site per year,
+R^2 = 0.43; RSV-B 2.48 x 10^-3, R^2 = 0.60).
+
+## Figure S1. Sequencing coverage by country
+
+(a) The twelve largest national contributions to the analysis set. (b) Middle East contributions in the
+primary window. Records from the United Arab Emirates, Saudi Arabia and Iran are attachment-glycoprotein
+fragments that end before the F coding sequence and cannot contribute.
