@@ -1,9 +1,9 @@
 Substitution,Reported in,Fab escape,IgG escape,Cell entry,Meets cutoff (Fab >=2.036),Meets entry floor (>=-0.5),Classified high-escape
-N208D,[7],2.561,1.218,0.192,yes,yes,yes
-K68I,[7],2.469,0.363,-0.245,yes,yes,yes
-K209E,[7],2.368,0.253,0.322,yes,yes,yes
-N208T,[9],2.178,0.405,0.107,yes,yes,yes
-N201T,[8],2.036,0.244,0.258,yes,yes,yes
+N208D,"[7], [8]",2.561,1.218,0.192,yes,yes,yes
+K68I,[8],2.469,0.363,-0.245,yes,yes,yes
+K209E,[8],2.368,0.253,0.322,yes,yes,yes
+N208T,[10],2.178,0.405,0.107,yes,yes,yes
+N201T,[9],2.036,0.244,0.258,yes,yes,yes
 N201S,[6],1.8,0.315,-0.095,no,yes,no
 I64T,[6],1.619,-0.043,-0.691,no,no,no
 D73N,[6],1.394,0.636,-0.071,no,yes,no
@@ -11,7 +11,8 @@ R209L,[6],1.379,0.099,-0.849,no,no,no
 K68E,[6],1.231,0.356,-0.097,no,yes,no
 R209Q,[6],1.154,0.439,0.568,no,yes,no
 I206M,[4],0.598,0.416,-0.275,no,yes,no
-K68Q,[10],0.572,-0.068,0.915,no,yes,no
-K65R,[6],0.17,-0.162,-0.421,no,yes,no
+K68Q,[11],0.572,-0.068,0.915,no,yes,no
+K65R,"[6], [7]",0.17,-0.162,-0.421,no,yes,no
 K209R,[4],0.042,-0.25,0.274,no,yes,no
 S211N,[6],-0.036,0.088,-0.25,no,yes,no
+I64M,[7],-1.178,-0.149,-1.154,no,no,no
