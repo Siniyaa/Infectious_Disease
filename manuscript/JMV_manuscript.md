@@ -12,7 +12,7 @@
 
 **Keywords.** respiratory syncytial virus; nirsevimab; resistance-associated substitution; genomic surveillance; fusion protein
 
-**Word counts.** Abstract 197 words (limit 200). Text approximately 3,085 words (limit 4,000). References 14 (limit 50). Display items 8: Figures 1-4 and Tables 1-4 (limit 8).
+**Word counts.** Abstract 198 words (limit 200). Text approximately 3,085 words (limit 4,000). References 14 (limit 50). Display items 8: Figures 1-4 and Tables 1-4 (limit 8).
 
 **Funding.** [To be completed by the authors. If the work was unfunded, state that no specific funding was received.]
 
@@ -26,7 +26,7 @@ analyses, results and interpretations are the authors' own.
 
 ## ABSTRACT
 
-Reported frequencies of nirsevimab resistance-associated substitutions in respiratory syncytial virus (RSV) differ between studies using different reference sequences, functional thresholds and time spans. We combined 25,384 GenBank records with 44,275 eligible GISAID EpiRSV records (69,659 in total), processed both uniformly, called fusion (F) protein variants against each subtype's own consensus, and classified them using published deep mutational scanning (DMS) scores. After de-duplication 38,925 records remained. The central finding is that archive-derived escape frequencies are governed by two analyst choices that are rarely reported. A score-based definition anchored on F:N201T classifies 5 of 16 substitutions reported as resistance-associated in the literature; two are excluded by the cell-entry filter at any Fab cutoff, and capturing the phenotypically confirmed F:K68Q requires a cutoff at which at least 4.5% of all records qualify. Within a 2017-onward window the same definition gives no carrier before 1 July 2023 against 35 of 26,064 after (0.134%, 95% CI 0.094-0.187; Fisher p = 1.3e-5), but across the full archive the difference is not significant (p = 0.44), and at a permissive cutoff it reverses. Temporal rooting confirms 32 candidate acquisition branches. DMS scores derive from an RSV-A background whereas 26 of 35 carriers are RSV-B.
+Reported frequencies of nirsevimab resistance-associated substitutions in respiratory syncytial virus (RSV) differ between studies using different references, thresholds and time spans. We combined 25,384 GenBank with 44,275 eligible GISAID EpiRSV records (69,659 total), processed both uniformly, called fusion (F) protein variants against each subtype's own consensus, and classified them using published deep mutational scanning (DMS) scores. After de-duplication 38,925 records remained. The central finding is that archive-derived escape frequencies are governed by two analyst choices that are rarely reported. A score-based definition anchored on F:N201T classifies 5 of 16 substitutions reported in the literature as resistance-associated or as site Ø polymorphisms; two are excluded by the cell-entry filter at any Fab cutoff, and capturing the phenotypically confirmed F:K68Q requires a cutoff at which at least 4.5% of all records qualify. Within a 2017-onward window the same definition gives no carrier before 1 July 2023 against 35 of 26,064 after (0.134%, 95% CI 0.094-0.187; Fisher p = 1.3e-5), but across the full archive the difference is not significant (p = 0.44), and at a permissive cutoff it reverses. Temporal rooting confirms 32 candidate acquisition branches. DMS scores derive from an RSV-A background whereas 26 of 35 carriers are RSV-B.
 
 **KEYWORDS:** respiratory syncytial virus; nirsevimab; resistance-associated substitution; genomic surveillance; fusion protein
 
@@ -267,7 +267,7 @@ substitutions were not detected before mid-2023; across the full archive they ar
 ### 3.3 No threshold recovers the substitutions reported as resistance-associated
 
 The classification is anchored on a single variant, and it is worth asking what it does to the others. Of 16
-substitutions reported as resistance-associated or as site Ø polymorphisms in references 5-9, five meet the
+substitutions reported as resistance-associated or as site Ø polymorphisms in references 4-9, five meet the
 criteria (Table 4).
 
 | Substitution | Reported in | Fab escape | IgG escape | Cell entry | Meets cutoff (Fab >=2.036) | Meets entry floor (>=-0.5) | Classified high-escape |
@@ -564,7 +564,7 @@ carriage is higher before the boundary, including the significant reversal at 1.
 cutoff at which no record qualifies in either period. (c) The p value against the first collection year
 included; open circles mark windows containing pre-boundary carriers.
 
-**FIGURE 3** The 16 substitutions reported in references 5-9, ordered by Fab-escape score. (a) Score
+**FIGURE 3** The 16 substitutions reported in references 4-9, ordered by Fab-escape score. (a) Score
 against the cutoff of 2.036; red marks the five that are classified, grey the two excluded by the
 cell-entry floor at any Fab cutoff. (b) Frequency of the same residues in each subtype in the analysis set;
 substitutions not tabulated for frequency are marked. The three commonest are RSV-B majority residues.
@@ -573,7 +573,7 @@ substitutions not tabulated for frequency are marked. The three commonest are RS
 least-squares temporal rooting. (a) Branches per site and acquired residue, named by reconstructed ancestral
 state rather than by consensus (Methods 2.4). (b) Sequences in each branch's clade carrying the residue, by
 branch-support status. The twelve-carrier cluster is the RSV-B site-209 clade: ten records from Argentina in
-2015 and two from Viet Nam in 2014. Rooting sensitivity is given in Table S12.
+2015 and two from Viet Nam in 2014. Rooting sensitivity is given in Table S11.
 
 ## TABLES
 
