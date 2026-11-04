@@ -282,15 +282,6 @@ tables/supp_country_period_subtype.csv.
 | Stratification | CMH by country x subtype (9 strata) | - | - | 0.0059 |
 | Stratification | CMH by country x subtype x database (12) | - | - | 0.0082 |
 
-## Supplementary data files
-
-Deposited at https://github.com/Siniyaa/Infectious_Disease:
-manifests/analysis_set_38925.csv (one row per analysed record, with date-precision flag and carrier call);
-manifests/deduplication_groups.csv (65,416 member rows across 38,925 groups, by opaque group identifier);
-manifests/genbank_accessions.txt; manifests/gisaid_epi_isl.txt;
-phylogenetics/ (maximum-likelihood trees, annotated TreeTime output, branch-mutation tables);
-tables/ (every derived table, including the full country and trend-scan tables); code/pipeline.py.
-
 ## Table S11. Rooting sensitivity of the acquisition count
 
 Acquisition (0 to 1) transitions per site and acquired residue under each rooting of the maximum-likelihood
@@ -379,3 +370,13 @@ glycoprotein and ending before F, so they cannot contribute at all. Under a simp
 model at the observed post-boundary frequency, 150 records give about an 18% probability of containing at
 least one carrier and roughly 1,200 would be needed for 80%. This is an illustration of the detection limit
 that whole-genome coverage imposes on regional surveillance, not an assessment of any country's programme.
+
+## Supplementary data files
+
+Deposited at https://github.com/Siniyaa/Infectious_Disease:
+manifests/analysis_set_38925.csv (one row per analysed record, with date-precision flag and carrier call);
+manifests/deduplication_groups.csv (65,416 member rows across 38,925 groups, by opaque group identifier);
+manifests/genbank_accessions.txt; manifests/gisaid_epi_isl.txt;
+phylogenetics/ (maximum-likelihood trees, annotated TreeTime output, branch-mutation tables);
+tables/ (every derived table, including the full country and trend-scan tables); code/pipeline.py.
+
