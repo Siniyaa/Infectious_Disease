@@ -204,3 +204,84 @@ figures.
    funding, conflicts, CRediT, the GISAID EPI_SET identifier, the author placeholders in references 2,
    4-8, 10 and 11, and the lineage-nomenclature reference 8. The target journal's current submission
    requirements should be confirmed before upload.
+
+
+---
+
+# ADDENDUM: RESPONSE TO THE SIXTH REVIEW (MAJOR REVISION)
+
+**1. Rooting (major point 1).** Addressed by doing the analysis, not by softening the language. The trees
+were rooted by least-squares temporal rooting in TreeTime using the collection dates (RSV-A rate
+1.53e-3 substitutions per site per year, root-to-tip R^2 = 0.43, root 1958; RSV-B 2.48e-3, R^2 = 0.60,
+root 1987). The acquisition count was then recomputed by parsimony under seven rootings. It is **32 under
+temporal, midpoint, the tree as produced and three random terminal-edge rootings**, with one reversion;
+only an adversarial root placed inside the largest carrier clade gives 31 and two reversions. Total state
+changes are 33 under every rooting, as parsimony requires. Direction is therefore not an artefact of root
+placement and the directional language is retained on that evidence (Section 3.6, Table S12). This needed
+no alignment, only the tree and the dates.
+
+**2. Circular anchoring (major point 2).** Adopted in full, including the reframe. New Table 4 and Figure 3
+tabulate all 16 substitutions reported in references 5-9 against their Fab-escape score, IgG score, cell
+entry and classification. Five are classified. Two - I64T and R209L - are excluded by the cell-entry floor
+and so cannot be captured at **any** Fab cutoff. Capturing K68Q requires a cutoff of 0.572 or lower, at
+which at least 4.5% of all archive records qualify. New Section 3.3 and the Conclusions now lead on this:
+no single score-based rule separates the substitutions shown to matter from those that have not.
+
+**3. Cohort arithmetic (major point 3).** Confirmed. The 4,822 unexplained records are GenBank: 3,303
+non-representative members of mixed-database groups and 1,519 of GenBank-only groups. Methods 2.3 now
+states that collapsing was applied in both databases, and Table 1 carries a per-database column for every
+stage, so 65,416 reconciles to 38,925.
+
+**4. Period-database collinearity (major point 4).** Quantified, and the premise does not hold. The
+pre-boundary period runs to mid-2023 and so includes GISAID years: GISAID supplies 36.4% of pre-boundary
+records (3,859 of 10,598) and 61.3% of post-boundary records (15,986 of 26,064). Both databases contribute
+substantially to both periods and the database-stratified analysis retains 12 informative strata. The
+numbers are now stated in Section 3.1.
+
+**5. Abstract framing (major point 5).** Restructured. The abstract now leads with the dependency and the
+failure of any threshold to recover the reported variants; the p value appears as an illustration. The
+RSV-A background caveat is in the abstract. The title keeps the finding-stating form and drops the record
+count.
+
+**6. Trend scan.** Confirmed wrong and rewritten. T12I, K123R and R42K are ranks 6-8, not the strongest;
+the five strongest are all decreasing RSV-B variants (N211S, N190S, P389S, M206I, R191K) with p below
+10^-300, now reported as underflow rather than zero. Nine significant trends fall at site Ø positions and
+all nine decrease, including K68Q (rank 10). We have **not** presented this as evidence against escape
+accumulation: 58 of K68Q's 60 occurrences are in 2017 alone, per-year denominators rise roughly thirty-fold,
+and the section now says plainly that the scan measures lineage turnover and sampling composition rather
+than selection.
+
+**7. Clesrovimab denominator.** The pre-licensure rationale is now stated in Methods 2.5, and Section 3.9
+reports both denominators: 8/24,282 (0.033%) and 8/36,662 (0.022%).
+
+**8. Figures.** Figure 1b now splits each year into before- and on/after-boundary bars, so the four
+November 2023 carriers sit on the correct side, and the partial 2026 year is flagged. Figure 2a's legend no
+longer overlaps the cutoff annotation; Figure 2b marks the 2.6 point as "no record qualifies" rather than
+implying a gradual loss of effect. Figure 3 is rebuilt around the 16-substitution reconciliation. Sequencing
+coverage moves to supplementary Figure S1, keeping eight display items.
+
+**9. Statistics.** Stratified inference is now an exact conditional test (convolution of per-stratum
+hypergeometrics), with the continuity-corrected CMH reported as the conservative alternative: subtype
+5.7e-6, country 4.3e-4, country x subtype 4.3e-4, country x subtype x database 8.0e-4.
+
+**10. Table 3 panel A.** Extended to start years 2021, 2022 and 2023. The claim is corrected: the
+difference is significant for start years 2016 through 2022 and **not** at 2023 (p = 0.27), where the
+pre-boundary arm falls to 1,675 records. The non-monotonicity between 2010 and 2015 is explained in the
+text.
+
+**11. Section 3.4 wording.** The no-de-duplication full-archive comparison now gives p = 0.086 explicitly
+and is called marginal.
+
+**12. References.** Every author placeholder is filled from Crossref or PubMed. Reference 13 is corrected
+to Piñeiro C, Abuín JM, Pichel JC. Reference 4 (Ahani B, et al.) is Nat Commun 2023;14:4347, verified
+against the DOI - 4137 was wrong. Reference 5 renders site Ø correctly. The lineage nomenclature paper is
+added as reference 12 (Goya S, et al., Emerg Infect Dis 2024;30(8)) and is now cited in Methods 2.1.
+References are renumbered in order of first appearance. A Funding statement and a reworded AI-use
+declaration are included; the declaration now states that all references were verified against the primary
+sources by the authors.
+
+**13. Middle East.** Moved from Results to the Discussion and framed as an illustration of the detection
+limit that whole-genome coverage imposes on regional surveillance.
+
+**Still outstanding, for the authors.** Author names, affiliations, ORCIDs, corresponding-author details,
+funding, conflicts, CRediT contributions and the GISAID EPI_SET acknowledgement identifier.
