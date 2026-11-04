@@ -6,7 +6,7 @@ All tables describe de-duplicated archive records from the combined GenBank and 
 sequence archive. Substitution classification is based on published deep mutational scanning scores and is
 predicted, not phenotypically measured in this study. The primary analysis window comprises records
 collected from 2017 onward; results for the full archive are reported alongside it because the period
-comparison differs between the two (Table S9).
+comparison differs between the two (Table S8).
 
 ## Table S1. Records by country, primary window
 
@@ -143,7 +143,7 @@ collected on or after 1 July 2023 and none before.
 Branch labels use the reconstructed ancestral state, which may differ from the subtype consensus used for
 carriage reporting (Methods 2.4). Counted across the full 38,925-record archive.
 
-## Table S5. Middle East records, primary window
+## Table S4. Middle East records, primary window
 
 | Country | Sequences |
 |---|---|
@@ -153,7 +153,7 @@ carriage reporting (Methods 2.4). Counted across the full 38,925-record archive.
 | Iraq | 7 |
 | Egypt | 6 |
 
-## Table S6. Clesrovimab qualifying substitutions
+## Table S5. Clesrovimab qualifying substitutions
 
 | Accession | Subtype | Country | Collection date | Database | Substitution | Window |
 |---|---|---|---|---|---|---|
@@ -171,7 +171,7 @@ Eight carriers fall within the primary window and before 2025. Against that pre-
 (24,282 records) this is 0.033%; against the whole primary window (36,662 records) it is 0.022%. Both are
 reported in Section 3.9. One Australian record from 2016 lies outside the primary window. This analysis is exploratory: the cutoff was derived for nirsevimab.
 
-## Table S7. Candidate reconstructed acquisition branches by substitution
+## Table S6. Candidate reconstructed acquisition branches by substitution
 
 | Subtype | Substitution | Candidate reconstructed acquisition branches | Largest carrier cluster | Carriers on/after 1 Jul 2023 |
 |---|---|---|---|---|
@@ -184,7 +184,7 @@ reported in Section 3.9. One Australian record from 2016 lies outside the primar
 | RSV-B | N208D | 11 | 2 | 15 |
 | RSV-B | N208T | 2 | 1 | 2 |
 
-## Table S8. Named substitutions, scores and subtype frequencies
+## Table S7. Named substitutions, scores and subtype frequencies
 
 | Substitution | Fab escape score | Frequency in RSV-A (%) | Frequency in RSV-B (%) | RSV-B consensus residue |
 |---|---|---|---|---|
@@ -198,7 +198,7 @@ reported in Section 3.9. One Australian record from 2016 lies outside the primar
 | K68I | 2.469 | 0.0 | 0.02 | no |
 | N208D | 2.561 | 0.0 | 0.08 | no |
 
-## Table S9. Period comparison by first collection year included
+## Table S8. Period comparison by first collection year included
 
 | First year included | Before 1 Jul 2023 | On/after 1 Jul 2023 | Fisher p | CMH p |
 |---|---|---|---|---|
@@ -214,7 +214,7 @@ reported in Section 3.9. One Australian record from 2016 lies outside the primar
 | 2019 | 0/9,088 (0.000%) | 35/26,064 (0.134%) | 4.9e-05 | 0.001 |
 | 2020 | 0/7,742 (0.000%) | 35/26,064 (0.134%) | 0.00017 | 0.0025 |
 
-## Table S10. Country by period by subtype denominators
+## Table S9. Country by period by subtype denominators
 
 | c0 | subtype | k_pre | k_post | n_pre | n_post |
 |---|---|---|---|---|---|
@@ -262,7 +262,7 @@ reported in Section 3.9. One Australian record from 2016 lies outside the primar
 Showing the 40 largest of 156 country-subtype combinations. Full table deposited as
 tables/supp_country_period_subtype.csv.
 
-## Table S11. Sensitivity analyses
+## Table S10. Sensitivity analyses
 
 | Analysis | Specification | Before 1 Jul 2023 | On/after 1 Jul 2023 | p |
 |---|---|---|---|---|
@@ -291,20 +291,22 @@ manifests/genbank_accessions.txt; manifests/gisaid_epi_isl.txt;
 phylogenetics/ (maximum-likelihood trees, annotated TreeTime output, branch-mutation tables);
 tables/ (every derived table, including the full country and trend-scan tables); code/pipeline.py.
 
-## Table S12. Rooting sensitivity of the acquisition count
+## Table S11. Rooting sensitivity of the acquisition count
 
-Acquisition (0 to 1) transitions per substitution under each rooting of the maximum-likelihood tree.
+Acquisition (0 to 1) transitions per site and acquired residue under each rooting of the maximum-likelihood
+tree. Branches are named by reconstructed ancestral state, not by the subtype consensus used for carriage
+(Methods 2.4), so the RSV-B site-209 event appears here as 209 to E and not as R209E.
 
-| Subtype | Substitution | Carriers | Temporal | Midpoint | As given | Random 1 | Random 2 | Random 3 | Adversarial |
+| Subtype | Site → residue acquired | Carriers | Temporal | Midpoint | As given | Random 1 | Random 2 | Random 3 | Adversarial |
 |---|---|---|---|---|---|---|---|---|---|
-| RSV-A | K201E | 2 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 |
-| RSV-A | K201T | 1 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 |
-| RSV-A | K209E | 6 | 6.0 | 6.0 | 6.0 | 6.0 | 6.0 | 6.0 | 6.0 |
-| RSV-B | K68I | 4 | 4.0 | 4.0 | 4.0 | 4.0 | 4.0 | 4.0 | 4.0 |
-| RSV-B | N201T | 6 | 5.0 | 5.0 | 5.0 | 5.0 | 5.0 | 5.0 | 5.0 |
-| RSV-B | N208D | 15 | 11.0 | 11.0 | 11.0 | 11.0 | 11.0 | 11.0 | 10.0 |
-| RSV-B | N208T | 2 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 |
-| RSV-B | R209E | 12 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 |
+| RSV-A | 201 → E | 2 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 |
+| RSV-A | 201 → T | 1 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 |
+| RSV-A | 209 → E | 6 | 6.0 | 6.0 | 6.0 | 6.0 | 6.0 | 6.0 | 6.0 |
+| RSV-B | 68 → I | 4 | 4.0 | 4.0 | 4.0 | 4.0 | 4.0 | 4.0 | 4.0 |
+| RSV-B | 201 → T | 6 | 5.0 | 5.0 | 5.0 | 5.0 | 5.0 | 5.0 | 5.0 |
+| RSV-B | 208 → D | 15 | 11.0 | 11.0 | 11.0 | 11.0 | 11.0 | 11.0 | 10.0 |
+| RSV-B | 208 → T | 2 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 | 2.0 |
+| RSV-B | 209 → E | 12 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 | 1.0 |
 
 | Rooting | Acquisitions | Reversions | Total changes |
 |---|---|---|---|
@@ -320,6 +322,46 @@ The total number of state changes is 33 under every rooting, as parsimony requir
 acquisitions and reversions can depend on the root. Temporal rooting used TreeTime least-squares regression
 of root-to-tip distance on collection date (RSV-A rate 1.53 x 10^-3 substitutions per site per year,
 R^2 = 0.43; RSV-B 2.48 x 10^-3, R^2 = 0.60).
+
+## Table S12. Qualifying mutation counts by Fab-escape cutoff
+
+| antibody | fab_cutoff | scored_mutations | qualifying_mutations |
+|---|---|---|---|
+| Nirsevimab | 2.6 | 9812 | 2 |
+| Nirsevimab | 2.5 | 9812 | 4 |
+| Nirsevimab | 2.4 | 9812 | 6 |
+| Nirsevimab | 2.2 | 9812 | 10 |
+| Nirsevimab | 2.036 | 9812 | 12 |
+| Nirsevimab | 1.8 | 9812 | 16 |
+| Nirsevimab | 1.6 | 9812 | 23 |
+| Nirsevimab | 1.4 | 9812 | 32 |
+| Nirsevimab | 1.2 | 9812 | 44 |
+| Nirsevimab | 1.0 | 9812 | 52 |
+| Nirsevimab | 0.598 | 9812 | 89 |
+| Nirsevimab | 0.572 | 9812 | 95 |
+| Nirsevimab | 0.17 | 9812 | 409 |
+| Nirsevimab | 0.042 | 9812 | 786 |
+| Nirsevimab | -0.036 | 9812 | 1665 |
+| Clesrovimab | 2.6 | 9810 | 2 |
+| Clesrovimab | 2.5 | 9810 | 3 |
+| Clesrovimab | 2.4 | 9810 | 3 |
+| Clesrovimab | 2.2 | 9810 | 6 |
+| Clesrovimab | 2.036 | 9810 | 6 |
+| Clesrovimab | 1.8 | 9810 | 8 |
+| Clesrovimab | 1.6 | 9810 | 12 |
+| Clesrovimab | 1.4 | 9810 | 12 |
+| Clesrovimab | 1.2 | 9810 | 17 |
+| Clesrovimab | 1.0 | 9810 | 20 |
+| Clesrovimab | 0.598 | 9810 | 46 |
+| Clesrovimab | 0.572 | 9810 | 51 |
+| Clesrovimab | 0.17 | 9810 | 499 |
+| Clesrovimab | 0.042 | 9810 | 963 |
+| Clesrovimab | -0.036 | 9810 | 1798 |
+
+Counts are derived from the pinned DMS release (commit 3ecdfaa661304e3c284acdbeacc9662d2baa1dd9); the
+sha256 prefixes of the two summary files are f7e69d60fccd5b719cc1306539c08c49 (Nirsevimab) and
+860a6d56e381205be55f251e850cb761 (Clesrovimab). The cell-entry floor of -0.5 is applied throughout. This
+table is deposited so the counts underlying Section 3.3 can be checked without refetching the DMS.
 
 ## Figure S1. Sequencing coverage by country
 
