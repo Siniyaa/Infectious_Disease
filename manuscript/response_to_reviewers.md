@@ -285,3 +285,33 @@ limit that whole-genome coverage imposes on regional surveillance.
 
 **Still outstanding, for the authors.** Author names, affiliations, ORCIDs, corresponding-author details,
 funding, conflicts, CRediT contributions and the GISAID EPI_SET acknowledgement identifier.
+
+
+---
+
+# ADDENDUM: RESPONSE TO THE SEVENTH REVIEW
+
+1. **Abstract wording.** Corrected to "reported in the literature as resistance-associated or as site Ø
+   polymorphisms", matching Section 3.3, so I206M, K209R and S211N are not implicitly described as
+   resistance-associated.
+2. **Reference range.** Corrected to references 4-9 in Section 3.3 and the Figure 3 legend; Table 4 does
+   include two rows cited to [4].
+3. **Supplementary numbering.** The gap at S4 is closed; tables are renumbered sequentially S1-S12 in
+   document order and the manuscript cross-reference to the rooting table now points to Table S11.
+4. **Table S11 naming convention.** Corrected. The per-substitution panel now uses the "site to residue
+   acquired" notation throughout, matching Figure 4 and tables/table4_origins.csv, and the table note
+   states that branches take the ancestral-state name, so the RSV-B site-209 event is 209 to E and not
+   R209E. R209E now appears only in Table S2, where the carriage convention is the correct one.
+5. **Temporally rooted trees.** Deposited in the revision following the one you reviewed:
+   phylogenetics/F_A_temporally_rooted.newick and F_B_temporally_rooted.newick, with
+   clock_A/B_molecular_clock.txt and clock_A/B_root_to_tip.csv. Their presence on the public repository has
+   been confirmed.
+6. **The 95-of-9,812 figure.** Confirmed by refetching the pinned DMS release: at a Fab cutoff of 0.572
+   with the cell-entry floor of -0.5, 95 of 9,812 scored nirsevimab mutations qualify. Because this count
+   carries the headline argument and the pipeline fetches the DMS live rather than redistributing it, the
+   full cutoff-to-count mapping for both antibodies is now deposited as Table S12 and
+   tables/dms_cutoff_counts.csv with the sha256 prefixes of both summary files.
+7. **Figures.** Figure 1b splits every year into before- and on/after-boundary components and flags 2026 as
+   truncated at the retrieval date; Figure 2b marks the cutoff of 2.6 as "no record qualifies"; Figure 3 is
+   rebuilt around the 16-substitution reconciliation with the two entry-floor exclusions in a separate
+   colour.
