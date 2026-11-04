@@ -12,13 +12,14 @@
 
 **Keywords.** respiratory syncytial virus; nirsevimab; resistance-associated substitution; genomic surveillance; fusion protein
 
-**Word counts.** Abstract 198 words (limit 200). Text 4,000 words (limit 4,000). References 16 (limit 50). Display items 8: Figures 1-4 and Tables 1-4 (limit 8).
+**Word counts.** Abstract 198 words (limit 200). Text 3,999 words (limit 4,000). References 17 (limit 50). Display items 8: Figures 1-4 and Tables 1-4 (limit 8). Text counted as Sections 1-5 excluding
+headings, table content and table titles; abstract, references and figure legends excluded.
 
 **Funding.** [To be completed by the authors. If the work was unfunded, state that no specific funding was received.]
 
 **Conflict of interest.** [To be completed by the authors.]
 
-**Declaration of generative AI use.** A generative AI assistant was used substantially throughout this
+**Declaration of generative AI use.** Claude Opus 5 (Anthropic) was used substantially throughout this
 work: to write and debug the analysis code, to run the analyses, to draft and revise the manuscript, and to
 propose and carry out several of the sensitivity analyses reported here. The authors defined the research
 question, directed the analysis, reviewed the code and outputs, verified every reference against its
@@ -30,7 +31,7 @@ analyses are deposited so that readers can check the results independently.
 
 ## ABSTRACT
 
-Reported frequencies of nirsevimab resistance-associated substitutions in respiratory syncytial virus (RSV) differ between studies using different references, thresholds and time spans. We combined 25,384 GenBank with 44,275 eligible GISAID EpiRSV records (69,659 total), processed both uniformly, called fusion (F) protein variants against each subtype's own consensus, and classified them using published deep mutational scanning (DMS) scores. After de-duplication 38,925 records remained. The central finding is that archive-derived escape frequencies are governed by two analyst choices that are rarely reported. A score-based definition anchored on F:N201T classifies 5 of 16 substitutions reported in the literature as resistance-associated or as site Ø polymorphisms; two are excluded by the cell-entry filter at any Fab cutoff, and capturing the phenotypically confirmed F:K68Q requires a cutoff at which at least 4.5% of all records qualify. Within a 2017-onward window the same definition gives no carrier before 1 July 2023 against 35 of 26,064 after (0.134%, 95% CI 0.094-0.187; Fisher p = 1.3e-5), but across the full archive the difference is not significant (p = 0.44), and at a permissive cutoff it reverses. Temporal rooting confirms 32 candidate acquisition branches. DMS scores derive from an RSV-A background whereas 26 of 35 carriers are RSV-B.
+Reported frequencies of nirsevimab resistance-associated substitutions in respiratory syncytial virus (RSV) differ between studies using different references, thresholds and time spans. We combined 25,384 GenBank with 44,275 eligible GISAID EpiRSV records (69,659 total), processed both uniformly, called fusion (F) protein variants against each subtype's own consensus, and classified them using published deep mutational scanning (DMS) scores. After de-duplication 38,925 records remained. The central finding is that archive-derived escape frequencies are governed by two analyst choices that are rarely reported. A score-based definition anchored on F:N201T classifies 5 of 17 substitutions reported in the literature as resistance-associated or as site Ø polymorphisms; two are excluded by the cell-entry filter at any Fab cutoff, and capturing the phenotypically confirmed F:K68Q requires a cutoff at which at least 4.5% of all records qualify. Within a 2017-onward window the same definition gives no carrier before 1 July 2023 against 35 of 26,064 after (0.134%, 95% CI 0.094-0.187; Fisher p = 1.3e-5), but across the full archive the difference is not significant (p = 0.44), and at a permissive cutoff it reverses. Temporal rooting confirms 32 candidate acquisition branches. DMS scores derive from an RSV-A background whereas 26 of 35 carriers are RSV-B.
 
 **KEYWORDS:** respiratory syncytial virus; nirsevimab; resistance-associated substitution; genomic surveillance; fusion protein
 
@@ -46,22 +47,23 @@ participants [4].
 
 The binding site has already been examined at archive scale: Wilkins and colleagues analysed 3,626 GenBank F
 sequences from 1956-2021 with 5,675 from three prospective surveillance studies and concluded that the site
-was highly conserved and escape variants rare and not increasing [5]. We revisit that question on an archive
-roughly ten times larger that now spans the introduction of prophylaxis, using a functional classification
-unavailable in 2023.
+was highly conserved and escape variants rare and not increasing [5]. We revisit that question on an archive roughly ten times larger that
+now spans the introduction of prophylaxis, using a classification unavailable in 2023.
 
 Since prophylaxis became widespread, individual groups have reported F substitutions in circulating virus.
 A 2026 systematic review pooled seven studies and 2,156 samples, reporting limited variability in RSV-A with
 K65R most common and higher frequencies in RSV-B, while distinguishing polymorphisms that retain
-susceptibility from resistance-associated variants [6]. Primary reports include breakthrough RSV-B
-infections in France [7], three children in Spain carrying F:N201T with recombinant expression confirming
-reduced recognition [8], 68 isolates from Eastern Spain [9], and an adult case carrying F:K68Q [10]. These
+susceptibility from resistance-associated variants [6]. Primary reports include a national multicentre study of 545 genomes
+from the 2023-24 French season, in which two of 24 RSV-B breakthrough infections carried
+resistance-associated substitutions confirmed by fusion-inhibition assay [7], further breakthrough RSV-B
+infections in France [8], three children in Spain carrying F:N201T with recombinant expression confirming
+reduced recognition [9], 68 isolates from Eastern Spain [10], and an adult case carrying F:K68Q [11]. These
 use different reference sequences, definitions and observation periods, so their frequencies are not
 directly comparable.
 
 A deep mutational scan (DMS) of RSV F has since measured how nearly all F mutations affect cell entry and
 neutralisation by both antibodies, finding resistant strains rare and bivalent IgG binding buffering escape,
-so Fab potency is the more sensitive readout [11]. Applying that classification to the combined archive, we
+so Fab potency is the more sensitive readout [12]. Applying that classification to the combined archive, we
 ask not what the resistance frequency is - archive data cannot support such an estimate - but how far any
 estimate is determined by two choices an analyst must make and rarely reports: where the threshold is set
 and which collection years are included. We then ask whether any threshold recovers the substitutions
@@ -76,7 +78,7 @@ export contributed 56,856 unique records, of which 44,275 passed filtering for h
 resolvable collection date. GISAID holdings begin in 2020, so earlier coverage rests on GenBank alone;
 retrieval date 2 November 2026. The combined 69,659 records were assigned to subtype with the Nextclade
 minimizer index (RSV-A 37,290, RSV-B 32,365; four excluded) and aligned to the corresponding reference
-dataset [12], supplying reference-anchored F translations and lineage assignments [13]. Alignment-based extraction was used rather than deposited CDS annotation,
+dataset [13], supplying reference-anchored F translations and lineage assignments [14]. Alignment-based extraction was used rather than deposited CDS annotation,
 present in only 60-65% of GenBank genome records; records with F coverage of at least 95% were retained,
 leaving 65,416 (Table 1).
 
@@ -103,7 +105,7 @@ full dates, 583 month-only and 538 year-only; 190 year-only records fall in the 
 
 ### 2.3 De-duplication across databases
 
-Records identical in F sequence, country and collection date were collapsed to one **in both databases**; a
+Records identical in F sequence, country and collection date were collapsed to one **across both databases**; a
 GenBank record was retained in all 12,325 mixed groups. Of 41,514 GISAID records passing QC, 21,669 (52.2%)
 were excluded - 16,973 matching a GenBank record, 4,696 from GISAID-only groups - leaving 19,845. Of 23,902
 GenBank records, 4,822 were excluded (3,303 in mixed groups, 1,519 in GenBank-only groups), leaving 19,080.
@@ -116,12 +118,12 @@ on or after 1 July 2023.
 ### 2.4 Variant calling and functional classification
 
 Variants were called against each subtype's own consensus, computed from the analysis set, because the two
-consensuses differ at 59 of 574 F residues. Observed residues were joined to the DMS tables [11] on site and
+consensuses differ at 59 of 574 F residues. Observed residues were joined to the DMS tables [12] on site and
 mutant residue.
 
 A residue was classified **DMS-defined high-escape** when its Fab-escape score was at least 2.036 with cell
 entry at or above -0.5 (12 nirsevimab and 6 clesrovimab mutations of 9,812 scored), anchored on F:N201T, for
-which reduced recognition has been shown by recombinant expression [8]. The anchoring is circular with
+which reduced recognition has been shown by recombinant expression [9]. The anchoring is circular with
 respect to N201T, and Section 3.3 quantifies how poorly the category recovers substitutions reported
 elsewhere. All classifications are predicted; no virus was tested functionally.
 
@@ -132,7 +134,7 @@ The DMS was performed on an RSV-A background while 26 of the 35 primary-window c
 RSV-B substitutions contributing most carriers sit at sites where the RSV-B consensus matches the scan's
 wildtype (N208D: wildtype N, RSV-B consensus N; K68I: wildtype K, RSV-B consensus K). Matching the wildtype
 residue does not establish that a score transfers unchanged across backgrounds, and the DMS study itself
-reports background-dependent effects at position 201 and for K68Q on RSV-B [11]; this is a limitation of the
+reports background-dependent effects at position 201 and for K68Q on RSV-B [12]; this is a limitation of the
 endpoint, not only of its interpretation.
 
 **Two naming conventions are used and should not be conflated.** Carriage is reported relative to each
@@ -146,31 +148,29 @@ Proportions and intervals are Clopper-Pearson throughout, including zero-count u
 compared with Fisher's exact test at a fixed boundary of 1 July 2023. Because several strata contain no
 pre-boundary events, stratified inference uses an **exact conditional test**, the convolution of per-stratum
 hypergeometric distributions conditional on both margins; the continuity-corrected Cochran-Mantel-Haenszel
-statistic is reported as the conservative alternative, with the number of informative strata. Temporal trend
+statistic is reported as the conservative alternative. Temporal trend
 used the Cochran-Armitage test, Bonferroni-corrected across variants carried by at least five records.
 
 Two sensitivity analyses are primary: the comparison was repeated across Fab-escape cutoffs from 1.0 to 2.6
-and across first-included years from the full archive through 2023. Three further analyses appear in
+and across first-included years through 2023. Three further analyses appear in
 Section 3.5 (de-duplication, date precision, cell-entry floor); the trend, acquisition and clesrovimab
-analyses were run at the primary cutoff only. The clesrovimab analysis uses a pre-licensure window, 2017 to
-end-2024, because the antibody was not in use then; both that denominator and the full window are reported
-in Section 3.9.
+analyses were run at the primary cutoff only. The clesrovimab analysis uses a pre-licensure window, 2017 to end-2024;
+both that denominator and the full window are reported in Section 3.9.
 
 Maximum-likelihood F phylogenies were built per subtype from the aligned F coding sequences with
-VeryFastTree under GTR+gamma [14] (20,767 and 18,158 tips). Amino-acid ancestral states were reconstructed
-on those topologies with TreeTime [15] under an inferred GTR model, using the translated peptide alignment
-over the same tips, since TreeTime's amino-acid mode takes a peptide alignment and does not translate. VeryFastTree emits an unrooted tree, so the trees were rooted by **least-squares temporal rooting** in
-TreeTime. Two GenBank records carrying dates that predate the first isolation of RSV in 1956 (PX851455.1,
-1941-01-05; PX851473.1, 1951-07-13) are biologically impossible and were excluded from the regression; both
-are flagged in the deposited manifest. The estimates are RSV-A 1.53 x 10^-3 substitutions per site per year
+VeryFastTree under GTR+gamma [15] (20,767 and 18,158 tips). Amino-acid ancestral states were reconstructed
+on those topologies with TreeTime [16] under an inferred GTR model, from the translated peptide alignment
+over the same tips. VeryFastTree emits an unrooted tree, so the trees were rooted by **least-squares temporal rooting** in
+TreeTime. Two GenBank records dated before the first isolation of RSV in 1956 (PX851455.1,
+1941-01-05; PX851473.1, 1951-07-13) are impossible and were excluded from the regression; both are flagged
+in the deposited manifest. The estimates are RSV-A 1.53 x 10^-3 substitutions per site per year
 (root-to-tip R^2 = 0.43) and RSV-B 2.52 x 10^-3 (R^2 = 0.60). **The regression intercepts are not dates of
 origin.** They fall in 1958 and 1987, postdating 3 and 23 sampled tips respectively, so they are not
-credible common-ancestor dates: 94.2% of the analysis set was collected from 2017 onward and only 162
-records predate 2000, leaving the extrapolation poorly constrained. Temporal rooting is used solely to
-place the root for ancestral-state reconstruction, and the acquisition count is reported across six further
-rootings because no single rooting should be relied upon. Because direction
-of change is undefined without a root, acquisition counts were repeated under six further rootings
-(Section 3.6). Branch support was taken from the maximum-likelihood topology by matching nodes on descendant tip sets and
+credible common-ancestor dates: 94.2% of the analysis set was collected from 2017 onward and, once those
+two records are excluded, only 162 of the 164 pre-2000 records in the deposited manifest remain, leaving
+the extrapolation poorly constrained. Temporal rooting is used solely to place the root for ancestral-state
+reconstruction, and because direction of change is undefined without a root the acquisition count is
+reported across six further rootings (Section 3.6). Branch support was taken from the maximum-likelihood topology by matching nodes on descendant tip sets and
 is undefined for terminal branches. Trees and TreeTime output are deposited.
 
 ## 3 RESULTS
@@ -210,7 +210,7 @@ clade, and the difference is no longer statistically significant (Table 3 panel 
 full archive, 13 of 12,861 records predating the boundary carry a high-escape substitution (0.101%) against
 35 of 26,064 afterwards (0.134%), Fisher p = 0.44.
 
-The transition is abrupt rather than gradual. The difference reaches significance for start years 2016
+The transition is abrupt. The difference reaches significance for start years 2016
 through 2022 and for none earlier; at a start year of 2023 the pre-boundary arm falls to 1,675 records and
 significance is lost again through loss of power (p = 0.27). The sweep is not monotone between 2010 and 2015
 because both numerator and denominator move as historical carriers and their contemporaries enter the
@@ -259,17 +259,17 @@ mid-2023; across the full archive they are not new.**
 
 ### 3.3 No threshold recovers the substitutions reported as resistance-associated
 
-The classification is anchored on a single variant, and it is worth asking what it does to the others. Of 16
-substitutions reported as resistance-associated or as site Ø polymorphisms in references 4 and 6-10, five meet the
-criteria (Table 4).
+The classification is anchored on a single variant, and it is worth asking what it does to the others. Of 17
+substitutions reported as resistance-associated or as site Ø polymorphisms in references 4 and 6-11, five
+meet the criteria (Table 4).
 
 | Substitution | Reported in | Fab escape | IgG escape | Cell entry | Meets cutoff (Fab >=2.036) | Meets entry floor (>=-0.5) | Classified high-escape |
 |---|---|---|---|---|---|---|---|
-| N208D | [7] | 2.561 | 1.218 | 0.192 | yes | yes | yes |
-| K68I | [7] | 2.469 | 0.363 | -0.245 | yes | yes | yes |
-| K209E | [7] | 2.368 | 0.253 | 0.322 | yes | yes | yes |
-| N208T | [9] | 2.178 | 0.405 | 0.107 | yes | yes | yes |
-| N201T | [8] | 2.036 | 0.244 | 0.258 | yes | yes | yes |
+| N208D | [7], [8] | 2.561 | 1.218 | 0.192 | yes | yes | yes |
+| K68I | [8] | 2.469 | 0.363 | -0.245 | yes | yes | yes |
+| K209E | [8] | 2.368 | 0.253 | 0.322 | yes | yes | yes |
+| N208T | [10] | 2.178 | 0.405 | 0.107 | yes | yes | yes |
+| N201T | [9] | 2.036 | 0.244 | 0.258 | yes | yes | yes |
 | N201S | [6] | 1.8 | 0.315 | -0.095 | no | yes | no |
 | I64T | [6] | 1.619 | -0.043 | -0.691 | no | no | no |
 | D73N | [6] | 1.394 | 0.636 | -0.071 | no | yes | no |
@@ -277,24 +277,29 @@ criteria (Table 4).
 | K68E | [6] | 1.231 | 0.356 | -0.097 | no | yes | no |
 | R209Q | [6] | 1.154 | 0.439 | 0.568 | no | yes | no |
 | I206M | [4] | 0.598 | 0.416 | -0.275 | no | yes | no |
-| K68Q | [10] | 0.572 | -0.068 | 0.915 | no | yes | no |
-| K65R | [6] | 0.17 | -0.162 | -0.421 | no | yes | no |
+| K68Q | [11] | 0.572 | -0.068 | 0.915 | no | yes | no |
+| K65R | [6], [7] | 0.17 | -0.162 | -0.421 | no | yes | no |
 | K209R | [4] | 0.042 | -0.25 | 0.274 | no | yes | no |
 | S211N | [6] | -0.036 | 0.088 | -0.25 | no | yes | no |
+| I64M | [7] | -1.178 | -0.149 | -1.154 | no | no | no |
 
 **Table 4.** Substitutions reported in the cited literature, their DMS scores and their classification under
-the criteria used here. Scores are from the pinned release of the nirsevimab DMS summary [11].
+the criteria used here. Scores are from the pinned release of the nirsevimab DMS summary [12].
 
-Two features matter more than the count. F:I64T and F:R209L are excluded by the cell-entry filter (-0.691
-and -0.849) rather than the Fab cutoff, so **no Fab threshold combined with this entry floor classifies
-them**. And F:K68Q - with a published severe adult case [10] and reduced IgG neutralisation on an RSV-B
-background [11] - scores 0.572; capturing it requires a cutoff of 0.572 or lower, at which 95 of 9,812
+Three features matter more than the count. F:I64T, F:R209L and F:I64M are excluded by the cell-entry filter
+(-0.691, -0.849, -1.154) rather than the Fab cutoff, so **no Fab threshold combined with this entry floor
+classifies them**. F:I64M matters most: reported with F:K65R as a pair whose high-level resistance was
+confirmed by fusion-inhibition assay [7], it scores -1.178 for Fab escape, the lowest at that site, while
+F:K65R scores 0.170. Neither member of a phenotypically confirmed escape pair is recoverable by any
+single-substitution rule; and because the DMS scores substitutions singly, an escape phenotype requiring a
+combination lies outside what this or any similar screen can represent. And F:K68Q - with a published severe adult case [11] and reduced IgG neutralisation on an RSV-B
+background [12] - scores 0.572; capturing it requires a cutoff of 0.572 or lower, at which 95 of 9,812
 scored mutations qualify. Carriage at a cutoff of 1.0, far above that, is already 4.45% and 5.38% of the two
 periods (Table 3 panel B), so at 0.572 at least 4.5% of all records would be carriers. A definition that
 captures the confirmed variants is not a surveillance signal but a description of ordinary F diversity.
 
 This, rather than threshold sensitivity alone, is the study's principal result: within this DMS, no single
-score-based rule separates the substitutions that have been shown to matter from those that have not.
+score-based rule applied to one substitution at a time separates those shown to matter from those not.
 
 ### 3.4 The comparison also depends on where the threshold is set
 
@@ -331,15 +336,14 @@ Section 3.1 are the post-boundary subset. Twenty-six acquisitions have a single 
 cluster collected on or after 1 July 2023 exceeded two; the largest in the archive is a twelve-carrier
 site-209 clade, ten records from Argentina in 2015 and two from Viet Nam in 2014 (Figure 4b). Support is
 undefined for the 26 terminal acquisitions; of the six internal ones, two are well-supported clades (0.888
-and 0.982) and four, all site 208 to D, are not recovered as bipartitions - including the branch whose naive
-descendant count was 122 but which holds two carriers. Comparison against other F substitutions is
-uninformative at this sample size (p = 0.133 and 0.181). **Large recent clusters were not observed under
+and 0.982) and four, all site 208 to D, are not recovered as bipartitions. Comparison against other F
+substitutions is uninformative at this sample size (p = 0.133 and 0.181). **Large recent clusters were not observed under
 this sampling. This does not demonstrate absence of onward transmission**, which sparse sampling,
 de-duplication and the recency of the carriers could each produce.
 
 ### 3.7 Subtype consensus and the interpretation of reported frequencies
 
-In this archive, methionine at site 206 is carried by 90.7% of RSV-B records, arginine at 209 by 84.9% and
+Methionine at site 206 is carried by 90.7% of RSV-B records, arginine at 209 by 84.9% and
 asparagine at 211 by 77.3%, against 0.01%, 0.05% and 0.01% in RSV-A (Figure 3); their Fab-escape scores are
 0.598, 0.042 and -0.036. This is concordant with, and does not extend, the trial analysis that first
 characterised these residues: I206M:Q209R was highly prevalent in RSV-B and **increases** nirsevimab
@@ -349,7 +353,7 @@ narrower: a substitution count is meaningful only against a stated baseline, and
 baselines should not be combined. Genuine RSV-B variants remain distinguishable: the consensus is
 asparagine at 201 and lysine at 68, so F:N201T and F:K68Q are departures from it.
 
-F:N201T, reported from Spain in 2025/26 [8], is recovered without being sought: 5 carriers in the primary
+F:N201T, reported from Spain in 2025/26 [9], is recovered without being sought: 5 carriers in the primary
 window, 4 Spanish and 1 South African, all GISAID deposits absent from the GenBank-only subset, plus an
 older German record from 2002. This is concordance, not independent validation, since the cutoff was
 anchored on N201T.
@@ -362,12 +366,12 @@ variants - N211S, N190S, P389S, M206I and R191K - with p below 10^-300.
 
 Nine significant trends fall at site Ø positions and all nine decrease: N211S (rank 1), M206I (4), K68Q
 (10), R209Q (18), N197D (40), R209K (51), N201S (52), K68R (57) and K68N (78). Two are the RSV-B majority
-residues of Section 3.7, declining as B.D.4 lineages are replaced by B.D.E.1. These trends are not evidence
-about selection: per-year denominators rise roughly thirty-fold (RSV-A 165 to 4,740; RSV-B 378 to 4,081),
-and the apparent decline of K68Q is one historical cluster leaving the archive, 58 of its 60 occurrences
-falling in 2017. A Cochran-Armitage statistic across denominators of that shape measures which lineages were
+residues of Section 3.7, declining as B.D.4 lineages are replaced by B.D.E.1. These trends are not evidence about
+selection: per-year denominators rise roughly thirty-fold (RSV-A 165 to 4,740; RSV-B 378 to 4,081), and the
+apparent decline of K68Q is one historical cluster leaving the archive, 58 of its 60 occurrences falling in
+2017. A Cochran-Armitage statistic across denominators of that shape measures which lineages were
 sequenced, not which variants were selected. The scan is reported because no high-escape substitution
-increases; it supports no stronger claim.
+increases.
 
 ### 3.9 Clesrovimab
 
@@ -382,24 +386,22 @@ establish that cross-resistance cannot occur.
 
 ## 4 DISCUSSION
 
-The central problem is not that a threshold is hard to choose but that no choice works. Of 16 reported
-substitutions this definition classifies five; two are excluded by the cell-entry filter at any Fab cutoff;
-and capturing the one with a published clinical case requires a cutoff at which roughly one record in twenty
-is a carrier. Such a definition can be sensitive or specific but not both, so frequencies resting on one are
-not comparable across studies unless the rule is stated in full.
+The central problem is not that a threshold is hard to choose but that no choice works. Of 17 reported
+substitutions this definition classifies five; three are excluded by the cell-entry filter at any Fab
+cutoff, including one member of a phenotypically confirmed escape pair; and capturing the one with a
+published clinical case requires a cutoff at which roughly one record in twenty is a carrier. Such a definition can be sensitive or specific but not both, so frequencies resting on one
+are not comparable across studies unless the rule is stated in full.
 
 The period comparison makes the same point twice. Within a 2017-onward window the contrast survives
 stratification by country, subtype and database, removal of de-duplication, exclusion of imprecisely dated
-records and variation of the cell-entry floor - but not a change to either analyst choice: extending the
-window to include one 2014-15 clade removes significance, and lowering the cutoff removes and then reverses
-it while changing which substitutions the endpoint contains. The substitutions are not new; they are in the
-archive from 2002 and 2014-15. We claim only that whether they appear to have increased is determined by
-the threshold and the window.
+records and variation of the cell-entry floor - but not a change to either choice: extending the
+window to include one 2014-15 clade removes significance, and lowering the cutoff removes and then reverses it while
+changing which substitutions the endpoint contains. The substitutions are not new; they are in the archive from 2002 and
+2014-15. Whether they appear to have increased is determined by the threshold and the window.
 
 Candidate acquisitions recur across countries and lineages and the count of 32 is stable under every
-rooting tested, so the recurrence is not an artefact of root placement. No large recent cluster was
-observed. We offer no fitness-cost explanation: the data cannot distinguish a cost from sparse sampling,
-recency, de-duplication or phylogenetic uncertainty.
+rooting tested, so the recurrence is not an artefact of root placement. We offer no fitness-cost
+explanation: the data cannot distinguish a cost from sparse sampling, recency or phylogenetic uncertainty.
 
 Our full-archive result is concordant with the prior archive-scale analysis: Wilkins and colleagues found
 escape variants rare and not increasing across 1956-2021 [5], and across our full archive the difference is
@@ -407,43 +409,41 @@ likewise not significant. What is new is that the same data restricted to a mode
 significant increase, so the two conclusions reflect different spans rather than a conflict.
 
 The baseline problem has a documented counterpart. OUTSMART-RSV reports site 211 as S211N and increasing in
-RSV-B since 2020/21 [16]; against the modern RSV-B consensus the identical change is N211S and decreasing,
-from 378 of 378 records in 2017 to 12 of 1,969 in 2026. Both are correct and describe the same event, and
-neither can be reconciled with the other without knowing each baseline.
+RSV-B since 2020/21 [17]; against the modern RSV-B consensus the identical change is N211S and decreasing,
+from 378 of 378 records in 2017 to 12 of 1,969 in 2026. Both are correct and describe the same event; neither can be
+reconciled with the other without knowing each baseline.
 
-This study does not show that RSV-B consensus residues were previously misreported. The trial analysis that
-characterised I206M:Q209R identified its prevalence and measured its effect on susceptibility [4], and the
-systematic review separates polymorphisms from resistance-associated variants [6]. Our contribution is
-confirmation at archive scale and a procedural recommendation about pooling.
+This study does not show that RSV-B consensus residues were previously misreported: the trial analysis that
+characterised I206M:Q209R measured its effect on susceptibility [4], and the systematic review separates
+polymorphisms from resistance-associated variants [6].
 
 Two methodological results deserve emphasis. Half the GISAID records were excluded by de-duplication and
 two fifths matched a GenBank record, so naive pooling would have inflated the denominator by tens of
-thousands; yet the retained GISAID records contained every primary-window N201T record. Neither database
-alone is adequate. Separately, naive descendant-tip counts were misleading here: acquisition counts should
-carry branch support and a rooting check.
+thousands; yet the retained GISAID records contained every primary-window N201T record, so neither database
+alone is adequate. Naive descendant-tip counts were also misleading: acquisition counts should carry branch
+support and a rooting check.
 
 The archive also shows where it cannot see. Whole-genome coverage is absent or F-truncated across much of
-the Middle East, and at the observed post-boundary frequency the largest national collection in that region
-would have roughly an 18% chance of containing a single carrier (Supplementary Text, Figure S1).
+the Middle East, where at the observed post-boundary frequency the largest national collection would have
+roughly an 18% chance of containing one carrier (Supplementary Text, Figure S1).
 
 Nothing here supports changing prophylaxis policy: carriage of a scored substitution is not a confirmed
-resistant virus, the measurements are pseudovirus-based, and almost all deposited records carry none.
+resistant virus, and almost all deposited records carry none.
 
 ### 4.1 Limitations
 
 The public archive is a convenience sample dominated by a few countries, so these figures describe
-de-duplicated archive records, not population prevalence. Prophylaxis exposure is unrecorded, national
+de-duplicated archive records, not population prevalence (Figure S1). Prophylaxis exposure is unrecorded, national
 implementation dates differ while a single boundary was applied, and later sequencing effort was far
 greater, so the period comparison is exploratory; stratification by country reduces but does not remove
-this, and the choice of first included year changes the conclusion outright. Classifications are DMS scores,
-not measured phenotypes; no virus was tested functionally; the scan used an RSV-A background while most
-carriers are RSV-B; and the category excludes known resistance-associated variants including K68Q. The
+this, and the first included year changes the conclusion outright. Classifications are DMS scores,
+not measured phenotypes; the scan used an RSV-A background while most carriers are RSV-B; and the category
+excludes known resistance-associated variants including K68Q and I64M. The
 clesrovimab cutoff is unvalidated for that antibody. De-duplication may remove genuinely distinct
-infections, though repeating the analysis without it left the pattern in place. A single sampled carrier
-does not establish absence of transmission; the phylogenetic results are exploratory and conditional on one
-topology and ancestral-state model, though the acquisition count is stable across rootings. The trend scan
-reflects lineage turnover rather than selection. Clinical severity, prophylaxis failure rates, within-host
-variants and exposure history are not recoverable from consensus deposits and were not assessed.
+infections, though repeating the analysis without it left the pattern in place. A single sampled carrier does not establish absence of transmission; the
+phylogenetic results are conditional on one topology and ancestral-state model, though the acquisition
+count is stable across rootings. The trend scan reflects lineage turnover, not selection. Clinical severity, prophylaxis failure rates, within-host variants
+and exposure history are not recoverable from consensus deposits.
 
 ## 5 CONCLUSIONS
 
@@ -498,22 +498,23 @@ https://github.com/dms-vep/RSV_Long_F_DMS. Retrieval date for all sequence data 
 
 ## REFERENCES
 
-1. Li Y, Wang X, Blau DM, et al. Global, regional, and national disease burden estimates of acute lower respiratory infections due to respiratory syncytial virus in children younger than 5 years in 2019: a systematic analysis. *Lancet*. 2022;399(10340):2047-2064.
-2. Shi T, McAllister DA, O'Brien KL, et al. Global, regional, and national disease burden estimates of acute lower respiratory infections due to respiratory syncytial virus in young children in 2015: a systematic review and modelling study. *Lancet*. 2017;390(10098):946-958.
-3. Wang X, Li Y, Shi T, et al. Global disease burden of and risk factors for acute lower respiratory infections caused by respiratory syncytial virus in preterm infants and young children in 2019: a systematic review and meta-analysis. *Lancet*. 2024;403(10433):1241-1253.
-4. Ahani B, Tuffy KM, Aksyuk AA, et al. Molecular and phenotypic characteristics of RSV infections in infants during two nirsevimab randomized clinical trials. *Nat Commun*. 2023;14:4347. doi:10.1038/s41467-023-40057-8
-5. Wilkins D, Langedijk AC, Lebbink RJ, et al. Nirsevimab binding-site conservation in respiratory syncytial virus fusion glycoprotein worldwide between 1956 and 2021: an analysis of observational study sequencing data. *Lancet Infect Dis*. 2023;23(7):856-866. doi:10.1016/S1473-3099(23)00062-2
-6. Berikopoulou MM, et al. Systematic review of the mutations in the active antigenic site Ø of the prefusion F protein of the respiratory syncytial virus (RSV) following the implementation of monoclonal antibody prophylaxis. *Vaccine*. 2026;91:129069. doi:10.1016/j.vaccine.2026.129069
-7. Fourati S, et al. Real-world emergence of nirsevimab resistance in breakthrough infections with respiratory syncytial virus-B: a multicentre observational study in France. *Lancet Microbe*. 2026;7:101353. doi:10.1016/j.lanmic.2026.101353
-8. Iglesias-Caballero M, et al. Detection of nirsevimab-resistant RSV-B variants in children carrying the F:N201T substitution through genomic surveillance, Spain, 2025/26 season. *Euro Surveill*. 2026;31(35). doi:10.2807/1560-7917.ES.2026.31.35.2600690
-9. Mengual-Chuliá B, et al. Genomic surveillance of respiratory syncytial virus during 2023/2024 nirsevimab prophylaxis, Eastern Spain. *Clin Microbiol Infect*. 2026;32:1890-1895. doi:10.1016/j.cmi.2026.04.003
-10. de Prost N, et al. Detection of a nirsevimab-resistant RSV-B variant (F:K68Q) in an adult with severe infection. *Infect Dis Ther*. 2026;15:3221-3226. doi:10.1007/s40121-026-01442-0
-11. Simonich CAL, et al. Mutational constraints on RSV F and its neutralization by antibodies. *Nature*. 2026;658:998-1007. doi:10.1038/s41586-026-11030-4
-12. Aksamentov I, Roemer C, Hodcroft EB, Neher RA. Nextclade: clade assignment, mutation calling and quality control for viral genomes. *J Open Source Softw*. 2021;6(67):3773. doi:10.21105/joss.03773
-13. Goya S, Ruis C, Neher RA, et al. Standardized phylogenetic classification of human respiratory syncytial virus below the subgroup level. *Emerg Infect Dis*. 2024;30(8). doi:10.3201/eid3008.240209
-14. Piñeiro C, Abuín JM, Pichel JC. Very Fast Tree: speeding up the estimation of phylogenies for large alignments through parallelization and vectorization strategies. *Bioinformatics*. 2020;36(17):4658-4659. doi:10.1093/bioinformatics/btaa582
-15. Sagulenko P, Puller V, Neher RA. TreeTime: maximum-likelihood phylodynamic analysis. *Virus Evol*. 2018;4(1):vex042. doi:10.1093/ve/vex042
-16. Mahool KA, Kijak GH, Ahani B, et al. Nirsevimab binding site conservation in RSV F protein between 2019 and 2024: analysis of sequencing data from the US OUTSMART-RSV surveillance study and public databases. *Open Forum Infect Dis*. 2026;13:ofaf695.063. doi:10.1093/ofid/ofaf695.063
+1. Li Y, Wang X, Blau DM, Caballero MT, Feikin DR, Gill CJ, et al. Global, regional, and national disease burden estimates of acute lower respiratory infections due to respiratory syncytial virus in children younger than 5 years in 2019: a systematic analysis. *Lancet*. 2022;399(10340):2047-2064. doi:10.1016/S0140-6736(22)00478-0
+2. Shi T, McAllister DA, O'Brien KL, Simoes EAF, Madhi SA, Gessner BD, et al. Global, regional, and national disease burden estimates of acute lower respiratory infections due to respiratory syncytial virus in young children in 2015: a systematic review and modelling study. *Lancet*. 2017;390(10098):946-958. doi:10.1016/S0140-6736(17)30938-8
+3. Wang X, Li Y, Shi T, Bont LJ, Chu HY, Zar HJ, et al. Global disease burden of and risk factors for acute lower respiratory infections caused by respiratory syncytial virus in preterm infants and young children in 2019: a systematic review and meta-analysis. *Lancet*. 2024;403(10433):1241-1253. doi:10.1016/S0140-6736(24)00138-7
+4. Ahani B, Tuffy KM, Aksyuk AA, Wilkins D, Abram ME, Dagan R, et al. Molecular and phenotypic characteristics of RSV infections in infants during two nirsevimab randomized clinical trials. *Nat Commun*. 2023;14:4347. doi:10.1038/s41467-023-40057-8. Author correction: *Nat Commun*. 2024;15:3026. doi:10.1038/s41467-024-47421-2
+5. Wilkins D, Langedijk AC, Lebbink RJ, Morehouse C, Abram ME, Ahani B, et al. Nirsevimab binding-site conservation in respiratory syncytial virus fusion glycoprotein worldwide between 1956 and 2021: an analysis of observational study sequencing data. *Lancet Infect Dis*. 2023;23(7):856-866. doi:10.1016/S1473-3099(23)00062-2. Correction: *Lancet Infect Dis*. 2024;24(5):e281. doi:10.1016/S1473-3099(24)00177-4
+6. Berikopoulou MM, Tatsi EB, Siahanidou T, Michos A. Systematic review of the mutations in the active antigenic site Ø of the prefusion F protein of the respiratory syncytial virus (RSV) following the implementation of monoclonal antibody prophylaxis. *Vaccine*. 2026;91:129069. doi:10.1016/j.vaccine.2026.129069
+7. Fourati S, Reslan A, Bourret J, Casalegno JS, Rahou Y, Chollet L, et al. Genotypic and phenotypic characterisation of respiratory syncytial virus after nirsevimab breakthrough infections: a large, multicentre, observational, real-world study. *Lancet Infect Dis*. 2025;25(3):301-311. doi:10.1016/S1473-3099(24)00570-X
+8. Fourati S, Reslan A, Bourret J, Casalegno JS, Rahou Y, Softic L, et al. Real-world emergence of nirsevimab resistance in breakthrough infections with respiratory syncytial virus-B: a multicentre observational study in France. *Lancet Microbe*. 2026;7(7):101353. doi:10.1016/j.lanmic.2026.101353
+9. Iglesias-Caballero M, Infantes JA, Campoy A, Camarero-Serrano S, Moreno S, Cano O, et al. Detection of nirsevimab-resistant RSV-B variants in children carrying the F:N201T substitution through genomic surveillance, Spain, 2025/26 season. *Euro Surveill*. 2026;31(35):2600690. doi:10.2807/1560-7917.ES.2026.31.35.2600690
+10. Mengual-Chuliá B, Launes C, Cazorla E, López-Lacort M, Muñoz-Quiles C, Mira-Iglesias A, et al. Genomic surveillance of respiratory syncytial virus during 2023/2024 nirsevimab prophylaxis, Eastern Spain. *Clin Microbiol Infect*. 2026;32(11):1890-1895. doi:10.1016/j.cmi.2026.04.003
+11. de Prost N, Le Goff M, Cappy P, Bay P, N'debi M, Soulier A, et al. Detection of a nirsevimab-resistant RSV-B variant (F:K68Q) in an adult with severe infection. *Infect Dis Ther*. 2026;15(11):3221-3226. doi:10.1007/s40121-026-01442-0
+12. Simonich CAL, McMahon TE, Juviler G, Kampman L, Chu HY, Bloom JD. Mutational constraints on RSV F and its neutralization by antibodies. *Nature*. 2026;658(8137):998-1007. doi:10.1038/s41586-026-11030-4
+13. Aksamentov I, Roemer C, Hodcroft EB, Neher RA. Nextclade: clade assignment, mutation calling and quality control for viral genomes. *J Open Source Softw*. 2021;6(67):3773. doi:10.21105/joss.03773
+14. Goya S, Ruis C, Neher RA, Meijer A, Aziz A, Hinrichs AS, et al. Standardized phylogenetic classification of human respiratory syncytial virus below the subgroup level. *Emerg Infect Dis*. 2024;30(8):1631-1641. doi:10.3201/eid3008.240209
+15. Piñeiro C, Abuín JM, Pichel JC. Very Fast Tree: speeding up the estimation of phylogenies for large alignments through parallelization and vectorization strategies. *Bioinformatics*. 2020;36(17):4658-4659. doi:10.1093/bioinformatics/btaa582
+16. Sagulenko P, Puller V, Neher RA. TreeTime: maximum-likelihood phylodynamic analysis. *Virus Evol*. 2018;4(1):vex042. doi:10.1093/ve/vex042
+17. Mahool KA, Kijak GH, Ahani B, Brady TM, Nguyen A, Schaefer E, et al. Nirsevimab binding site conservation in RSV F protein between 2019 and 2024: analysis of sequencing data from the US OUTSMART-RSV surveillance study and public databases. *Open Forum Infect Dis*. 2026;13(Suppl 1):ofaf695.063. doi:10.1093/ofid/ofaf695.063
 
 ## FIGURE LEGENDS
 
@@ -532,7 +533,7 @@ carriage is higher before the boundary, including the significant reversal at 1.
 cutoff at which no record qualifies in either period. (c) The p value against the first collection year
 included; open circles mark windows containing pre-boundary carriers.
 
-**FIGURE 3** The 16 substitutions reported in references 4 and 6-10, ordered by Fab-escape score. (a) Score
+**FIGURE 3** The 17 substitutions reported in references 4 and 6-11, ordered by Fab-escape score. (a) Score
 against the cutoff of 2.036; red marks the five that are classified, grey the two excluded by the
 cell-entry floor at any Fab cutoff. (b) Frequency of the same residues in each subtype in the analysis set;
 substitutions not tabulated for frequency are marked. The three commonest are RSV-B majority residues.
