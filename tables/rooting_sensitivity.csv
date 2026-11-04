@@ -1,0 +1,57 @@
+subtype,substitution,carriers,rooting,gains,reversions
+RSV-A,K201E,2,as given (unrooted newick),2,0
+RSV-A,K201T,1,as given (unrooted newick),1,0
+RSV-A,K209E,6,as given (unrooted newick),6,0
+RSV-A,K201E,2,midpoint,2,0
+RSV-A,K201T,1,midpoint,1,0
+RSV-A,K209E,6,midpoint,6,0
+RSV-A,K201E,2,temporal (TreeTime least-squares),2,0
+RSV-A,K201T,1,temporal (TreeTime least-squares),1,0
+RSV-A,K209E,6,temporal (TreeTime least-squares),6,0
+RSV-A,K201E,2,adversarial: inside largest carrier clade,2,0
+RSV-A,K201T,1,adversarial: inside largest carrier clade,1,0
+RSV-A,K209E,6,adversarial: inside largest carrier clade,6,0
+RSV-A,K201E,2,random terminal edge 1,2,0
+RSV-A,K201T,1,random terminal edge 1,1,0
+RSV-A,K209E,6,random terminal edge 1,6,0
+RSV-A,K201E,2,random terminal edge 2,2,0
+RSV-A,K201T,1,random terminal edge 2,1,0
+RSV-A,K209E,6,random terminal edge 2,6,0
+RSV-A,K201E,2,random terminal edge 3,2,0
+RSV-A,K201T,1,random terminal edge 3,1,0
+RSV-A,K209E,6,random terminal edge 3,6,0
+RSV-B,K68I,4,as given (unrooted newick),4,0
+RSV-B,N201T,6,as given (unrooted newick),5,0
+RSV-B,N208D,15,as given (unrooted newick),11,1
+RSV-B,N208T,2,as given (unrooted newick),2,0
+RSV-B,R209E,12,as given (unrooted newick),1,0
+RSV-B,K68I,4,midpoint,4,0
+RSV-B,N201T,6,midpoint,5,0
+RSV-B,N208D,15,midpoint,11,1
+RSV-B,N208T,2,midpoint,2,0
+RSV-B,R209E,12,midpoint,1,0
+RSV-B,K68I,4,temporal (TreeTime least-squares),4,0
+RSV-B,N201T,6,temporal (TreeTime least-squares),5,0
+RSV-B,N208D,15,temporal (TreeTime least-squares),11,1
+RSV-B,N208T,2,temporal (TreeTime least-squares),2,0
+RSV-B,R209E,12,temporal (TreeTime least-squares),1,0
+RSV-B,K68I,4,adversarial: inside largest carrier clade,4,0
+RSV-B,N201T,6,adversarial: inside largest carrier clade,5,0
+RSV-B,N208D,15,adversarial: inside largest carrier clade,10,2
+RSV-B,N208T,2,adversarial: inside largest carrier clade,2,0
+RSV-B,R209E,12,adversarial: inside largest carrier clade,1,0
+RSV-B,K68I,4,random terminal edge 1,4,0
+RSV-B,N201T,6,random terminal edge 1,5,0
+RSV-B,N208D,15,random terminal edge 1,11,1
+RSV-B,N208T,2,random terminal edge 1,2,0
+RSV-B,R209E,12,random terminal edge 1,1,0
+RSV-B,K68I,4,random terminal edge 2,4,0
+RSV-B,N201T,6,random terminal edge 2,5,0
+RSV-B,N208D,15,random terminal edge 2,11,1
+RSV-B,N208T,2,random terminal edge 2,2,0
+RSV-B,R209E,12,random terminal edge 2,1,0
+RSV-B,K68I,4,random terminal edge 3,4,0
+RSV-B,N201T,6,random terminal edge 3,5,0
+RSV-B,N208D,15,random terminal edge 3,11,1
+RSV-B,N208T,2,random terminal edge 3,2,0
+RSV-B,R209E,12,random terminal edge 3,1,0
