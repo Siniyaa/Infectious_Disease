@@ -10,6 +10,7 @@ Stages
   call            subtype-consensus variant calling and DMS escape scoring
   stats           carriage, period tests, threshold sweep, window sweep, stratified inference
   sensitivity     de-duplication, date-precision and cell-entry-floor sensitivity analyses
+  rooting         prints the temporal-rooting and rooting-sensitivity commands
   trend           Cochran-Armitage scan across all F variants
   clesrovimab     exploratory application of the same cutoff to the clesrovimab DMS table
   phylo           prints the exact phylogenetic commands used (run once, interactively)
@@ -406,8 +407,10 @@ def stratified(A, out="supp_country_period_subtype.csv"):
     for keys, lab in ((["subtype"], "subtype"), (["c0"], "country"),
                       (["c0", "subtype"], "country x subtype"),
                       (["c0", "subtype", "source"], "country x subtype x database")):
-        p, n = cmh(W, keys)
-        print(f"  CMH by {lab:30s} p={p:.4g}  informative strata={n}")
+        pe, obs, ne = exact_stratified(W, keys)
+        pc, nc = cmh(W, keys)
+        print(f"  by {lab:30s} exact p={pe:.4g} ({ne} strata, {obs} post-boundary carriers); "
+              f"continuity-corrected CMH p={pc:.4g}")
     W["post"] = W.cdate >= ERA_BOUNDARY
     T = (W.groupby(["c0", "subtype", "post"]).agg(n=("carrier", "size"), k=("carrier", "sum"))
          .reset_index().pivot_table(index=["c0", "subtype"], columns="post",
@@ -543,10 +546,52 @@ The resulting trees, annotated NEXUS output and branch-mutation tables are depos
 phylogenetics/.
 """
 
+def exact_stratified(df, keys):
+    """Exact conditional test. The null distribution of the total number of post-boundary
+    carriers is the convolution of per-stratum hypergeometrics conditional on both margins.
+    Preferred over continuity-corrected CMH when strata contain zero events."""
+    from scipy.stats import hypergeom
+    dist = np.array([1.0]); obs = 0; informative = 0
+    for _, g in df.groupby(keys):
+        n_post = int((g.cdate >= ERA_BOUNDARY).sum()); n_tot = len(g)
+        k = int(g.carrier.sum())
+        if k == 0 or n_post == 0 or n_post == n_tot:
+            continue
+        informative += 1
+        obs += int(g[g.cdate >= ERA_BOUNDARY].carrier.sum())
+        sup = np.arange(max(0, k - (n_tot - n_post)), min(k, n_post) + 1)
+        pmf = hypergeom.pmf(sup, n_tot, k, n_post)
+        new = np.zeros(len(dist) + int(sup.max()))
+        for i, pi in enumerate(dist):
+            if pi > 0:
+                new[i + sup] += pi * pmf
+        dist = new
+    p = float(dist[obs:].sum()) if obs < len(dist) else 0.0
+    return p, obs, informative
+
+
+ROOTING_COMMANDS = """\
+Rooting sensitivity (Methods 2.5, Table S12). Temporal rooting needs only the tree and the
+collection dates, not the alignment:
+
+  treetime clock --tree F_A.nwk --dates dates_A.csv --reroot least-squares \\
+                 --outdir clock_A --sequence-length 1722
+
+dates_{A,B}.csv are two columns, name and decimal year, built from the deposited manifest.
+The acquisition count is then recomputed by Fitch parsimony on the binary carrier state at each
+site, under the temporally rooted tree, the midpoint rooting, the tree as produced, three random
+terminal-edge rootings and an adversarial root placed inside the largest carrier clade. Tip
+states come from manifests/analysis_set_38925.csv; no sequence data are required. The script
+rooting_sensitivity.py in this directory implements the recount and writes
+tables/rooting_sensitivity.csv.
+"""
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("stage", choices=["all", "fetch-genbank", "sort", "align", "build-cohort",
-                                      "call", "stats", "trend", "clesrovimab", "sensitivity", "phylo"])
+                                      "call", "stats", "trend", "clesrovimab", "sensitivity",
+                                      "phylo", "rooting"])
     ap.add_argument("--gisaid-fasta")
     ap.add_argument("--gisaid-meta")
     ap.add_argument("--frozen-accessions", default="manifests/genbank_accessions.txt",
@@ -558,6 +603,9 @@ def main():
 
     if args.stage == "phylo":
         print(PHYLO_COMMANDS)
+        return
+    if args.stage == "rooting":
+        print(ROOTING_COMMANDS)
         return
     if args.stage in ("all", "fetch-genbank"):
         fetch_genbank("rsv_genomes.fasta", args.email, args.frozen_accessions)
