@@ -389,3 +389,35 @@ being absent from the panel.
 **10. Temporally rooted trees.** F_A_temporally_rooted.newick and F_B_temporally_rooted.newick are in the
 repository under phylogenetics/, with the TreeTime clock output and root-to-tip tables. They were pushed
 with the date-filtered rerun; the earlier run has been superseded there.
+
+
+---
+
+## Addendum: response to the tenth review
+
+**1. Figure 3 legend said "two" grey points.** Corrected to three. The figure was right; only the legend
+text had not been updated when I64M was added.
+
+**2. I64M mischaracterised in Section 3.3.** Correct, and the distinction matters. The sentence has been
+split. F:I64T and F:R209L clear the Fab cutoff once it is lowered but are excluded by the cell-entry filter
+(-0.691 and -0.849). F:I64M fails both criteria, at -1.178 for Fab escape and -1.154 for cell entry. The
+conclusion is unchanged but the mechanism is now stated accurately for each.
+
+**3. Broken paragraphs in Section 3.8.** Confirmed in the Word file, not in the Markdown source, so the
+fault was in the Markdown-to-Word conversion rather than the text: soft line wraps within that paragraph
+had been emitted as paragraph marks. The converter now joins wrapped lines within each block, and the whole
+document was re-checked - no paragraph in either the manuscript or the supplementary file now begins
+mid-clause.
+
+**4. Word count.** Your measurement was right and ours was wrong, for the third time on this item, and the
+cause is now identified rather than patched. The counting script excluded only the first line of a
+multi-line table title, so the continuation lines of the Table 1, 3 and 4 titles were being counted as body
+text - exactly the 68-word gap between our 3,999 and your 3,931. The script now excludes table titles as
+whole paragraphs. The body is 3,940 words: your 3,931 plus the nine words added by correction 2 above. The
+stated rule on the title page has been reworded to say that tables and table titles are excluded in full.
+
+**5. One further error found while making these changes, not raised in the review.** Section 5 Conclusions
+still carried the pre-revision counts, reading "five of sixteen reported substitutions meet the criteria
+used here, two cannot be captured at any Fab cutoff". Both numbers were stale from before I64M was added
+and are now seventeen and three, consistent with the abstract, Section 3.3, Table 4, Figure 3 and the
+Discussion.
