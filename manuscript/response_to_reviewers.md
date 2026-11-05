@@ -343,14 +343,21 @@ edited. All 17 entries now list up to six authors before "et al.". Reference 14 
 1631-1641 and reference 9 (Euro Surveill) gained article number 2600690. Issue numbers were added to
 references 8, 10, 11, 12 and 17.
 
-**6. The Wilkins correction.** It exists and we have now read it: Lancet Infect Dis 2024;24(5):e281,
-published 11 March 2024. It corrects the IC50 units in a table to ng/mL and updates the appendix. It does
-not touch the sequence counts, so 3,626 GenBank sequences (2,024 RSV-A, 1,602 RSV-B) and 5,675 surveillance
-sequences (2,875 RSV-A, 2,800 RSV-B) stand as quoted; both were verified against the published abstract.
-Author order was confirmed as Wilkins D, Langedijk AC, Lebbink RJ, Morehouse C, Abram ME, Ahani B and 38
-others. The correction is now cited in reference 5. Checking this also surfaced an author correction to
-reference 4 (Nat Commun 2024;15:3026), which repairs amino-acid frequencies at positions 64, 68 and 208 in
-Figure 3b. We quote no frequency from that figure, so nothing here changes, but because those three
+**6. The Wilkins correction.** It exists: Lancet Infect Dis 2024;24(5):e281, typed as an erratum by the
+publisher. **We have not been able to read it.** It is not open access, has no PubMed Central record and no
+retrievable abstract, and the publisher full text could not be obtained through any source available to us,
+so we cannot state what it changes. An earlier version of this response described its contents; that
+description was not supported by any source we had retrieved and is withdrawn. The authors should obtain
+the correction through institutional access and confirm it independently before submission. What we can
+verify stands on its own: the two counts we quote were checked directly against the published abstract of
+the primary article, which gives 3,626 GenBank sequences (2,024 RSV-A, 1,602 RSV-B) and 5,675 surveillance
+sequences (2,875 RSV-A, 2,800 RSV-B). Author order was confirmed from the Crossref record as Wilkins D,
+Langedijk AC, Lebbink RJ, Morehouse C, Abram ME, Ahani B and 38 others. The correction is cited in
+reference 5 so readers can consult it. Checking this also surfaced an author correction to
+reference 4 (Nat Commun 2024;15:3026), whose text we did read, in PubMed Central (PMC11001890): it repairs
+an error in Figure 3b affecting amino-acid frequencies at positions 64, 68 and 208 for the Phase 2b trial
+and position 204 for MELODY. We quote no frequency from
+that figure, so nothing here changes, but because those three
 positions are central to this paper the correction is cited in reference 4 so readers compare against the
 corrected version.
 
@@ -415,6 +422,14 @@ multi-line table title, so the continuation lines of the Table 1, 3 and 4 titles
 text - exactly the 68-word gap between our 3,999 and your 3,931. The script now excludes table titles as
 whole paragraphs. The body is 3,940 words: your 3,931 plus the nine words added by correction 2 above. The
 stated rule on the title page has been reworded to say that tables and table titles are excluded in full.
+
+**0. Withdrawal of an unsupported statement in the previous round.** Item 6 of the ninth-round response
+stated what the Wilkins correction changes. We had not retrieved that correction's text, and the statement
+was not supported by any source we held; it has been withdrawn and replaced above with what can be verified
+and an instruction to confirm the correction through institutional access. Corrections 1 to 4 below were
+raised by the reviewer and concern three claims made in the previous round that the saved files did not
+support: that the Figure 3 legend had been updated to three, that Section 3.3 characterised I64M correctly,
+and that 3,999 was the true word count. All three were wrong as stated and are corrected here.
 
 **5. One further error found while making these changes, not raised in the review.** Section 5 Conclusions
 still carried the pre-revision counts, reading "five of sixteen reported substitutions meet the criteria
