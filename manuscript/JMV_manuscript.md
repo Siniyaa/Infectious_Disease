@@ -12,8 +12,8 @@
 
 **Keywords.** respiratory syncytial virus; nirsevimab; resistance-associated substitution; genomic surveillance; fusion protein
 
-**Word counts.** Abstract 198 words (limit 200). Text 3,999 words (limit 4,000). References 17 (limit 50). Display items 8: Figures 1-4 and Tables 1-4 (limit 8). Text counted as Sections 1-5 excluding
-headings, table content and table titles; abstract, references and figure legends excluded.
+**Word counts.** Abstract 198 words (limit 200). Text 3,940 words (limit 4,000). References 17 (limit 50). Display items 8: Figures 1-4 and Tables 1-4 (limit 8). Text counted as Sections 1-5 excluding headings, tables and
+table titles in full; abstract, references and figure legends excluded.
 
 **Funding.** [To be completed by the authors. If the work was unfunded, state that no specific funding was received.]
 
@@ -286,11 +286,11 @@ meet the criteria (Table 4).
 **Table 4.** Substitutions reported in the cited literature, their DMS scores and their classification under
 the criteria used here. Scores are from the pinned release of the nirsevimab DMS summary [12].
 
-Three features matter more than the count. F:I64T, F:R209L and F:I64M are excluded by the cell-entry filter
-(-0.691, -0.849, -1.154) rather than the Fab cutoff, so **no Fab threshold combined with this entry floor
-classifies them**. F:I64M matters most: reported with F:K65R as a pair whose high-level resistance was
-confirmed by fusion-inhibition assay [7], it scores -1.178 for Fab escape, the lowest at that site, while
-F:K65R scores 0.170. Neither member of a phenotypically confirmed escape pair is recoverable by any
+Three features matter more than the count. F:I64T and F:R209L clear the Fab cutoff once it is lowered but
+are excluded by the cell-entry filter (-0.691 and -0.849), so **no Fab threshold combined with this entry
+floor classifies them**. F:I64M fails both criteria: reported with F:K65R as a pair whose high-level
+resistance was confirmed by fusion-inhibition assay [7], it scores -1.178 for Fab escape, the lowest at that
+site, and -1.154 for cell entry, while F:K65R scores 0.170. Neither member of a phenotypically confirmed escape pair is recoverable by any
 single-substitution rule; and because the DMS scores substitutions singly, an escape phenotype requiring a
 combination lies outside what this or any similar screen can represent. And F:K68Q - with a published severe adult case [11] and reduced IgG neutralisation on an RSV-B
 background [12] - scores 0.572; capturing it requires a cutoff of 0.572 or lower, at which 95 of 9,812
@@ -448,8 +448,8 @@ and exposure history are not recoverable from consensus deposits.
 ## 5 CONCLUSIONS
 
 Within this deep mutational scan, no single score-based rule separates the F substitutions that have been
-shown to reduce nirsevimab activity from those that have not: five of sixteen reported substitutions meet
-the criteria used here, two cannot be captured at any Fab cutoff, and capturing the one with a published
+shown to reduce nirsevimab activity from those that have not: five of seventeen reported substitutions meet
+the criteria used here, three cannot be captured at any Fab cutoff, and capturing the one with a published
 clinical case would classify roughly one archive record in twenty as a carrier. Among records collected from
 2017 onward, substitutions meeting those criteria were detected only from late 2023 and remained below 0.25%
 of records collected on or after 1 July 2023. Exploratory reconstruction across the full archive, stable
@@ -534,7 +534,7 @@ cutoff at which no record qualifies in either period. (c) The p value against th
 included; open circles mark windows containing pre-boundary carriers.
 
 **FIGURE 3** The 17 substitutions reported in references 4 and 6-11, ordered by Fab-escape score. (a) Score
-against the cutoff of 2.036; red marks the five that are classified, grey the two excluded by the
+against the cutoff of 2.036; red marks the five that are classified, grey the three excluded by the
 cell-entry floor at any Fab cutoff. (b) Frequency of the same residues in each subtype in the analysis set;
 substitutions not tabulated for frequency are marked. The three commonest are RSV-B majority residues.
 
