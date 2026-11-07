@@ -2,7 +2,7 @@
 
 **Title.** Threshold and time-window choices determine whether nirsevimab escape substitutions appear to have increased in public respiratory syncytial virus genomes
 
-**Authors.** Siniya Nedunkulathil¹, Madikay Senghore²,³,⁴, Dean Everett²,³,⁴, Andreas Henschel¹,*
+**Authors.** Siniya Nedunkulathil¹, Dean Everett²,³,⁴, Madikay Senghore²,³,⁴, Andreas Henschel¹,*
 
 **Affiliations.**
 1 Department of Computer Science, Khalifa University of Science and Technology, Abu Dhabi, United Arab Emirates
@@ -469,10 +469,9 @@ The authors declare no competing interests.
 ## Author contributions
 
 S.N. conceived the study, assembled and curated the sequence cohort, wrote the analysis code, performed the
-statistical and phylogenetic analyses, prepared the figures and tables, and wrote the first draft. M.S.
-contributed to the design of the variant-classification and sensitivity analyses and to the interpretation
-of the phylogenetic results, and revised the manuscript. D.E. supervised the work, contributed to the
-interpretation of the surveillance findings, and revised the manuscript. A.H. conceived and supervised the
+statistical and phylogenetic analyses, prepared the figures and tables, and wrote the first draft. D.E. and
+M.S. supervised the work, contributed to the interpretation of the surveillance findings, and revised the
+manuscript. A.H. conceived and supervised the
 study, contributed to the analytical design, and revised the manuscript. All authors read and approved the
 final version and accept responsibility for its content.
 
