@@ -12,15 +12,13 @@
 
 **Corresponding author.** * Andreas Henschel, Department of Computer Science, Khalifa University of Science and Technology, Abu Dhabi, United Arab Emirates. Email: [to be completed].
 
-**ORCIDs.** [To be completed by each author.]
-
 **Keywords.** respiratory syncytial virus; nirsevimab; resistance-associated substitution; genomic surveillance; fusion protein
 
 **Word counts.** Title 19 words (limit 20). Abstract 198 words (limit 200), unstructured and unreferenced. Main text 2,938 words (guideline 4,500), excluding Abstract, Methods, References and figure legends as Scientific Reports specifies. Methods 999 words (no limit). References 17 (guideline 60). Display items 8: Figures 1-4 and Tables 1-4 (limit 8).
 
-**Funding.** [To be completed by the authors. If the work was unfunded, state that no specific funding was received.]
+**Funding.** No specific funding was received for this work.
 
-**Competing interests.** [To be completed by the authors.]
+**Competing interests.** The authors declare no competing interests.
 
 **Declaration of generative AI use.** Claude Opus 5 (Anthropic) was used substantially throughout this work: to write and debug the analysis code, to run the analyses, to draft and revise the manuscript, and to propose and carry out several of the sensitivity analyses reported here. The authors defined the research question, directed the analysis, reviewed the code and outputs, verified every reference against its primary source, and take full responsibility for the content, the accuracy of the results and the conclusions. The analysis workflow, the manifests needed to reproduce the cohort and a log of the executed analyses are deposited so that readers can check the results independently.
 
@@ -457,15 +455,26 @@ We gratefully acknowledge all data contributors, namely the authors and their or
 responsible for obtaining the specimens, and their submitting laboratories for generating the genetic
 sequence and metadata and sharing via the GISAID Initiative, on which this research is based. A GISAID
 EPI_SET acknowledgement identifier listing every accession used will be registered and cited in the final
-version. We also acknowledge the submitters of the GenBank records analysed here.
+version. We also acknowledge the submitters of the GenBank records analysed here, and the
+National Center for Biotechnology Information for maintaining public access to them. This work reuses
+several openly released resources, and we thank the groups responsible: the authors of the RSV fusion
+protein deep mutational scan for publishing the complete escape and cell-entry measurements; the Nextstrain
+team for Nextclade and its curated RSV reference datasets; and the developers of VeryFastTree and TreeTime.
+None of these groups had any role in this study or in the interpretation presented here.
 
 ## Competing interests
 
-[To be completed by the authors.]
+The authors declare no competing interests.
 
 ## Author contributions
 
-[To be completed by the authors, following CRediT taxonomy.]
+S.N. conceived the study, assembled and curated the sequence cohort, wrote the analysis code, performed the
+statistical and phylogenetic analyses, prepared the figures and tables, and wrote the first draft. M.S.
+contributed to the design of the variant-classification and sensitivity analyses and to the interpretation
+of the phylogenetic results, and revised the manuscript. D.E. supervised the work, contributed to the
+interpretation of the surveillance findings, and revised the manuscript. A.H. conceived and supervised the
+study, contributed to the analytical design, and revised the manuscript. All authors read and approved the
+final version and accept responsibility for its content.
 
 ## Ethics declarations
 
